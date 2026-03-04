@@ -1,10 +1,17 @@
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
-function getResend() {
-  if (!process.env.RESEND_API_KEY) {
-    throw new Error('RESEND_API_KEY is not configured')
+function getTransporter() {
+  if (!process.env.MAILGUN_API_KEY) {
+    throw new Error('MAILGUN_API_KEY is not configured')
   }
-  return new Resend(process.env.RESEND_API_KEY)
+  return nodemailer.createTransport({
+    host: 'smtp.mailgun.org',
+    port: 587,
+    auth: {
+      user: `postmaster@${process.env.MAILGUN_DOMAIN || 'mrbnb.cl'}`,
+      pass: process.env.MAILGUN_API_KEY,
+    },
+  })
 }
 
 const NOTIFICATION_EMAIL = 'felipe@mrbnb.cl'
@@ -113,7 +120,7 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
 
   const html = emailWrapper('Nuevo contacto recibido', body)
 
-  await getResend().emails.send({
+  await getTransporter().sendMail({
     from: FROM_EMAIL,
     to: NOTIFICATION_EMAIL,
     subject: `[Mr.BnB] Nuevo contacto: ${data.name}`,
@@ -168,7 +175,7 @@ export async function sendEvaluacionNotification(data: EvaluacionFormData): Prom
 
   const coberturaSubject = data.cobertura ? '' : ' [FUERA DE COBERTURA]'
 
-  await getResend().emails.send({
+  await getTransporter().sendMail({
     from: FROM_EMAIL,
     to: NOTIFICATION_EMAIL,
     subject: `[Mr.BnB] Nueva evaluación: ${data.name} - ${data.comuna}${coberturaSubject}`,

@@ -11,7 +11,7 @@ export interface Property {
   image?: string
 }
 
-// 64 properties across Santiago based on MR BnB real portfolio
+// 64 properties across Santiago based on Mr.BnB real portfolio
 export const properties: Property[] = [
   // Providencia (15 props)
   { id: 1, name: 'Studio Providencia Centro', comuna: 'Providencia', type: '1BR', lat: -33.4260, lng: -70.6120, adr: 52000, occupancy: 85, rating: 4.9 },

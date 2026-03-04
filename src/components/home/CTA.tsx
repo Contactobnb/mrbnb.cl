@@ -12,7 +12,7 @@ export default function CTA() {
           Más que administradores. Somos tus socios en renta corta.
         </p>
         <p className="text-gray-400 max-w-3xl mx-auto mb-8">
-          En Mr BnB no solo operamos tu propiedad: te acompañamos en todo el ciclo de inversión en renta corta.
+          En Mr.BnB no solo operamos tu propiedad: te acompañamos en todo el ciclo de inversión en renta corta.
           Te ayudamos a elegir mejor dónde invertir, maximizar la rentabilidad de tu departamento y decidir
           estratégicamente cuándo mantener o vender.
         </p>

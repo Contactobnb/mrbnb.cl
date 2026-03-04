@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://mrbnb.cl'),
   title: {
-    default: 'MR BnB — Transformamos Departamentos en Hoteles | Gestión Airbnb Santiago',
-    template: '%s | MR BnB',
+    default: 'Mr.BnB — Transformamos Departamentos en Hoteles | Gestión Airbnb Santiago',
+    template: '%s | Mr.BnB',
   },
   description:
     'Administración profesional de propiedades en renta corta en Santiago. +60 propiedades, 4.81 en Airbnb, Superhost. Más rentabilidad, cero estrés, servicio premium.',
@@ -24,23 +24,23 @@ export const metadata: Metadata = {
     'renta corta departamentos',
     'administración departamentos turísticos',
     'superhost santiago',
-    'MR BnB',
+    'Mr.BnB',
   ],
-  authors: [{ name: 'MR BnB' }],
-  creator: 'MR BnB',
+  authors: [{ name: 'Mr.BnB' }],
+  creator: 'Mr.BnB',
   openGraph: {
     type: 'website',
     locale: 'es_CL',
     url: 'https://mrbnb.cl',
-    siteName: 'MR BnB',
-    title: 'MR BnB — Transformamos Departamentos en Hoteles',
+    siteName: 'Mr.BnB',
+    title: 'Mr.BnB — Transformamos Departamentos en Hoteles',
     description:
       'Administración profesional de propiedades en renta corta. +60 propiedades en Santiago. Superhost.',
-    images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'MR BnB' }],
+    images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'Mr.BnB' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MR BnB — Gestión Profesional Airbnb Santiago',
+    title: 'Mr.BnB — Gestión Profesional Airbnb Santiago',
     description: 'Más rentabilidad. Cero estrés. Servicio Premium.',
   },
   robots: {
@@ -58,7 +58,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': 'https://mrbnb.cl',
-  name: 'MR BnB',
+  name: 'Mr.BnB',
   description: 'Administración profesional de propiedades en renta corta en Santiago, Chile.',
   url: 'https://mrbnb.cl',
   telephone: '+56942237814',
@@ -75,10 +75,10 @@ const jsonLd = {
     bestRating: '5',
     ratingCount: '320',
   },
-  sameAs: ['https://www.instagram.com/mrbnb.cl', 'https://www.linkedin.com/company/mrbnb'],
+  sameAs: ['https://www.instagram.com/mrbnb.cl', 'https://www.linkedin.com/company/mr-bnb'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Servicios MR BnB',
+    name: 'Servicios Mr.BnB',
     itemListElement: [
       {
         '@type': 'Offer',

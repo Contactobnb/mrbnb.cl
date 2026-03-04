@@ -14,13 +14,13 @@ export const blogPosts: BlogPostData[] = [
   {
     slug: 'guia-completa-ganar-airbnb-santiago',
     title: 'Guía Completa: Cómo Maximizar tus Ingresos con Airbnb en Santiago',
-    excerpt: 'Descubre las estrategias probadas que usamos en MR BnB para generar hasta un 30% más de ingresos que el arriendo tradicional en más de 60 propiedades en Santiago.',
+    excerpt: 'Descubre las estrategias probadas que usamos en Mr.BnB para generar hasta un 30% más de ingresos que el arriendo tradicional en más de 60 propiedades en Santiago.',
     content: `
 ## El potencial real del arriendo corto plazo en Santiago
 
 Santiago se ha consolidado como uno de los destinos más atractivos de Sudamérica para el arriendo de corto plazo. Con más de 4 millones de visitantes internacionales al año y una creciente demanda de viajeros de negocios, las oportunidades para propietarios nunca han sido mejores.
 
-En MR BnB, operamos más de 60 propiedades en Santiago y hemos comprobado que una gestión profesional puede generar **hasta un 30% más de ingresos** en comparación con el arriendo tradicional, y en temporada alta, esta cifra puede llegar a un **+55%**.
+En Mr.BnB, operamos más de 60 propiedades en Santiago y hemos comprobado que una gestión profesional puede generar **hasta un 30% más de ingresos** en comparación con el arriendo tradicional, y en temporada alta, esta cifra puede llegar a un **+55%**.
 
 ## Las comunas más rentables
 
@@ -38,7 +38,7 @@ No todas las ubicaciones ofrecen el mismo retorno. Basado en nuestra data de ope
 ## Los 5 factores clave para maximizar ingresos
 
 ### 1. Pricing dinámico basado en datos
-No uses tarifas fijas. El pricing debe ajustarse según temporada, día de la semana, eventos locales y competencia. En MR BnB usamos algoritmos de pricing que optimizan la tarifa diaria en tiempo real.
+No uses tarifas fijas. El pricing debe ajustarse según temporada, día de la semana, eventos locales y competencia. En Mr.BnB usamos algoritmos de pricing que optimizan la tarifa diaria en tiempo real.
 
 ### 2. Diseño funcional orientado a conversión
 La primera impresión importa. Un departamento bien diseñado y fotografiado puede cobrar entre un 15-25% más. Invertir en diseño interior es una de las mejores decisiones de ROI.
@@ -54,14 +54,14 @@ Mantener un rating sobre 4.8 en Airbnb es fundamental. Nosotros mantenemos un pr
 
 ## ¿Cuánto puedes ganar realmente?
 
-| Tipo | Comuna | Arriendo tradicional | Con MR BnB | Diferencia |
+| Tipo | Comuna | Arriendo tradicional | Con Mr.BnB | Diferencia |
 |------|--------|---------------------|-----------|-----------|
 | 1BR | Providencia | $450.000 | $620.000 | +38% |
 | 2BR | Las Condes | $750.000 | $1.050.000 | +40% |
 | 1BR | Stgo Centro | $320.000 | $430.000 | +34% |
 | 3BR | Providencia | $900.000 | $1.280.000 | +42% |
 
-*Valores netos estimados para el propietario después de comisión MR BnB*
+*Valores netos estimados para el propietario después de comisión Mr.BnB*
 
 ## El costo de hacerlo solo
 
@@ -75,7 +75,7 @@ La administración profesional no es un gasto, es una inversión que se paga sol
 
 ## Conclusión
 
-El arriendo corto plazo en Santiago es una excelente oportunidad de inversión cuando se gestiona profesionalmente. La clave está en tener datos, experiencia operativa y estándar hotelero. En MR BnB combinamos los tres.
+El arriendo corto plazo en Santiago es una excelente oportunidad de inversión cuando se gestiona profesionalmente. La clave está en tener datos, experiencia operativa y estándar hotelero. En Mr.BnB combinamos los tres.
 
 **¿Quieres saber cuánto podría rentar tu propiedad?** Usa nuestro [simulador de evaluación](/evaluacion) o [agenda una reunión](/contacto) con nosotros.
     `,
@@ -165,7 +165,7 @@ Barrio Patronato y cercanía a centros de salud generan demanda constante.
 
 ## Conclusión
 
-La mejor inversión depende de tu capital disponible y objetivos. En MR BnB te ayudamos a evaluar cada oportunidad con datos reales.
+La mejor inversión depende de tu capital disponible y objetivos. En Mr.BnB te ayudamos a evaluar cada oportunidad con datos reales.
 
 **[Evalúa tu propiedad gratis](/evaluacion)** o **[conversa con nosotros](/contacto)**.
     `,
@@ -182,7 +182,7 @@ La mejor inversión depende de tu capital disponible y objetivos. En MR BnB te a
     content: `
 ## Transparencia ante todo
 
-En MR BnB creemos en la transparencia. Por eso compartimos datos reales de nuestra operación de más de 60 propiedades en Santiago.
+En Mr.BnB creemos en la transparencia. Por eso compartimos datos reales de nuestra operación de más de 60 propiedades en Santiago.
 
 ## Los números que importan
 
@@ -199,7 +199,7 @@ En MR BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 
 **Inversión en habilitación**: $2.500.000 CLP
 - Arriendo tradicional anterior: $380.000/mes
-- Ingresos con MR BnB (promedio): $520.000/mes neto
+- Ingresos con Mr.BnB (promedio): $520.000/mes neto
 - **Incremento**: +37%
 - **Payback de inversión**: 6 meses
 
@@ -207,7 +207,7 @@ En MR BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 
 **Inversión en habilitación**: $4.200.000 CLP
 - Arriendo tradicional anterior: $700.000/mes
-- Ingresos con MR BnB (promedio): $980.000/mes neto
+- Ingresos con Mr.BnB (promedio): $980.000/mes neto
 - **Incremento**: +40%
 - **Payback de inversión**: 5 meses
 
@@ -215,7 +215,7 @@ En MR BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 
 **Inversión en habilitación**: $6.800.000 CLP
 - Arriendo tradicional anterior: $850.000/mes
-- Ingresos con MR BnB (promedio): $1.250.000/mes neto
+- Ingresos con Mr.BnB (promedio): $1.250.000/mes neto
 - **Incremento**: +47%
 - **Payback de inversión**: 4 meses
 
@@ -267,9 +267,9 @@ La clave está en la gestión profesional. Hacerlo solo rara vez produce estos r
 
 La mayoría de los administradores de propiedades en Chile operan de forma artesanal: WhatsApp para reservas, planillas Excel para finanzas, y coordinación manual de limpieza. El resultado es predecible: ineficiencia, errores y pérdida de ingresos.
 
-## El enfoque MR BnB: Tecnología + Operación Hotelera
+## El enfoque Mr.BnB: Tecnología + Operación Hotelera
 
-En MR BnB integramos tecnología e IA en cada parte de la operación:
+En Mr.BnB integramos tecnología e IA en cada parte de la operación:
 
 ### 1. Pricing Dinámico con IA
 Nuestro sistema analiza en tiempo real:
@@ -310,7 +310,7 @@ Los propietarios acceden a:
 
 ## Los resultados hablan
 
-| Métrica | Gestión Manual | Con MR BnB |
+| Métrica | Gestión Manual | Con Mr.BnB |
 |---------|---------------|-----------|
 | Ocupación | 55-65% | 80%+ |
 | Rating | 4.2-4.5 | 4.81 |

@@ -213,7 +213,7 @@ export default function LeadDetailPage() {
   }
 
   const handleDelete = async () => {
-    if (!confirm('¿Estas seguro de eliminar este lead? Esta accion no se puede deshacer.')) {
+    if (!confirm('¿Estás seguro de eliminar este lead? Esta acción no se puede deshacer.')) {
       return
     }
 
@@ -301,18 +301,18 @@ export default function LeadDetailPage() {
         <div className="lg:col-span-2 space-y-6">
           {/* Contact Information */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Informacion de contacto</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Información de contacto</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InfoField label="Nombre" value={lead.name} />
               <InfoField label="Email" value={lead.email} />
-              <InfoField label="Telefono" value={lead.phone} />
-              <InfoField label="Direccion" value={lead.address} />
+              <InfoField label="Teléfono" value={lead.phone} />
+              <InfoField label="Dirección" value={lead.address} />
             </div>
           </div>
 
           {/* Property Information */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Informacion de propiedad</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Información de propiedad</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InfoField label="Comuna" value={lead.comuna} />
               <InfoField label="Tipo" value={lead.propertyType} />
@@ -329,7 +329,7 @@ export default function LeadDetailPage() {
           {/* ROI Data */}
           {(lead.estimatedRevenue || lead.roiProjected !== null) && (
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Proyeccion de ingresos</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Proyección de ingresos</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {lead.estimatedRevenue && (
                   <div className="bg-green-50 rounded-lg p-4 border border-green-200">
@@ -349,7 +349,7 @@ export default function LeadDetailPage() {
                 )}
                 {lead.roiProjected !== null && lead.roiProjected !== undefined && (
                   <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                    <p className="text-sm text-purple-600 font-medium">Uplift vs arriendo</p>
+                    <p className="text-sm text-purple-600 font-medium">Diferencia vs arriendo</p>
                     <p className="text-xl font-bold text-purple-800 mt-1">
                       +{Math.round(lead.roiProjected * 100)}%
                     </p>
@@ -404,7 +404,7 @@ export default function LeadDetailPage() {
 
               <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Proximo seguimiento
+                  Próximo seguimiento
                 </label>
                 <input
                   type="date"
@@ -505,7 +505,7 @@ export default function LeadDetailPage() {
             {lead.nextFollowUp && (
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <p className="text-sm text-gray-600">
-                  <span className="font-medium">Proximo seguimiento:</span>{' '}
+                  <span className="font-medium">Próximo seguimiento:</span>{' '}
                   <span className="text-blue-700 font-medium">
                     {formatDate(lead.nextFollowUp)}
                   </span>

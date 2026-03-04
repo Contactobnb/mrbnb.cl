@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { calculateROI, type PropertyData } from '@/lib/pricing'
 
-// POST /api/evaluacion - Receive evaluation form data, create lead, return ROI
+// POST /api/evaluacion - Receive evaluation form data, create lead
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -15,9 +14,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!body.comuna || !body.propertyType) {
+    if (!body.comuna || !body.propertyType || !body.tipologia) {
       return NextResponse.json(
-        { error: 'Comuna y tipo de propiedad son requeridos para la evaluación' },
+        { error: 'Comuna, tipo de propiedad y tipología son requeridos' },
         { status: 400 }
       )
     }
@@ -31,64 +30,59 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Calculate ROI
-    const propertyData: PropertyData = {
-      comuna: body.comuna,
-      propertyType: body.propertyType,
-      surface: body.surface ? parseInt(body.surface) : undefined,
-      furnished: body.furnished || false,
-      parking: body.parking || false,
-      amenities: body.amenities || [],
-    }
+    // Determine coverage status
+    const hasCobertura = body.cobertura !== false
 
-    const roi = calculateROI(propertyData)
+    // Build notes
+    const noteParts: string[] = []
+    if (body.tipologia) noteParts.push(`Tipología: ${body.tipologia}`)
+    if (body.direccion) noteParts.push(`Dirección: ${body.direccion}`)
+    if (body.amenidades?.length > 0) noteParts.push(`Amenidades: ${body.amenidades.join(', ')}`)
+    if (body.otraInfo) noteParts.push(`Info adicional: ${body.otraInfo}`)
+    if (!hasCobertura && body.notas) noteParts.push(body.notas)
 
-    // Create lead with source='evaluacion' and calculated ROI data
+    // Create lead
     const lead = await prisma.lead.create({
       data: {
         name: body.name,
         email: body.email,
         phone: body.phone || null,
-        address: body.address || null,
+        address: body.direccion || null,
         comuna: body.comuna,
-        propertyType: body.propertyType,
-        surface: body.surface ? parseInt(body.surface) : null,
-        furnished: body.furnished || false,
-        parking: body.parking || false,
-        amenities: body.amenities || [],
-        estimatedRevenue: roi.netOwnerMonthly,
-        roiProjected: roi.uplift,
-        status: 'EVALUATING',
-        priority: 'HIGH',
+        propertyType: `${body.propertyType} - ${body.tipologia}`,
+        amenities: body.amenidades || [],
+        status: hasCobertura ? 'EVALUATING' : 'NEW',
+        priority: hasCobertura ? 'HIGH' : 'LOW',
         source: 'evaluacion',
-        notes: body.notes || null,
+        notes: noteParts.join(' | '),
       },
     })
 
     // Create initial activity
+    const activityTitle = hasCobertura
+      ? 'Evaluación solicitada'
+      : 'Evaluación solicitada (fuera de cobertura)'
+
+    const amenidadesText = body.amenidades?.length > 0 ? ` Amenidades: ${body.amenidades.join(', ')}.` : ''
+    const otraInfoText = body.otraInfo ? ` Info: ${body.otraInfo}.` : ''
+
+    const activityBody = hasCobertura
+      ? `Evaluación de ${body.propertyType} (${body.tipologia}) en ${body.comuna}. Dirección: ${body.direccion || 'No indicada'}.${amenidadesText}${otraInfoText}`
+      : `${body.notas || 'Sin cobertura'}. ${body.propertyType} (${body.tipologia}) en ${body.comuna}. Dirección: ${body.direccion || 'No indicada'}.${amenidadesText}${otraInfoText}`
+
     await prisma.activity.create({
       data: {
         leadId: lead.id,
         type: 'note',
-        title: 'Evaluación solicitada',
-        body: `Evaluación de propiedad en ${body.comuna} (${body.propertyType}). Ingreso estimado: $${roi.netOwnerMonthly.toLocaleString('es-CL')}/mes.`,
+        title: activityTitle,
+        body: activityBody,
       },
     })
 
     return NextResponse.json({
       success: true,
       leadId: lead.id,
-      roi: {
-        dailyRate: roi.dailyRate,
-        monthlyRevenue: roi.monthlyRevenue,
-        annualRevenue: roi.annualRevenue,
-        traditionalRent: roi.traditionalRent,
-        uplift: roi.uplift,
-        commission: roi.commission,
-        netOwnerMonthly: roi.netOwnerMonthly,
-        netOwnerAnnual: roi.netOwnerAnnual,
-        occupancyRate: roi.occupancyRate,
-      },
+      cobertura: hasCobertura,
     })
   } catch (error) {
     console.error('Error processing evaluation:', error)

@@ -73,7 +73,7 @@ export default function ServiciosPage() {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Nuestros Servicios
+              Nuestros servicios
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
               Tres líneas de servicio diseñadas para maximizar el valor de tu propiedad.
@@ -102,7 +102,7 @@ export default function ServiciosPage() {
               <div className="inline-block bg-[#1e3a5f]/10 text-[#1e3a5f] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 Plan 1
               </div>
-              <h2 className="heading-2 mb-4">Administración de Renta Corta</h2>
+              <h2 className="heading-2 mb-4">Administración de renta corta</h2>
               <p className="text-gray-600 text-lg mb-6">
                 Nos encargamos de todo. Tú recibes los ingresos, nosotros operamos tu propiedad
                 con estándar hotelero, 24/7, los 365 días del año.
@@ -196,7 +196,7 @@ export default function ServiciosPage() {
               <div className="inline-block bg-[#1e3a5f]/10 text-[#1e3a5f] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 Plan 2
               </div>
-              <h2 className="heading-2 mb-4">Corretaje de Propiedades</h2>
+              <h2 className="heading-2 mb-4">Corretaje de propiedades</h2>
               <p className="text-gray-600 text-lg mb-6">
                 Compramos y vendemos propiedades con visión de renta corta.
                 Cada operación viene con el respaldo de nuestra experiencia operando +60 propiedades.
@@ -225,7 +225,7 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* Plan 3: Desarrollo a Medida */}
+      {/* Plan 3: Desarrollo a medida */}
       <section id="inversion" className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -233,7 +233,7 @@ export default function ServiciosPage() {
               <div className="inline-block bg-[#c53030]/10 text-[#c53030] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 Plan 3
               </div>
-              <h2 className="heading-2 mb-4">Desarrollo a Medida</h2>
+              <h2 className="heading-2 mb-4">Desarrollo a medida</h2>
               <p className="text-gray-600 text-lg mb-6">
                 Buscamos, negociamos, compramos, remodelamos e integramos propiedades para renta corta
                 con estándar hotelero. Un servicio integral de principio a fin.
@@ -280,12 +280,12 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* Back Office Operativo */}
+      {/* Back office operativo */}
       <section className="section-padding bg-[#1e3a5f] text-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Back Office Operativo
+              Back office operativo
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Detrás de cada propiedad hay un equipo completo trabajando para que
@@ -309,7 +309,7 @@ export default function ServiciosPage() {
       {/* Comparison Section */}
       <section className="section-padding bg-[#faf8f5]">
         <div className="container-custom">
-          <h2 className="heading-2 text-center mb-12">Compara Nuestros Planes</h2>
+          <h2 className="heading-2 text-center mb-12">Compara nuestros planes</h2>
           <div className="overflow-x-auto">
             <table className="w-full bg-white rounded-xl shadow-md overflow-hidden">
               <thead>

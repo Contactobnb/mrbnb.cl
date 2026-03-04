@@ -21,7 +21,7 @@ export default function AdminLayout({
       <aside className="w-64 min-h-screen flex-shrink-0" style={{ backgroundColor: '#1e3a5f' }}>
         <div className="p-6">
           <Link href="/admin" className="block">
-            <h1 className="text-white text-xl font-bold">MR BnB</h1>
+            <h1 className="text-white text-xl font-bold">Mr.BnB</h1>
             <p className="text-blue-200 text-sm mt-1">Panel de Administracion</p>
           </Link>
         </div>

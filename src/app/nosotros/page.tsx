@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 
 export const metadata: Metadata = {
   title: 'Nosotros',
   description:
-    'Conoce al equipo detrás de MR BnB. Profesionalizamos la renta corta en Chile con excelencia, hospitalidad, transparencia y visión de largo plazo.',
+    'Conoce al equipo detrás de Mr.BnB. Profesionalizamos la renta corta en Chile con excelencia, hospitalidad, transparencia y visión de largo plazo.',
 }
 
 const team = [
@@ -15,7 +16,7 @@ const team = [
     education: 'Ingeniero Civil Industrial - MBA UC',
     focus: 'Estrategia, inversión y experiencia de cliente',
     quote: 'Mi foco es que tu inversión funcione como un verdadero activo financiero.',
-    initials: 'FR',
+    image: '/images/team/felipe-ruiz.jpg',
   },
   {
     name: 'Pedro Pablo Tort',
@@ -23,7 +24,7 @@ const team = [
     education: 'Ingeniero Civil Industrial - UC',
     focus: 'Desarrollo e inversión inmobiliaria',
     quote: 'Tomamos decisiones basadas en datos y visión de largo plazo.',
-    initials: 'PT',
+    image: '/images/team/pedro-tort.jpg',
   },
 ]
 
@@ -188,7 +189,7 @@ export default function NosotrosPage() {
       <section className="section-padding bg-[#faf8f5]">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="heading-2 mb-4">Nuestro Equipo</h2>
+            <h2 className="heading-2 mb-4">Nuestro equipo</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Dos ingenieros con visión de negocio, pasión por la hospitalidad
               y un compromiso con la excelencia.
@@ -198,9 +199,14 @@ export default function NosotrosPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {team.map((member, idx) => (
               <Card key={idx} hover={false} className="!p-8 text-center">
-                {/* Avatar placeholder */}
-                <div className="w-24 h-24 rounded-full bg-[#1e3a5f] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                  {member.initials}
+                <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#1e3a5f]/10">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={112}
+                    height={112}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 <h3 className="text-xl font-bold text-[#1e3a5f] mb-1">{member.name}</h3>
@@ -224,7 +230,7 @@ export default function NosotrosPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="heading-2 mb-4">Nuestra Cultura</h2>
+            <h2 className="heading-2 mb-4">Nuestra cultura</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Excelencia, hospitalidad, transparencia y visión de largo plazo.
               Cuidamos tu propiedad como si fuera nuestra.
@@ -250,7 +256,7 @@ export default function NosotrosPage() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Nuestro Back Office
+              Nuestro back office
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Detrás de cada propiedad hay un equipo completo trabajando para que
@@ -274,7 +280,7 @@ export default function NosotrosPage() {
       {/* Numbers */}
       <section className="section-padding bg-[#faf8f5]">
         <div className="container-custom">
-          <h2 className="heading-2 text-center mb-12">MR BnB en Números</h2>
+          <h2 className="heading-2 text-center mb-12">Mr.BnB en números</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { value: '+60', label: 'Propiedades administradas' },

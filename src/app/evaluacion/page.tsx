@@ -2,13 +2,13 @@ import { Metadata } from 'next'
 import SimuladorROI from '@/components/evaluacion/SimuladorROI'
 
 export const metadata: Metadata = {
-  title: 'Evalua tu Propiedad — Simulador de Rentabilidad',
+  title: 'Evalúa tu Propiedad — Mr.BnB',
   description:
-    'Calcula gratis cuanto podria rentar tu propiedad en Airbnb con MR BnB. Simulador basado en datos reales de +60 propiedades en Santiago.',
+    'Solicita una evaluación gratuita del potencial de tu propiedad en renta corta. Nuestro equipo te contactará con un informe personalizado.',
   openGraph: {
-    title: 'Simulador de Rentabilidad — MR BnB',
+    title: 'Evalúa tu Propiedad — Mr.BnB',
     description:
-      'Descubre cuanto mas podrias ganar con renta corta vs arriendo tradicional. Simulador gratuito basado en datos reales.',
+      'Solicita una evaluación gratuita y descubre el potencial de ingresos de tu propiedad con administración profesional.',
     type: 'website',
   },
 }

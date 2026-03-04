@@ -123,7 +123,7 @@ function timeAgo(dateStr: string): string {
 
   if (diffDays === 0) return 'Hoy'
   if (diffDays === 1) return 'Ayer'
-  if (diffDays < 7) return `Hace ${diffDays} dias`
+  if (diffDays < 7) return `Hace ${diffDays} días`
   if (diffDays < 30) return `Hace ${Math.floor(diffDays / 7)} semanas`
   return `Hace ${Math.floor(diffDays / 30)} meses`
 }

@@ -1,4 +1,4 @@
-// Pricing algorithm based on real MR BnB data for Santiago, Chile
+// Pricing algorithm based on real Mr.BnB data for Santiago, Chile
 // All values in CLP (Chilean Pesos)
 
 export interface PropertyData {

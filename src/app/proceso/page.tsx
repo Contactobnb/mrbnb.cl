@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 
 export const metadata: Metadata = {
-  title: 'Cómo Funciona',
+  title: 'Cómo funciona',
   description:
     'Conoce el proceso paso a paso para convertir tu propiedad en un activo de renta corta rentable. En menos de 2 semanas tu propiedad puede empezar a generar ingresos.',
 }
@@ -109,7 +109,7 @@ export default function ProcesoPage() {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Cómo Funciona
+              Cómo funciona
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
               Un proceso claro y probado en +60 propiedades para transformar
@@ -242,7 +242,7 @@ export default function ProcesoPage() {
       {/* FAQ */}
       <section className="section-padding bg-[#faf8f5]">
         <div className="container-custom">
-          <h2 className="heading-2 text-center mb-12">Preguntas Frecuentes</h2>
+          <h2 className="heading-2 text-center mb-12">Preguntas frecuentes</h2>
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {

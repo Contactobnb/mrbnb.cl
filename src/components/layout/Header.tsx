@@ -23,10 +23,10 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/Logo_MB.png"
-            alt="MR BnB"
-            width={120}
+            alt="Mr.BnB"
+            width={48}
             height={48}
-            className="h-10 md:h-12 w-auto"
+            className="h-10 w-10 md:h-12 md:w-12 rounded-lg"
             priority
           />
         </Link>

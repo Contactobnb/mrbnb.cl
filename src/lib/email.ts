@@ -1,17 +1,26 @@
-import nodemailer from 'nodemailer'
+async function sendMailgun(to: string, from: string, subject: string, html: string) {
+  const apiKey = process.env.MAILGUN_API_KEY
+  const domain = process.env.MAILGUN_DOMAIN || 'mrbnb.cl'
+  if (!apiKey) throw new Error('MAILGUN_API_KEY is not configured')
 
-function getTransporter() {
-  if (!process.env.MAILGUN_API_KEY) {
-    throw new Error('MAILGUN_API_KEY is not configured')
-  }
-  return nodemailer.createTransport({
-    host: 'smtp.mailgun.org',
-    port: 587,
-    auth: {
-      user: `postmaster@${process.env.MAILGUN_DOMAIN || 'mrbnb.cl'}`,
-      pass: process.env.MAILGUN_API_KEY,
+  const form = new URLSearchParams()
+  form.append('from', from)
+  form.append('to', to)
+  form.append('subject', subject)
+  form.append('html', html)
+
+  const res = await fetch(`https://api.mailgun.net/v3/${domain}/messages`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${Buffer.from(`api:${apiKey}`).toString('base64')}`,
     },
+    body: form,
   })
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`Mailgun error ${res.status}: ${text}`)
+  }
 }
 
 const NOTIFICATION_EMAIL = 'felipe@mrbnb.cl'
@@ -120,12 +129,7 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
 
   const html = emailWrapper('Nuevo contacto recibido', body)
 
-  await getTransporter().sendMail({
-    from: FROM_EMAIL,
-    to: NOTIFICATION_EMAIL,
-    subject: `[Mr.BnB] Nuevo contacto: ${data.name}`,
-    html,
-  })
+  await sendMailgun(NOTIFICATION_EMAIL, FROM_EMAIL, `[Mr.BnB] Nuevo contacto: ${data.name}`, html)
 }
 
 export async function sendEvaluacionNotification(data: EvaluacionFormData): Promise<void> {
@@ -175,10 +179,5 @@ export async function sendEvaluacionNotification(data: EvaluacionFormData): Prom
 
   const coberturaSubject = data.cobertura ? '' : ' [FUERA DE COBERTURA]'
 
-  await getTransporter().sendMail({
-    from: FROM_EMAIL,
-    to: NOTIFICATION_EMAIL,
-    subject: `[Mr.BnB] Nueva evaluación: ${data.name} - ${data.comuna}${coberturaSubject}`,
-    html,
-  })
+  await sendMailgun(NOTIFICATION_EMAIL, FROM_EMAIL, `[Mr.BnB] Nueva evaluación: ${data.name} - ${data.comuna}${coberturaSubject}`, html)
 }

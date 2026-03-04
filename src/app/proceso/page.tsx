@@ -54,7 +54,7 @@ const steps = [
     details: [
       'Publicación en Airbnb gestionada por nuestro equipo Superhost',
       'Publicación en Booking.com',
-      'Publicación en VRBO',
+      'Sincronización de calendarios entre plataformas',
       'Títulos y descripciones optimizados (SEO)',
       'Fotografías profesionales editadas',
       'Configuración de pricing dinámico inicial',

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { sendContactNotification } from '@/lib/email'
+import { sendContactNotification, sendNewLeadAdminAlert } from '@/lib/email'
 
 // POST /api/contact - Receive contact form submission
 export async function POST(request: NextRequest) {
@@ -84,6 +84,20 @@ export async function POST(request: NextRequest) {
           body: `Formulario de contacto tipo evaluación.\nMensaje: ${body.message}`,
         },
       })
+
+      // Send CRM admin alert (non-blocking)
+      try {
+        await sendNewLeadAdminAlert({
+          name: body.name,
+          email: body.email,
+          phone: body.phone || null,
+          comuna: body.comuna || null,
+          source: 'contacto',
+          status: 'NEW',
+        })
+      } catch (alertError) {
+        console.error('Error sending new lead admin alert:', alertError)
+      }
 
       return NextResponse.json({
         success: true,

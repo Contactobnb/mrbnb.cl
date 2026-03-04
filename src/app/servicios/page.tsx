@@ -79,7 +79,7 @@ export default function ServiciosPage() {
               <h3 className="heading-3 mb-6">Incluye:</h3>
               <div className="grid gap-4">
                 {[
-                  { title: 'Publicación optimizada', desc: 'Listados profesionales en Airbnb, Booking y VRBO con fotografía y textos optimizados.' },
+                  { title: 'Publicación optimizada', desc: 'Listados profesionales en Airbnb y Booking.com con fotografía y textos optimizados.' },
                   { title: 'Pricing dinámico', desc: 'Algoritmos de pricing que ajustan tarifas en tiempo real según demanda, competencia y temporada.' },
                   { title: 'Atención al cliente 24/7', desc: 'Soporte permanente a huéspedes en español e inglés, los 365 días del año.' },
                   { title: 'Limpieza hotelera', desc: 'Equipo propio de limpieza con protocolos de hotel. Desinfección, amenities y presentación impecable.' },

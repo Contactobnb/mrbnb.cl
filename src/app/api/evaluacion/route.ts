@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { sendEvaluacionNotification } from '@/lib/email'
+import { sendEvaluacionNotification, sendNewLeadAdminAlert } from '@/lib/email'
 
 // POST /api/evaluacion - Receive evaluation form data, create lead
 export async function POST(request: NextRequest) {
@@ -103,6 +103,20 @@ export async function POST(request: NextRequest) {
       })
     } catch (emailError) {
       console.error('Error sending evaluacion notification email:', emailError)
+    }
+
+    // Send CRM admin alert (non-blocking)
+    try {
+      await sendNewLeadAdminAlert({
+        name: body.name,
+        email: body.email,
+        phone: body.phone || null,
+        comuna: body.comuna,
+        source: 'evaluacion',
+        status: hasCobertura ? 'EVALUATING' : 'NEW',
+      })
+    } catch (alertError) {
+      console.error('Error sending new lead admin alert:', alertError)
     }
 
     return NextResponse.json({

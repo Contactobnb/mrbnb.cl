@@ -24,6 +24,8 @@ services:
         value: "+56942237814"
       - key: CONTACT_EMAIL
         value: "felipe@mrbnb.cl"
+      - key: CRON_SECRET
+        generateValue: true
       - key: NODE_ENV
         value: production
 

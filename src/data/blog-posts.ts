@@ -47,7 +47,7 @@ La primera impresión importa. Un departamento bien diseñado y fotografiado pue
 La experiencia del huésped determina tus reviews, y tus reviews determinan tu ocupación. Servicio al cliente 24/7, limpieza profesional y atención a los detalles son innegociables.
 
 ### 4. Multi-plataforma
-No dependas solo de Airbnb. Estar en Booking, VRBO y tener reserva directa puede aumentar tu ocupación entre un 10-20%.
+No dependas solo de Airbnb. Estar en Booking.com y tener reserva directa puede aumentar tu ocupación entre un 10-20%.
 
 ### 5. Gestión de reviews activa
 Mantener un rating sobre 4.8 en Airbnb es fundamental. Nosotros mantenemos un promedio de **4.81** en Airbnb y **8.9** en Booking.
@@ -169,7 +169,7 @@ Barrio Patronato y cercanía a centros de salud generan demanda constante.
 
 La mejor inversión depende de tu capital disponible y objetivos. En Mr.BnB te ayudamos a evaluar cada oportunidad con datos reales.
 
-**[Evalúa tu propiedad gratis](/evaluacion)** o **[conversa con nosotros](/contacto)**.
+[Evalúa tu propiedad gratis →](/evaluacion) o [conversa con nosotros →](/contacto).
     `,
     coverImage: '/images/properties/santiago-carmen-vista.jpg',
     author: 'Pedro Pablo Tort',
@@ -252,7 +252,7 @@ Los números hablan solos. Con una ocupación promedio del 80% y tarifas optimiz
 
 La clave está en la gestión profesional. Hacerlo solo rara vez produce estos resultados.
 
-**[Calcula el ROI de tu propiedad](/evaluacion)**
+[Calcula el ROI de tu propiedad →](/evaluacion)
     `,
     coverImage: '/images/properties/providencia-emilio-vaisse.jpg',
     author: 'Felipe Ruiz Paredes',
@@ -286,7 +286,6 @@ Resultado: **tarifas optimizadas que maximizan ingresos**, no solo ocupación.
 Una propiedad publicada en un solo canal pierde oportunidades. Nosotros gestionamos:
 - Airbnb
 - Booking.com
-- VRBO
 - Reserva directa
 
 Con sincronización automática de calendarios, precios y disponibilidad.
@@ -325,7 +324,7 @@ El mercado de renta corta en Chile se está profesionalizando. Los propietarios 
 
 **La buena noticia**: no necesitas invertir en tecnología. Solo necesitas al partner correcto.
 
-**[Conoce nuestro servicio](/servicios)** | **[Agenda una reunión](/contacto)**
+[Conoce nuestro servicio →](/servicios) | [Agenda una reunión →](/contacto)
     `,
     coverImage: '/images/properties/las-condes-encomenderos.jpg',
     author: 'Pedro Pablo Tort',
@@ -362,7 +361,7 @@ Cuando evaluamos la propiedad, encontramos:
 - Fotografía profesional y staging: $700.000
 
 ### Mes 3: Publicación y ajuste
-- Publicación en Airbnb, Booking y VRBO
+- Publicación en Airbnb y Booking.com
 - Pricing agresivo inicial para generar reviews rápidos
 - Primeras 8 reservas en 3 semanas
 
@@ -399,7 +398,7 @@ Cuando evaluamos la propiedad, encontramos:
 
 Muchos propietarios no saben cuánto podrían estar generando. Nuestro diagnóstico es gratuito y sin compromiso.
 
-**[Evalúa tu propiedad ahora](/evaluacion)** | **[Agenda diagnóstico gratuito](/contacto)**
+[Evalúa tu propiedad ahora →](/evaluacion) | [Agenda diagnóstico gratuito →](/contacto)
     `,
     coverImage: '/images/properties/nunoa-ebro-living.jpg',
     author: 'Felipe Ruiz Paredes',

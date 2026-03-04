@@ -2,102 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-
-// ── Types ──────────────────────────────────────────────────────────────────────
-
-interface Activity {
-  id: string
-  leadId: string
-  type: string
-  title: string
-  body: string | null
-  createdAt: string
-}
-
-interface Lead {
-  id: string
-  name: string
-  email: string
-  phone: string | null
-  address: string | null
-  comuna: string | null
-  propertyType: string | null
-  surface: number | null
-  furnished: boolean
-  parking: boolean
-  amenities: string[]
-  estimatedRevenue: number | null
-  investmentRequired: number | null
-  roiProjected: number | null
-  status: LeadStatus
-  priority: LeadPriority
-  source: string
-  notes: string | null
-  nextFollowUp: string | null
-  assignedTo: string | null
-  activities: Activity[]
-  createdAt: string
-  updatedAt: string
-}
-
-type LeadStatus = 'NEW' | 'EVALUATING' | 'PROPOSAL_SENT' | 'NEGOTIATING' | 'CLOSED_WON' | 'CLOSED_LOST'
-type LeadPriority = 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT'
-
-interface Pagination {
-  page: number
-  limit: number
-  total: number
-  totalPages: number
-  hasNext: boolean
-  hasPrev: boolean
-}
-
-// ── Constants ──────────────────────────────────────────────────────────────────
-
-const STATUS_ORDER: LeadStatus[] = [
-  'NEW', 'EVALUATING', 'PROPOSAL_SENT', 'NEGOTIATING', 'CLOSED_WON', 'CLOSED_LOST',
-]
-
-const STATUS_LABELS: Record<LeadStatus, string> = {
-  NEW: 'Nuevo',
-  EVALUATING: 'Evaluando',
-  PROPOSAL_SENT: 'Propuesta',
-  NEGOTIATING: 'Negociando',
-  CLOSED_WON: 'Cerrado',
-  CLOSED_LOST: 'Perdido',
-}
-
-const STATUS_COLORS: Record<LeadStatus, string> = {
-  NEW: 'bg-blue-100 text-blue-800',
-  EVALUATING: 'bg-yellow-100 text-yellow-800',
-  PROPOSAL_SENT: 'bg-purple-100 text-purple-800',
-  NEGOTIATING: 'bg-orange-100 text-orange-800',
-  CLOSED_WON: 'bg-green-100 text-green-800',
-  CLOSED_LOST: 'bg-red-100 text-red-800',
-}
-
-const STATUS_COLUMN_COLORS: Record<LeadStatus, string> = {
-  NEW: 'border-blue-400',
-  EVALUATING: 'border-yellow-400',
-  PROPOSAL_SENT: 'border-purple-400',
-  NEGOTIATING: 'border-orange-400',
-  CLOSED_WON: 'border-green-400',
-  CLOSED_LOST: 'border-red-400',
-}
-
-const PRIORITY_COLORS: Record<LeadPriority, string> = {
-  LOW: 'bg-gray-100 text-gray-700',
-  MEDIUM: 'bg-blue-100 text-blue-700',
-  HIGH: 'bg-orange-100 text-orange-700',
-  URGENT: 'bg-red-100 text-red-700',
-}
-
-const PRIORITY_LABELS: Record<LeadPriority, string> = {
-  LOW: 'Baja',
-  MEDIUM: 'Media',
-  HIGH: 'Alta',
-  URGENT: 'Urgente',
-}
+import type { Lead, LeadStatus, Pagination } from '@/types/lead'
+import {
+  STATUS_ORDER,
+  STATUS_LABELS,
+  STATUS_COLORS,
+  STATUS_COLUMN_COLORS,
+  PRIORITY_COLORS,
+  PRIORITY_LABELS,
+} from '@/types/lead'
 
 function formatCLP(amount: number): string {
   return new Intl.NumberFormat('es-CL', {
@@ -140,6 +53,32 @@ export default function AdminDashboard() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
   const [page, setPage] = useState(1)
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
+  const [exporting, setExporting] = useState(false)
+
+  const handleExportCSV = async () => {
+    setExporting(true)
+    try {
+      const params = new URLSearchParams()
+      if (search) params.set('search', search)
+      if (statusFilter) params.set('status', statusFilter)
+      const url = `/api/leads/export?${params.toString()}`
+      const res = await fetch(url)
+      if (!res.ok) throw new Error('Export failed')
+      const blob = await res.blob()
+      const downloadUrl = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = downloadUrl
+      a.download = `leads-mrbnb-${new Date().toISOString().split('T')[0]}.csv`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(downloadUrl)
+    } catch (error) {
+      console.error('Error exporting CSV:', error)
+    } finally {
+      setExporting(false)
+    }
+  }
 
   const fetchLeads = useCallback(async () => {
     setLoading(true)
@@ -365,6 +304,16 @@ export default function AdminDashboard() {
                   </option>
                 ))}
               </select>
+              <button
+                onClick={handleExportCSV}
+                disabled={exporting || leads.length === 0}
+                className="px-3 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 whitespace-nowrap"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                {exporting ? 'Exportando...' : 'Exportar CSV'}
+              </button>
             </div>
           </div>
         </div>

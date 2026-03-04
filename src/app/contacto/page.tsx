@@ -18,6 +18,7 @@ export default function ContactoPage() {
     type: 'general' as ContactType,
     propertyDetails: '',
     message: '',
+    website: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -33,6 +34,13 @@ export default function ContactoPage() {
     e.preventDefault()
     setIsSubmitting(true)
     setError('')
+
+    // Honeypot: if filled, silently fake success
+    if (formData.website) {
+      setSubmitted(true)
+      setIsSubmitting(false)
+      return
+    }
 
     try {
       const response = await fetch('/api/contact', {
@@ -53,6 +61,7 @@ export default function ContactoPage() {
         type: 'general',
         propertyDetails: '',
         message: '',
+        website: '',
       })
     } catch {
       setError('Hubo un error al enviar tu mensaje. Por favor intenta nuevamente o escríbenos por WhatsApp.')
@@ -206,6 +215,20 @@ export default function ContactoPage() {
                           onChange={handleChange}
                           className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-all resize-vertical"
                           placeholder="Cuéntanos cómo podemos ayudarte..."
+                        />
+                      </div>
+
+                      {/* Honeypot field - hidden from humans */}
+                      <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                        <label htmlFor="website">Deja este campo vacío</label>
+                        <input
+                          type="text"
+                          id="website"
+                          name="website"
+                          value={formData.website}
+                          onChange={handleChange}
+                          tabIndex={-1}
+                          autoComplete="off"
                         />
                       </div>
 

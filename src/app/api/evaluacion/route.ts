@@ -7,6 +7,14 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
+    // Honeypot check: if filled, return fake success without processing
+    if (body.website) {
+      return NextResponse.json({
+        success: true,
+        cobertura: true,
+      })
+    }
+
     // Validate required fields
     if (!body.name || !body.email) {
       return NextResponse.json(

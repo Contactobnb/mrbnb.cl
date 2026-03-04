@@ -32,7 +32,7 @@ No todas las ubicaciones ofrecen el mismo retorno. Basado en nuestra data de ope
 - **Vitacura**: Segmento premium con las tarifas más altas. ADR promedio: $72.000-$180.000 CLP.
 
 ### Tier 2 - Alta ocupación
-- **Santiago Centro**: Menor tarifa pero ocupación superior al 85%. Ideal para studios.
+- **Santiago Centro**: Menor tarifa pero ocupación superior al 85%. Ideal para estudios.
 - **Ñuñoa**: Creciente demanda, excelente relación inversión/retorno.
 
 ## Los 5 factores clave para maximizar ingresos
@@ -56,10 +56,10 @@ Mantener un rating sobre 4.8 en Airbnb es fundamental. Nosotros mantenemos un pr
 
 | Tipo | Comuna | Arriendo tradicional | Con Mr.BnB | Diferencia |
 |------|--------|---------------------|-----------|-----------|
-| 1BR | Providencia | $450.000 | $620.000 | +38% |
-| 2BR | Las Condes | $750.000 | $1.050.000 | +40% |
-| 1BR | Stgo Centro | $320.000 | $430.000 | +34% |
-| 3BR | Providencia | $900.000 | $1.280.000 | +42% |
+| 1D | Providencia | $450.000 | $620.000 | +38% |
+| 2D | Las Condes | $750.000 | $1.050.000 | +40% |
+| 1D | Stgo Centro | $320.000 | $430.000 | +34% |
+| 3D | Providencia | $900.000 | $1.280.000 | +42% |
 
 *Valores netos estimados para el propietario después de comisión Mr.BnB*
 
@@ -101,7 +101,7 @@ Elegir la ubicación correcta es la decisión más importante al invertir en ren
 - ADR promedio: $55.000 - $95.000 CLP
 - Ocupación promedio: 83%
 - ROI vs arriendo tradicional: +30-42%
-- Mejor para: Studios y 2BR
+- Mejor para: Estudios y 2D
 
 ## 2. Las Condes - El Segmento Corporativo
 
@@ -110,7 +110,7 @@ Elegir la ubicación correcta es la decisión más importante al invertir en ren
 - ADR promedio: $60.000 - $130.000 CLP
 - Ocupación promedio: 80%
 - ROI vs arriendo tradicional: +28-40%
-- Mejor para: 1BR y 2BR ejecutivos
+- Mejor para: 1D y 2D ejecutivos
 
 ## 3. Santiago Centro - Volumen y Consistencia
 
@@ -119,7 +119,7 @@ Elegir la ubicación correcta es la decisión más importante al invertir en ren
 - ADR promedio: $38.000 - $68.000 CLP
 - Ocupación promedio: 87%
 - ROI vs arriendo tradicional: +25-35%
-- Mejor para: Studios
+- Mejor para: Estudios
 
 ## 4. Ñuñoa - La Apuesta en Crecimiento
 
@@ -128,7 +128,7 @@ Elegir la ubicación correcta es la decisión más importante al invertir en ren
 - ADR promedio: $44.000 - $65.000 CLP
 - Ocupación promedio: 83%
 - ROI vs arriendo tradicional: +22-30%
-- Mejor para: 1BR y 2BR
+- Mejor para: 1D y 2D
 
 ## 5. Vitacura - Premium Exclusivo
 
@@ -137,7 +137,9 @@ Elegir la ubicación correcta es la decisión más importante al invertir en ren
 - ADR promedio: $72.000 - $180.000 CLP
 - Ocupación promedio: 74%
 - ROI vs arriendo tradicional: +20-35%
-- Mejor para: 2BR+ y Casas
+- Mejor para: 2D+ y Casas
+
+**Nota:** Mr.BnB opera actualmente en las comunas destacadas (posiciones 1-5). Las demás se incluyen como referencia del mercado.
 
 ## 6-10: Oportunidades Emergentes
 
@@ -195,7 +197,7 @@ En Mr.BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 - **+55%** en temporada alta
 - En algunos casos, **duplicamos** los ingresos netos
 
-## Caso Real #1: Studio en Providencia
+## Caso Real #1: Estudio en Providencia
 
 **Inversión en habilitación**: $2.500.000 CLP
 - Arriendo tradicional anterior: $380.000/mes
@@ -203,7 +205,7 @@ En Mr.BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 - **Incremento**: +37%
 - **Payback de inversión**: 6 meses
 
-## Caso Real #2: 2BR en Las Condes
+## Caso Real #2: 2D en Las Condes
 
 **Inversión en habilitación**: $4.200.000 CLP
 - Arriendo tradicional anterior: $700.000/mes
@@ -211,7 +213,7 @@ En Mr.BnB creemos en la transparencia. Por eso compartimos datos reales de nuest
 - **Incremento**: +40%
 - **Payback de inversión**: 5 meses
 
-## Caso Real #3: 3BR en Providencia
+## Caso Real #3: 3D en Providencia
 
 **Inversión en habilitación**: $6.800.000 CLP
 - Arriendo tradicional anterior: $850.000/mes
@@ -290,7 +292,7 @@ Una propiedad publicada en un solo canal pierde oportunidades. Nosotros gestiona
 Con sincronización automática de calendarios, precios y disponibilidad.
 
 ### 3. Comunicación Automatizada con Huéspedes
-- Check-in instructions automáticas
+- Instrucciones de check-in automáticas
 - Mensajes de bienvenida personalizados
 - Seguimiento post-check-in
 - Solicitud de reviews automatizada
@@ -344,7 +346,7 @@ Un propietario en Providencia nos contactó con un problema común: su departame
 
 Cuando evaluamos la propiedad, encontramos:
 - **Ubicación excelente**: A 3 cuadras del Metro Pedro de Valdivia
-- **Buena distribución**: 65m², 2BR, 1 baño, cocina americana
+- **Buena distribución**: 65m², 2D, 1 baño, cocina americana
 - **Problemas**: Decoración anticuada, sin equipamiento para renta corta, fotos amateur
 
 **Nuestro veredicto**: La propiedad tenía un potencial estimado de $1.100.000 - $1.300.000/mes en renta corta.

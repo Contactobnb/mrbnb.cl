@@ -43,6 +43,7 @@ interface ContactForm {
   name: string
   email: string
   phone: string
+  website: string
 }
 
 type SubmitResult = 'success' | 'no_cobertura' | 'no_tipologia_santiago'
@@ -64,6 +65,7 @@ export default function SimuladorROI() {
     name: '',
     email: '',
     phone: '',
+    website: '',
   })
 
   const [submitting, setSubmitting] = useState(false)
@@ -127,6 +129,13 @@ export default function SimuladorROI() {
     e.preventDefault()
     if (!validateStep2()) return
 
+    // Honeypot: if filled, silently fake success
+    if (contact.website) {
+      setSubmitResult('success')
+      setSubmitted(true)
+      return
+    }
+
     setSubmitting(true)
     setSubmitError('')
 
@@ -172,7 +181,7 @@ export default function SimuladorROI() {
   const resetForm = () => {
     setCurrentStep(1)
     setPropertyForm({ tipoPropiedad: '', tipologia: '', comuna: '', otraComuna: '', direccion: '', amenidades: [], otraInfo: '' })
-    setContact({ name: '', email: '', phone: '' })
+    setContact({ name: '', email: '', phone: '', website: '' })
     setSubmitted(false)
     setSubmitError('')
     setErrors({})
@@ -570,6 +579,20 @@ export default function SimuladorROI() {
                         }`}
                       />
                       {errors.phone && <p className="text-[#c53030] text-sm mt-1">{errors.phone}</p>}
+                    </div>
+
+                    {/* Honeypot field - hidden from humans */}
+                    <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                      <label htmlFor="website">Deja este campo vacío</label>
+                      <input
+                        type="text"
+                        id="website"
+                        name="website"
+                        value={contact.website}
+                        onChange={(e) => setContact((prev) => ({ ...prev, website: e.target.value }))}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
                     </div>
 
                     {submitError && (

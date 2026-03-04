@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 
 export const metadata: Metadata = {
-  title: 'Cómo funciona',
+  title: 'Cómo Funciona - Proceso Paso a Paso',
   description:
     'Conoce el proceso paso a paso para convertir tu propiedad en un activo de renta corta rentable. En menos de 2 semanas tu propiedad puede empezar a generar ingresos.',
 }
@@ -52,7 +52,7 @@ const steps = [
     description:
       'Creamos listados profesionales en las principales plataformas de reserva, optimizados para máxima visibilidad y conversión.',
     details: [
-      'Publicación en Airbnb con perfil Superhost',
+      'Publicación en Airbnb gestionada por nuestro equipo Superhost',
       'Publicación en Booking.com',
       'Publicación en VRBO',
       'Títulos y descripciones optimizados (SEO)',
@@ -264,6 +264,22 @@ export default function ProcesoPage() {
               {
                 q: '¿Puedo ver cómo va mi propiedad en tiempo real?',
                 a: 'Sí. Además del reporte mensual, puedes consultarnos en cualquier momento sobre el estado de ocupación, reservas próximas y proyecciones.',
+              },
+              {
+                q: '¿Qué pasa si un huésped daña mi propiedad?',
+                a: 'Todas las reservas cuentan con el seguro de la plataforma (AirCover en Airbnb, por ejemplo). Además, realizamos un inventario fotográfico antes y después de cada estadía para documentar cualquier incidencia.',
+              },
+              {
+                q: '¿Puedo usar mi propiedad algunos días del año?',
+                a: 'Por supuesto. Puedes bloquear las fechas que necesites directamente con nosotros. Solo te pedimos avisar con la mayor anticipación posible para optimizar el calendario de reservas.',
+              },
+              {
+                q: '¿Cuál es la duración mínima del contrato?',
+                a: 'Nuestros contratos tienen una duración mínima de 12 meses, con renovación automática. Puedes cancelar con 60 días de aviso previo.',
+              },
+              {
+                q: '¿Cómo se manejan los temas tributarios (SII)?',
+                a: 'Te entregamos toda la documentación necesaria para tu declaración de impuestos. Los ingresos por renta corta se declaran como renta de bienes raíces. Recomendamos asesorarte con tu contador para optimizar tu situación tributaria.',
               },
             ].map((faq, idx) => (
               <Card key={idx} hover={false}>

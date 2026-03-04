@@ -5,7 +5,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Blog',
+  title: 'Blog - Guías de Renta Corta en Santiago',
   description:
     'Artículos, análisis y guías sobre inversión inmobiliaria, renta corta, Airbnb y gestión de propiedades en Santiago de Chile.',
 }

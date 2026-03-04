@@ -37,9 +37,10 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Servicios</h3>
             <ul className="space-y-2">
               <li><Link href="/servicios" className="text-gray-300 hover:text-white text-sm transition-colors">Administración</Link></li>
-              <li><Link href="/servicios#inversion" className="text-gray-300 hover:text-white text-sm transition-colors">Inversión y desarrollo</Link></li>
+              <li><Link href="/servicios#inversion" className="text-gray-300 hover:text-white text-sm transition-colors">Desarrollo a medida</Link></li>
               <li><Link href="/servicios#corretaje" className="text-gray-300 hover:text-white text-sm transition-colors">Corretaje</Link></li>
               <li><Link href="/evaluacion" className="text-gray-300 hover:text-white text-sm transition-colors">Evaluación gratuita</Link></li>
+              <li><a href="https://mrbnb.hostify.club/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white text-sm transition-colors">Reservar alojamiento</a></li>
             </ul>
           </div>
 
@@ -78,9 +79,15 @@ export default function Footer() {
           <p className="text-sm text-gray-400">
             &copy; {new Date().getFullYear()} Mr.BnB. Todos los derechos reservados.
           </p>
-          <p className="text-sm text-gray-400">
-            Más rentabilidad. Cero estrés. Servicio Premium.
-          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/politica-privacidad" className="text-sm text-gray-400 hover:text-white transition-colors">
+              Política de privacidad
+            </Link>
+            <span className="text-gray-600">|</span>
+            <Link href="/terminos" className="text-sm text-gray-400 hover:text-white transition-colors">
+              Términos de servicio
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

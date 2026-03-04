@@ -29,4 +29,4 @@ databases:
   - name: mrbnb-db
     databaseName: mrbnb
     user: mrbnb_user
-    plan: starter
+    plan: basic-256mb

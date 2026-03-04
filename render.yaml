@@ -8,7 +8,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mrbnb-db
+          name: mrbnb-website-db
           property: connectionString
       - key: NEXT_PUBLIC_SITE_URL
         value: https://mrbnb.cl
@@ -26,7 +26,7 @@ services:
         value: production
 
 databases:
-  - name: mrbnb-db
-    databaseName: mrbnb
-    user: mrbnb_user
+  - name: mrbnb-website-db
+    databaseName: mrbnb_website
+    user: mrbnb_web_user
     plan: basic-256mb

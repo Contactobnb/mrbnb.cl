@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function AdminLayout({
   children,
@@ -9,6 +10,76 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const router = useRouter()
+  const [authChecked, setAuthChecked] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loggingOut, setLoggingOut] = useState(false)
+
+  const isLoginPage = pathname === '/admin/login'
+
+  useEffect(() => {
+    // Skip auth check on the login page itself
+    if (isLoginPage) {
+      setAuthChecked(true)
+      return
+    }
+
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth')
+        if (res.ok) {
+          setIsAuthenticated(true)
+        } else {
+          router.push('/admin/login')
+        }
+      } catch {
+        router.push('/admin/login')
+      } finally {
+        setAuthChecked(true)
+      }
+    }
+
+    checkAuth()
+  }, [isLoginPage, router])
+
+  // For the login page, render children directly without sidebar
+  if (isLoginPage) {
+    return <>{children}</>
+  }
+
+  // Show loading while checking auth
+  if (!authChecked) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: '#faf8f5' }}
+      >
+        <div className="text-center">
+          <h1 className="text-2xl font-bold" style={{ color: '#1e3a5f' }}>
+            Mr.BnB
+          </h1>
+          <p className="text-gray-400 text-sm mt-2">Cargando...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // If not authenticated (and not login page), don't render admin content
+  if (!isAuthenticated) {
+    return null
+  }
+
+  async function handleLogout() {
+    setLoggingOut(true)
+    try {
+      await fetch('/api/auth', { method: 'DELETE' })
+      router.push('/admin/login')
+      router.refresh()
+    } catch {
+      // Even on error, redirect to login
+      router.push('/admin/login')
+    }
+  }
 
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: DashboardIcon },
@@ -57,6 +128,18 @@ export default function AdminLayout({
               Volver al sitio
             </Link>
           </div>
+
+          {/* Logout button */}
+          <div className="mt-2">
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-300 hover:bg-white/10 hover:text-red-200 transition-colors w-full text-left disabled:opacity-50"
+            >
+              <LogoutIcon className="w-5 h-5" />
+              {loggingOut ? 'Cerrando sesión...' : 'Cerrar sesión'}
+            </button>
+          </div>
         </nav>
       </aside>
 
@@ -91,6 +174,14 @@ function ArrowLeftIcon({ className }: { className?: string }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>
+  )
+}
+
+function LogoutIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
     </svg>
   )
 }

@@ -334,7 +334,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="section-padding bg-[#1e3a5f] text-white">
         <div className="container-custom text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Quieres saber cuánto puede rentar tu propiedad?
+            ¿Quieres saber cuánto puede rentar tu propiedad?
           </h2>
           <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
             Usa nuestro simulador gratuito y obtén una estimación basada en datos reales.

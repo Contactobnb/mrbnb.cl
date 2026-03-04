@@ -333,7 +333,7 @@ El mercado de renta corta en Chile se está profesionalizando. Los propietarios 
   },
   {
     slug: 'caso-estudio-duplicar-ingresos',
-    title: 'Case Study: Cómo Duplicamos los Ingresos de una Propiedad en 6 Meses',
+    title: 'Caso de Estudio: Cómo Duplicamos los Ingresos de una Propiedad en 6 Meses',
     excerpt: 'Historia real de cómo transformamos un departamento con bajo rendimiento en una de las propiedades más rentables de nuestro portfolio.',
     content: `
 ## El punto de partida
@@ -402,7 +402,7 @@ Muchos propietarios no saben cuánto podrían estar generando. Nuestro diagnóst
     coverImage: '/images/blog/caso-estudio.jpg',
     author: 'Felipe Ruiz Paredes',
     date: '2025-12-20',
-    tags: ['case study', 'resultados', 'transformación', 'providencia'],
+    tags: ['caso de estudio', 'resultados', 'transformación', 'providencia'],
     readTime: 6,
   },
 ]

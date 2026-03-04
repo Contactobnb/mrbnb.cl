@@ -246,23 +246,23 @@ export default function ProcesoPage() {
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                q: 'Cuánto tiempo toma el proceso completo?',
+                q: '¿Cuánto tiempo toma el proceso completo?',
                 a: 'Desde el diagnóstico inicial hasta la primera reserva, el proceso toma entre 10 y 14 días hábiles. Si la propiedad ya está amoblada y equipada, puede ser incluso más rápido.',
               },
               {
-                q: 'Necesito invertir en remodelar mi propiedad?',
+                q: '¿Necesito invertir en remodelar mi propiedad?',
                 a: 'No necesariamente. Evaluamos la propiedad y, si está en buenas condiciones, puede requerir solo equipamiento básico (ropa blanca, amenities). Si recomendamos mejoras, siempre con un análisis de ROI claro.',
               },
               {
-                q: 'Quién se encarga de la limpieza entre huéspedes?',
+                q: '¿Quién se encarga de la limpieza entre huéspedes?',
                 a: 'Nosotros. Contamos con equipo de limpieza propio, capacitado con protocolos hoteleros. El fee de limpieza se cobra directamente al huésped.',
               },
               {
-                q: 'Cómo recibo mis ingresos?',
+                q: '¿Cómo recibo mis ingresos?',
                 a: 'Cada mes recibes una transferencia con los ingresos netos de tu propiedad, junto con un reporte detallado de todas las reservas y gastos.',
               },
               {
-                q: 'Puedo ver cómo va mi propiedad en tiempo real?',
+                q: '¿Puedo ver cómo va mi propiedad en tiempo real?',
                 a: 'Sí. Además del reporte mensual, puedes consultarnos en cualquier momento sobre el estado de ocupación, reservas próximas y proyecciones.',
               },
             ].map((faq, idx) => (

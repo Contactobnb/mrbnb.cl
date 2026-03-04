@@ -154,7 +154,7 @@ export default function LeadDetailPage() {
         data.nextFollowUp ? new Date(data.nextFollowUp).toISOString().split('T')[0] : ''
       )
     } catch {
-      setError('Error de conexion')
+      setError('Error de conexión')
     } finally {
       setLoading(false)
     }
@@ -206,7 +206,7 @@ export default function LeadDetailPage() {
       setNewNote('')
       setSuccessMessage('Lead actualizado correctamente')
     } catch {
-      setError('Error de conexion')
+      setError('Error de conexión')
     } finally {
       setSaving(false)
     }
@@ -226,7 +226,7 @@ export default function LeadDetailPage() {
         setError(data.error || 'Error al eliminar')
       }
     } catch {
-      setError('Error de conexion')
+      setError('Error de conexión')
     }
   }
 
@@ -316,9 +316,9 @@ export default function LeadDetailPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InfoField label="Comuna" value={lead.comuna} />
               <InfoField label="Tipo" value={lead.propertyType} />
-              <InfoField label="Superficie" value={lead.surface ? `${lead.surface} m2` : null} />
-              <InfoField label="Amoblado" value={lead.furnished ? 'Si' : 'No'} />
-              <InfoField label="Estacionamiento" value={lead.parking ? 'Si' : 'No'} />
+              <InfoField label="Superficie" value={lead.surface ? `${lead.surface} m²` : null} />
+              <InfoField label="Amoblado" value={lead.furnished ? 'Sí' : 'No'} />
+              <InfoField label="Estacionamiento" value={lead.parking ? 'Sí' : 'No'} />
               <InfoField
                 label="Amenities"
                 value={lead.amenities.length > 0 ? lead.amenities.join(', ') : null}
@@ -436,7 +436,7 @@ export default function LeadDetailPage() {
                 onChange={(e) => setNewNote(e.target.value)}
                 rows={2}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                placeholder="Escribir una nota sobre una llamada, reunion, etc..."
+                placeholder="Escribir una nota sobre una llamada, reunión, etc..."
               />
             </div>
 

@@ -104,7 +104,7 @@ export default function BlogPage() {
       {/* CTA */}
       <section className="section-padding bg-white">
         <div className="container-custom text-center">
-          <h2 className="heading-2 mb-4">Quieres saber cuánto puede rentar tu propiedad?</h2>
+          <h2 className="heading-2 mb-4">¿Quieres saber cuánto puede rentar tu propiedad?</h2>
           <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
             Usa nuestro simulador gratuito y obtén una estimación basada en datos reales de nuestro portfolio.
           </p>

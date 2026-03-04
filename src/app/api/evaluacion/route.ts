@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendEvaluacionNotification } from '@/lib/email'
 
 // POST /api/evaluacion - Receive evaluation form data, create lead
 export async function POST(request: NextRequest) {
@@ -78,6 +79,23 @@ export async function POST(request: NextRequest) {
         body: activityBody,
       },
     })
+
+    // Send email notification (non-blocking)
+    try {
+      await sendEvaluacionNotification({
+        name: body.name,
+        email: body.email,
+        phone: body.phone || null,
+        comuna: body.comuna,
+        propertyType: body.propertyType,
+        tipologia: body.tipologia,
+        direccion: body.direccion || null,
+        amenidades: body.amenidades || [],
+        cobertura: hasCobertura,
+      })
+    } catch (emailError) {
+      console.error('Error sending evaluacion notification email:', emailError)
+    }
 
     return NextResponse.json({
       success: true,

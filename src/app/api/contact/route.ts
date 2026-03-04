@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendContactNotification } from '@/lib/email'
 
 // POST /api/contact - Receive contact form submission
 export async function POST(request: NextRequest) {
@@ -36,6 +37,19 @@ export async function POST(request: NextRequest) {
         type,
       },
     })
+
+    // Send email notification (non-blocking)
+    try {
+      await sendContactNotification({
+        name: body.name,
+        email: body.email,
+        phone: body.phone || null,
+        message: body.message,
+        type,
+      })
+    } catch (emailError) {
+      console.error('Error sending contact notification email:', emailError)
+    }
 
     // If type is 'evaluacion', also create a Lead
     if (type === 'evaluacion') {

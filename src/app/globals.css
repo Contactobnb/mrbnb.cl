@@ -3,25 +3,88 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --navy: #1e3a5f;
+  --navy-dark: #152a45;
+  --red-accent: #c53030;
+  --red-light: #e53e3e;
+  --cream: #faf8f5;
+  --gray-light: #f7f7f7;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#1e3a5f] text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-[#152a45] transition-all duration-200
+           shadow-md hover:shadow-lg active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply border-2 border-[#1e3a5f] text-[#1e3a5f] px-6 py-3 rounded-lg font-semibold
+           hover:bg-[#1e3a5f] hover:text-white transition-all duration-200;
+  }
+  .btn-red {
+    @apply bg-[#c53030] text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-[#e53e3e] transition-all duration-200
+           shadow-md hover:shadow-lg active:scale-[0.98];
+  }
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-[#1e3a5f] leading-tight;
+  }
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold text-[#1e3a5f] leading-tight;
+  }
+  .heading-3 {
+    @apply text-xl md:text-2xl font-bold text-[#1e3a5f];
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 p-6;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+
+/* Counter animation for stats */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.stat-number {
+  animation: countUp 0.8s ease-out forwards;
 }

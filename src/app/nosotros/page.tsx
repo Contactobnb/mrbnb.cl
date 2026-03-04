@@ -1,0 +1,314 @@
+import type { Metadata } from 'next'
+import Button from '@/components/ui/Button'
+import Card from '@/components/ui/Card'
+
+export const metadata: Metadata = {
+  title: 'Nosotros',
+  description:
+    'Conoce al equipo detrás de MR BnB. Profesionalizamos la renta corta en Chile con excelencia, hospitalidad, transparencia y visión de largo plazo.',
+}
+
+const team = [
+  {
+    name: 'Felipe Ruiz Paredes',
+    role: 'Co-Fundador',
+    education: 'Ingeniero Civil Industrial - MBA UC',
+    focus: 'Estrategia, inversión y experiencia de cliente',
+    quote: 'Mi foco es que tu inversión funcione como un verdadero activo financiero.',
+    initials: 'FR',
+  },
+  {
+    name: 'Pedro Pablo Tort',
+    role: 'Co-Fundador',
+    education: 'Ingeniero Civil Industrial - UC',
+    focus: 'Desarrollo e inversión inmobiliaria',
+    quote: 'Tomamos decisiones basadas en datos y visión de largo plazo.',
+    initials: 'PT',
+  },
+]
+
+const backOfficeItems = [
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    ),
+    title: 'Servicio al cliente 24/7',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    ),
+    title: 'Equipo de limpieza propio',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+    title: 'Equipo interno de mantenimiento',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+      </svg>
+    ),
+    title: 'Coordinación operativa centralizada',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+    title: 'Uso de tecnología e IA',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+    ),
+    title: 'Estándar hotelero en cada propiedad',
+  },
+]
+
+const values = [
+  {
+    title: 'Excelencia',
+    description: 'Cada propiedad es tratada con los más altos estándares hoteleros. No hay detalles pequeños.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Hospitalidad',
+    description: 'Creemos en experiencias memorables. Cada huésped es recibido como si fuera nuestro invitado.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Transparencia',
+    description: 'Reportes claros, comisiones justas y comunicación directa. Sin letras chicas.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Visión de largo plazo',
+    description: 'Protegemos tu propiedad como si fuera nuestra. Decisiones sostenibles que cuidan tu inversión.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    ),
+  },
+]
+
+export default function NosotrosPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="bg-[#1e3a5f] text-white section-padding">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Nosotros
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300">
+              Creemos que cada propiedad puede ser algo mejor. Transformamos espacios
+              urbanos en experiencias memorables.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Purpose / Quote */}
+      <section className="section-padding bg-[#faf8f5]">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <blockquote className="text-2xl md:text-3xl font-bold text-[#1e3a5f] leading-relaxed mb-6">
+              &ldquo;Queremos que más personas vivan bien, incluso por pocos días.&rdquo;
+            </blockquote>
+            <div className="w-16 h-1 bg-[#c53030] mx-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <Card hover={false} className="!p-8">
+              <div className="w-12 h-12 rounded-lg bg-[#1e3a5f]/10 text-[#1e3a5f] flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h2 className="heading-3 mb-4">Misión</h2>
+              <p className="text-gray-600 leading-relaxed">
+                Elevar el estándar de la renta corta en Chile y Latinoamérica,
+                profesionalizando el rubro y creando activos inmobiliarios más
+                rentables, eficientes y mejor diseñados.
+              </p>
+            </Card>
+
+            <Card hover={false} className="!p-8">
+              <div className="w-12 h-12 rounded-lg bg-[#c53030]/10 text-[#c53030] flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <h2 className="heading-3 mb-4">Visión</h2>
+              <p className="text-gray-600 leading-relaxed">
+                Ser líderes regionales en transformación y operación de propiedades
+                de renta corta.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="section-padding bg-[#faf8f5]">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="heading-2 mb-4">Nuestro Equipo</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Dos ingenieros con visión de negocio, pasión por la hospitalidad
+              y un compromiso con la excelencia.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {team.map((member, idx) => (
+              <Card key={idx} hover={false} className="!p-8 text-center">
+                {/* Avatar placeholder */}
+                <div className="w-24 h-24 rounded-full bg-[#1e3a5f] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                  {member.initials}
+                </div>
+
+                <h3 className="text-xl font-bold text-[#1e3a5f] mb-1">{member.name}</h3>
+                <p className="text-[#c53030] font-semibold text-sm mb-2">{member.role}</p>
+                <p className="text-gray-500 text-sm mb-4">{member.education}</p>
+
+                <div className="bg-[#faf8f5] rounded-lg px-4 py-3 mb-4">
+                  <p className="text-gray-600 text-sm font-medium">{member.focus}</p>
+                </div>
+
+                <blockquote className="text-gray-500 italic text-sm">
+                  &ldquo;{member.quote}&rdquo;
+                </blockquote>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values / Culture */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="heading-2 mb-4">Nuestra Cultura</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Excelencia, hospitalidad, transparencia y visión de largo plazo.
+              Cuidamos tu propiedad como si fuera nuestra.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, idx) => (
+              <Card key={idx} className="text-center !p-6">
+                <div className="w-14 h-14 rounded-xl bg-[#1e3a5f]/10 text-[#1e3a5f] flex items-center justify-center mx-auto mb-4">
+                  {value.icon}
+                </div>
+                <h3 className="font-bold text-[#1e3a5f] text-lg mb-2">{value.title}</h3>
+                <p className="text-gray-500 text-sm">{value.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Back Office */}
+      <section className="section-padding bg-[#1e3a5f] text-white">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Nuestro Back Office
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Detrás de cada propiedad hay un equipo completo trabajando para que
+              la experiencia sea impecable, tanto para huéspedes como para propietarios.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {backOfficeItems.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-5">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center">
+                  {item.icon}
+                </div>
+                <h3 className="font-semibold">{item.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Numbers */}
+      <section className="section-padding bg-[#faf8f5]">
+        <div className="container-custom">
+          <h2 className="heading-2 text-center mb-12">MR BnB en Números</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { value: '+60', label: 'Propiedades administradas' },
+              { value: '4.81', label: 'Rating Airbnb' },
+              { value: '8.9', label: 'Rating Booking' },
+              { value: '+30%', label: 'vs arriendo tradicional' },
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <p className="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-2">{stat.value}</p>
+                <p className="text-gray-500 text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-white">
+        <div className="container-custom text-center">
+          <h2 className="heading-2 mb-4">Conversemos</h2>
+          <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+            Nos encantaría conocer tu propiedad y mostrarte cómo podemos ayudarte
+            a maximizar su potencial.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button href="/contacto" variant="primary" size="lg">
+              Contactar al equipo
+            </Button>
+            <Button href="/evaluacion" variant="secondary" size="lg">
+              Evaluar mi propiedad
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}

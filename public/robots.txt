@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Host
+Host: https://mrbnb.cl
+
+# Sitemaps
+Sitemap: https://mrbnb.cl/sitemap.xml

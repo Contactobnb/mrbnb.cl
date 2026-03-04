@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { blogPosts } from '@/data/blog-posts'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
@@ -35,13 +36,16 @@ export default function BlogPage() {
             {blogPosts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="!p-0 overflow-hidden h-full flex flex-col">
-                  {/* Cover Image Placeholder */}
-                  <div className="h-48 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] flex items-center justify-center relative overflow-hidden">
-                    <div className="text-white text-center px-6">
-                      <svg className="w-10 h-10 mx-auto mb-2 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
+                  {/* Cover Image */}
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     <div className="absolute bottom-3 left-3 flex gap-2">
                       {post.tags.slice(0, 2).map((tag) => (
                         <span

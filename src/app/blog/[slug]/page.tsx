@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { blogPosts } from '@/data/blog-posts'
 import Button from '@/components/ui/Button'
@@ -281,6 +282,17 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <article className="max-w-3xl mx-auto">
+            {/* Cover Image */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl mb-10">
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
+              />
+            </div>
             <div className="prose-custom">{renderContent(post.content)}</div>
           </article>
         </div>
@@ -295,10 +307,14 @@ export default async function BlogPostPage({ params }: PageProps) {
               {relatedPosts.map((related) => (
                 <Link key={related.slug} href={`/blog/${related.slug}`} className="group">
                   <Card className="!p-0 overflow-hidden h-full flex flex-col">
-                    <div className="h-40 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] flex items-center justify-center">
-                      <svg className="w-8 h-8 text-white opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={related.coverImage}
+                        alt={related.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">

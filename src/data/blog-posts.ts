@@ -79,7 +79,7 @@ El arriendo corto plazo en Santiago es una excelente oportunidad de inversión c
 
 **¿Quieres saber cuánto podría rentar tu propiedad?** Usa nuestro [simulador de evaluación](/evaluacion) o [agenda una reunión](/contacto) con nosotros.
     `,
-    coverImage: '/images/blog/guia-airbnb.jpg',
+    coverImage: '/images/properties/las-condes-capitania.jpg',
     author: 'Felipe Ruiz Paredes',
     date: '2026-02-15',
     tags: ['inversión', 'airbnb', 'santiago', 'rentabilidad'],
@@ -171,7 +171,7 @@ La mejor inversión depende de tu capital disponible y objetivos. En Mr.BnB te a
 
 **[Evalúa tu propiedad gratis](/evaluacion)** o **[conversa con nosotros](/contacto)**.
     `,
-    coverImage: '/images/blog/comunas-inversion.jpg',
+    coverImage: '/images/properties/santiago-carmen-vista.jpg',
     author: 'Pedro Pablo Tort',
     date: '2026-02-01',
     tags: ['inversión', 'comunas', 'análisis', 'santiago'],
@@ -254,7 +254,7 @@ La clave está en la gestión profesional. Hacerlo solo rara vez produce estos r
 
 **[Calcula el ROI de tu propiedad](/evaluacion)**
     `,
-    coverImage: '/images/blog/roi-analisis.jpg',
+    coverImage: '/images/properties/providencia-emilio-vaisse.jpg',
     author: 'Felipe Ruiz Paredes',
     date: '2026-01-20',
     tags: ['ROI', 'análisis', 'datos', 'transparencia'],
@@ -327,7 +327,7 @@ El mercado de renta corta en Chile se está profesionalizando. Los propietarios 
 
 **[Conoce nuestro servicio](/servicios)** | **[Agenda una reunión](/contacto)**
     `,
-    coverImage: '/images/blog/automatizacion.jpg',
+    coverImage: '/images/properties/las-condes-encomenderos.jpg',
     author: 'Pedro Pablo Tort',
     date: '2026-01-10',
     tags: ['tecnología', 'automatización', 'IA', 'operación'],
@@ -401,7 +401,7 @@ Muchos propietarios no saben cuánto podrían estar generando. Nuestro diagnóst
 
 **[Evalúa tu propiedad ahora](/evaluacion)** | **[Agenda diagnóstico gratuito](/contacto)**
     `,
-    coverImage: '/images/blog/caso-estudio.jpg',
+    coverImage: '/images/properties/nunoa-ebro-living.jpg',
     author: 'Felipe Ruiz Paredes',
     date: '2025-12-20',
     tags: ['caso de estudio', 'resultados', 'transformación', 'providencia'],

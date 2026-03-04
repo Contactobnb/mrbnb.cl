@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 
@@ -11,6 +12,8 @@ const successCases = [
     rating: 4.9,
     reviews: 127,
     highlight: 'Superhost desde 2022',
+    image: '/images/properties/providencia-emilio-vaisse.jpg',
+    imageAlt: 'Cocina abierta y living en departamento premium en Providencia',
   },
   {
     name: 'Penthouse Providencia',
@@ -19,6 +22,8 @@ const successCases = [
     rating: 4.9,
     reviews: 98,
     highlight: 'Top 10% de propiedades en Santiago',
+    image: '/images/properties/providencia-helvecia-living.jpg',
+    imageAlt: 'Living con arte y diseño en penthouse en Providencia',
   },
   {
     name: 'Loft Barrio Italia',
@@ -27,6 +32,8 @@ const successCases = [
     rating: 4.9,
     reviews: 156,
     highlight: 'Guest Favorite Airbnb',
+    image: '/images/properties/providencia-helvecia-bedroom.jpg',
+    imageAlt: 'Dormitorio con vista a la ciudad en loft en Providencia',
   },
   {
     name: 'Suite Ejecutiva El Golf',
@@ -35,6 +42,8 @@ const successCases = [
     rating: 4.9,
     reviews: 89,
     highlight: '+40% vs arriendo tradicional',
+    image: '/images/properties/las-condes-capitania.jpg',
+    imageAlt: 'Living con vistas panorámicas en Las Condes',
   },
   {
     name: 'Depto Premium Isidora',
@@ -43,6 +52,8 @@ const successCases = [
     rating: 4.8,
     reviews: 112,
     highlight: 'Favorito huéspedes corporativos',
+    image: '/images/properties/las-condes-encomenderos.jpg',
+    imageAlt: 'Living moderno en departamento premium en Las Condes',
   },
   {
     name: 'Suite Ejecutiva Costanera',
@@ -51,6 +62,8 @@ const successCases = [
     rating: 4.9,
     reviews: 143,
     highlight: '90% ocupación promedio',
+    image: '/images/properties/las-condes-balcon-andes.jpg',
+    imageAlt: 'Balcón con vista a la Cordillera de los Andes',
   },
   {
     name: 'Penthouse Kennedy',
@@ -59,6 +72,8 @@ const successCases = [
     rating: 4.9,
     reviews: 67,
     highlight: 'Propiedad premium exclusiva',
+    image: '/images/properties/vitacura-living.jpg',
+    imageAlt: 'Living y cocina abierta en penthouse en Vitacura',
   },
   {
     name: 'Apt Familiar Salvador',
@@ -67,6 +82,8 @@ const successCases = [
     rating: 4.8,
     reviews: 201,
     highlight: 'Más de 200 reseñas positivas',
+    image: '/images/properties/nunoa-ebro-living.jpg',
+    imageAlt: 'Living de diseño con arte en departamento familiar',
   },
   {
     name: 'Depto Vista Parque Bicentenario',
@@ -75,6 +92,8 @@ const successCases = [
     rating: 4.9,
     reviews: 74,
     highlight: 'Vista panorámica destacada',
+    image: '/images/properties/santiago-carmen-vista.jpg',
+    imageAlt: 'Living con vista panorámica de la ciudad de Santiago',
   },
 ]
 
@@ -163,17 +182,18 @@ export default function PortfolioPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {successCases.map((property, idx) => (
-              <Card key={idx} className="!p-0 overflow-hidden">
-                {/* Image placeholder */}
-                <div className="h-44 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] flex items-center justify-center relative">
-                  <div className="text-center text-white">
-                    <svg className="w-10 h-10 mx-auto mb-2 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span className="text-xs opacity-40">{property.type}</span>
-                  </div>
+              <Card key={idx} className="!p-0 overflow-hidden group">
+                {/* Property Photo */}
+                <div className="h-48 relative overflow-hidden">
+                  <Image
+                    src={property.image}
+                    alt={property.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                   {/* Badge */}
-                  <span className="absolute top-3 left-3 bg-[#c53030] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                  <span className="absolute top-3 left-3 bg-[#c53030] text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-md z-10">
                     {property.highlight}
                   </span>
                 </div>

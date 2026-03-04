@@ -1,12 +1,24 @@
+import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import { WHATSAPP_URL } from '@/lib/utils'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#1e3a5f] via-[#1e3a5f] to-[#152a45] overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/images/properties/providencia-emilio-vaisse.jpg"
+        alt="Departamento premium con cocina abierta y living en Providencia, Santiago"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+        quality={85}
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a5f]/90 via-[#1e3a5f]/80 to-[#1e3a5f]/60" />
+      {/* Accent glow */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#c53030] rounded-full blur-3xl" />
       </div>
 

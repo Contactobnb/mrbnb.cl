@@ -134,26 +134,44 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team Photo Banner */}
+      <section className="bg-[#faf8f5] pt-16 md:pt-20 pb-0">
+        <div className="container-custom">
+          <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src="/images/team/equipo.jpg"
+              alt="Equipo completo de Mr.BnB"
+              width={1200}
+              height={500}
+              className="w-full h-[280px] md:h-[400px] lg:h-[480px] object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                Nuestro equipo
+              </h2>
+              <p className="text-white/80 text-sm md:text-base mt-2 max-w-xl">
+                Dos ingenieros con visión de negocio, pasión por la hospitalidad
+                y un compromiso con la excelencia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Members */}
       <section className="section-padding bg-[#faf8f5]">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="heading-2 mb-4">Nuestro equipo</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Dos ingenieros con visión de negocio, pasión por la hospitalidad
-              y un compromiso con la excelencia.
-            </p>
-          </div>
-
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {team.map((member, idx) => (
               <Card key={idx} hover={false} className="!p-8 text-center">
-                <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#1e3a5f]/10">
+                <div className="w-36 h-36 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#1e3a5f]/10 shadow-lg">
                   <Image
                     src={member.image}
-                    alt={member.name}
-                    width={112}
-                    height={112}
+                    alt={`${member.name} - ${member.role} de Mr.BnB`}
+                    width={144}
+                    height={144}
                     className="w-full h-full object-cover"
                   />
                 </div>

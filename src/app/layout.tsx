@@ -41,6 +41,15 @@ export const metadata: Metadata = {
     title: 'Mr.BnB — Gestión Profesional Airbnb Santiago',
     description: 'Más rentabilidad. Cero estrés. Servicio Premium.',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/site.webmanifest',
   alternates: {
     canonical: './',
   },
@@ -61,6 +70,8 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   '@id': 'https://mrbnb.cl',
   name: 'Mr.BnB',
+  logo: 'https://mrbnb.cl/icon-512.png',
+  image: 'https://mrbnb.cl/icon-512.png',
   description: 'Administración profesional de propiedades en renta corta en Santiago, Chile.',
   url: 'https://mrbnb.cl',
   telephone: '+56942237814',

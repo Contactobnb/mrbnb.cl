@@ -101,9 +101,66 @@ const steps = [
   },
 ]
 
+const faqItems = [
+  {
+    q: '¿Cuánto tiempo toma el proceso completo?',
+    a: 'Desde el diagnóstico inicial hasta la primera reserva, el proceso toma entre 10 y 14 días hábiles. Si la propiedad ya está amoblada y equipada, puede ser incluso más rápido.',
+  },
+  {
+    q: '¿Necesito invertir en remodelar mi propiedad?',
+    a: 'No necesariamente. Evaluamos la propiedad y, si está en buenas condiciones, puede requerir solo equipamiento básico (ropa blanca, amenities). Si recomendamos mejoras, siempre con un análisis de ROI claro.',
+  },
+  {
+    q: '¿Quién se encarga de la limpieza entre huéspedes?',
+    a: 'Nosotros. Contamos con equipo de limpieza propio, capacitado con protocolos hoteleros. El fee de limpieza se cobra directamente al huésped.',
+  },
+  {
+    q: '¿Cómo recibo mis ingresos?',
+    a: 'Cada mes recibes una transferencia con los ingresos netos de tu propiedad, junto con un reporte detallado de todas las reservas y gastos.',
+  },
+  {
+    q: '¿Puedo ver cómo va mi propiedad en tiempo real?',
+    a: 'Sí. Además del reporte mensual, puedes consultarnos en cualquier momento sobre el estado de ocupación, reservas próximas y proyecciones.',
+  },
+  {
+    q: '¿Qué pasa si un huésped daña mi propiedad?',
+    a: 'Todas las reservas cuentan con el seguro de la plataforma (AirCover en Airbnb, por ejemplo). Además, realizamos un inventario fotográfico antes y después de cada estadía para documentar cualquier incidencia.',
+  },
+  {
+    q: '¿Puedo usar mi propiedad algunos días del año?',
+    a: 'Por supuesto. Puedes bloquear las fechas que necesites directamente con nosotros. Solo te pedimos avisar con la mayor anticipación posible para optimizar el calendario de reservas.',
+  },
+  {
+    q: '¿Cuál es la duración mínima del contrato?',
+    a: 'Nuestros contratos tienen una duración mínima de 12 meses, con renovación automática. Puedes cancelar con 60 días de aviso previo.',
+  },
+  {
+    q: '¿Cómo se manejan los temas tributarios (SII)?',
+    a: 'Te entregamos toda la documentación necesaria para tu declaración de impuestos. Los ingresos por renta corta se declaran como renta de bienes raíces. Recomendamos asesorarte con tu contador para optimizar tu situación tributaria.',
+  },
+]
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+}
+
 export default function ProcesoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-[#1e3a5f] text-white section-padding">
         <div className="container-custom">
@@ -244,44 +301,7 @@ export default function ProcesoPage() {
         <div className="container-custom">
           <h2 className="heading-2 text-center mb-12">Preguntas frecuentes</h2>
           <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                q: '¿Cuánto tiempo toma el proceso completo?',
-                a: 'Desde el diagnóstico inicial hasta la primera reserva, el proceso toma entre 10 y 14 días hábiles. Si la propiedad ya está amoblada y equipada, puede ser incluso más rápido.',
-              },
-              {
-                q: '¿Necesito invertir en remodelar mi propiedad?',
-                a: 'No necesariamente. Evaluamos la propiedad y, si está en buenas condiciones, puede requerir solo equipamiento básico (ropa blanca, amenities). Si recomendamos mejoras, siempre con un análisis de ROI claro.',
-              },
-              {
-                q: '¿Quién se encarga de la limpieza entre huéspedes?',
-                a: 'Nosotros. Contamos con equipo de limpieza propio, capacitado con protocolos hoteleros. El fee de limpieza se cobra directamente al huésped.',
-              },
-              {
-                q: '¿Cómo recibo mis ingresos?',
-                a: 'Cada mes recibes una transferencia con los ingresos netos de tu propiedad, junto con un reporte detallado de todas las reservas y gastos.',
-              },
-              {
-                q: '¿Puedo ver cómo va mi propiedad en tiempo real?',
-                a: 'Sí. Además del reporte mensual, puedes consultarnos en cualquier momento sobre el estado de ocupación, reservas próximas y proyecciones.',
-              },
-              {
-                q: '¿Qué pasa si un huésped daña mi propiedad?',
-                a: 'Todas las reservas cuentan con el seguro de la plataforma (AirCover en Airbnb, por ejemplo). Además, realizamos un inventario fotográfico antes y después de cada estadía para documentar cualquier incidencia.',
-              },
-              {
-                q: '¿Puedo usar mi propiedad algunos días del año?',
-                a: 'Por supuesto. Puedes bloquear las fechas que necesites directamente con nosotros. Solo te pedimos avisar con la mayor anticipación posible para optimizar el calendario de reservas.',
-              },
-              {
-                q: '¿Cuál es la duración mínima del contrato?',
-                a: 'Nuestros contratos tienen una duración mínima de 12 meses, con renovación automática. Puedes cancelar con 60 días de aviso previo.',
-              },
-              {
-                q: '¿Cómo se manejan los temas tributarios (SII)?',
-                a: 'Te entregamos toda la documentación necesaria para tu declaración de impuestos. Los ingresos por renta corta se declaran como renta de bienes raíces. Recomendamos asesorarte con tu contador para optimizar tu situación tributaria.',
-              },
-            ].map((faq, idx) => (
+            {faqItems.map((faq, idx) => (
               <Card key={idx} hover={false}>
                 <h3 className="font-semibold text-[#1e3a5f] text-lg mb-2">{faq.q}</h3>
                 <p className="text-gray-600">{faq.a}</p>

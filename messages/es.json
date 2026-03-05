@@ -69,7 +69,8 @@
     "ctaSecondary": "Conversemos por WhatsApp",
     "ratingAirbnb": "Rating Airbnb",
     "ratingBooking": "Rating Booking",
-    "vsTraditional": "vs arriendo tradicional",
+    "reviews": "Reviews en Airbnb",
+    "properties": "Propiedades en Santiago",
     "featureTitle": "Tú inviertes. Nosotros operamos.",
     "feature1": "Pricing basado en datos reales",
     "feature2": "Estándar hotelero en operación",
@@ -84,21 +85,12 @@
   "Stats": {
     "title": "Resultados reales",
     "subtitle": "Números que hablan por nosotros. Somos <strong>Superhost</strong> en Airbnb.",
-    "stat1Value": "+60",
-    "stat1Label": "Propiedades en Santiago",
-    "stat2Value": "4.81",
-    "stat2Label": "Rating en Airbnb",
-    "stat2Suffix": "★",
-    "stat3Value": "8.9",
-    "stat3Label": "Rating en Booking",
     "stat4Value": "+30%",
     "stat4Label": "Ingresos vs arriendo tradicional",
     "stat5Value": "+55%",
     "stat5Label": "En temporada alta",
     "stat6Value": "2x",
-    "stat6Label": "Duplicamos ingresos en algunos casos",
-    "stat7Value": "+1400",
-    "stat7Label": "Reviews en Airbnb"
+    "stat6Label": "Duplicamos ingresos en algunos casos"
   },
   "Services": {
     "title": "Nuestro modelo de negocios",

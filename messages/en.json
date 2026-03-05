@@ -69,7 +69,8 @@
     "ctaSecondary": "Chat with us on WhatsApp",
     "ratingAirbnb": "Airbnb Rating",
     "ratingBooking": "Booking Rating",
-    "vsTraditional": "vs traditional rent",
+    "reviews": "Airbnb Reviews",
+    "properties": "Properties in Santiago",
     "featureTitle": "You invest. We operate.",
     "feature1": "Data-driven pricing",
     "feature2": "Hotel-standard operations",
@@ -84,21 +85,12 @@
   "Stats": {
     "title": "Real results",
     "subtitle": "Numbers that speak for themselves. We are <strong>Superhost</strong> on Airbnb.",
-    "stat1Value": "+60",
-    "stat1Label": "Properties in Santiago",
-    "stat2Value": "4.81",
-    "stat2Label": "Airbnb Rating",
-    "stat2Suffix": "★",
-    "stat3Value": "8.9",
-    "stat3Label": "Booking Rating",
     "stat4Value": "+30%",
     "stat4Label": "Income vs traditional rent",
     "stat5Value": "+55%",
     "stat5Label": "During peak season",
     "stat6Value": "2x",
-    "stat6Label": "We double income in some cases",
-    "stat7Value": "+1400",
-    "stat7Label": "Airbnb Reviews"
+    "stat6Label": "We double income in some cases"
   },
   "Services": {
     "title": "Our business model",

@@ -65,7 +65,7 @@ export default async function Benefits() {
       <div className="container-custom mx-auto">
         <div className="text-center mb-12">
           <h2 className="heading-2 mb-4">{t('title')}</h2>
-          <p className="text-gray-600 text-lg" dangerouslySetInnerHTML={{ __html: t('subtitle') }} />
+          <p className="text-gray-600 text-lg" dangerouslySetInnerHTML={{ __html: t.raw('subtitle') }} />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

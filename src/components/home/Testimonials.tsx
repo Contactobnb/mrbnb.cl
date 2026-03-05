@@ -26,21 +26,18 @@ export default async function Testimonials() {
       name: t('name1'),
       location: t('location1'),
       rating: 5,
-      image: 'https://randomuser.me/api/portraits/women/44.jpg',
     },
     {
       quote: t('quote2'),
       name: t('name2'),
       location: t('location2'),
       rating: 5,
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
     },
     {
       quote: t('quote3'),
       name: t('name3'),
       location: t('location3'),
       rating: 5,
-      image: 'https://randomuser.me/api/portraits/women/68.jpg',
     },
   ]
 
@@ -71,29 +68,19 @@ export default async function Testimonials() {
                 </svg>
               </div>
 
-              {/* Star rating */}
-              <StarRating count={testimonial.rating} />
-
-              {/* Quote text */}
-              <blockquote className="mt-4 mb-6 text-gray-600 leading-relaxed flex-1">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-
-              {/* Author info */}
-              <div className="border-t border-gray-100 pt-4 flex items-center gap-3 mt-auto">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  width={56}
-                  height={56}
-                  className="w-14 h-14 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-[#1e3a5f]">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location}</p>
+              {/* Star rating + name */}
+              <div className="flex items-center justify-between gap-3">
+                <StarRating count={testimonial.rating} />
+                <div className="text-right">
+                  <p className="font-semibold text-[#1e3a5f] text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-gray-500">{testimonial.location}</p>
                 </div>
               </div>
+
+              {/* Quote text */}
+              <blockquote className="mt-4 text-gray-600 leading-relaxed flex-1">
+                &ldquo;{testimonial.quote}&rdquo;
+              </blockquote>
             </div>
           ))}
         </div>

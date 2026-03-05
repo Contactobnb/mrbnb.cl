@@ -125,12 +125,41 @@ export default function LeadDetailPage() {
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-  // Form state
+  // Form state — contact & property
+  const [editName, setEditName] = useState('')
+  const [editEmail, setEditEmail] = useState('')
+  const [editPhone, setEditPhone] = useState('')
+  const [editAddress, setEditAddress] = useState('')
+  const [editComuna, setEditComuna] = useState('')
+  const [editPropertyType, setEditPropertyType] = useState('')
+  const [editSurface, setEditSurface] = useState('')
+  const [editFurnished, setEditFurnished] = useState(false)
+  const [editParking, setEditParking] = useState(false)
+
+  // Form state — pipeline
   const [editStatus, setEditStatus] = useState<LeadStatus>('NEW')
   const [editPriority, setEditPriority] = useState<LeadPriority>('MEDIUM')
   const [editNotes, setEditNotes] = useState('')
   const [editNextFollowUp, setEditNextFollowUp] = useState('')
   const [newNote, setNewNote] = useState('')
+
+  const populateForm = useCallback((data: Lead) => {
+    setEditName(data.name || '')
+    setEditEmail(data.email || '')
+    setEditPhone(data.phone || '')
+    setEditAddress(data.address || '')
+    setEditComuna(data.comuna || '')
+    setEditPropertyType(data.propertyType || '')
+    setEditSurface(data.surface ? String(data.surface) : '')
+    setEditFurnished(data.furnished)
+    setEditParking(data.parking)
+    setEditStatus(data.status)
+    setEditPriority(data.priority)
+    setEditNotes(data.notes || '')
+    setEditNextFollowUp(
+      data.nextFollowUp ? new Date(data.nextFollowUp).toISOString().split('T')[0] : ''
+    )
+  }, [])
 
   const fetchLead = useCallback(async () => {
     setLoading(true)
@@ -147,18 +176,13 @@ export default function LeadDetailPage() {
       }
       const data = await res.json()
       setLead(data)
-      setEditStatus(data.status)
-      setEditPriority(data.priority)
-      setEditNotes(data.notes || '')
-      setEditNextFollowUp(
-        data.nextFollowUp ? new Date(data.nextFollowUp).toISOString().split('T')[0] : ''
-      )
+      populateForm(data)
     } catch {
       setError('Error de conexión')
     } finally {
       setLoading(false)
     }
-  }, [id])
+  }, [id, populateForm])
 
   useEffect(() => {
     if (id) fetchLead()
@@ -174,11 +198,24 @@ export default function LeadDetailPage() {
 
   const handleSave = async () => {
     if (!lead) return
+    if (!editName.trim() || !editEmail.trim()) {
+      setError('Nombre y email son obligatorios')
+      return
+    }
     setSaving(true)
     setError(null)
 
     try {
       const body: Record<string, unknown> = {
+        name: editName.trim(),
+        email: editEmail.trim(),
+        phone: editPhone.trim() || null,
+        address: editAddress.trim() || null,
+        comuna: editComuna.trim() || null,
+        propertyType: editPropertyType.trim() || null,
+        surface: editSurface ? parseInt(editSurface) : null,
+        furnished: editFurnished,
+        parking: editParking,
         status: editStatus,
         priority: editPriority,
         notes: editNotes || null,
@@ -203,6 +240,7 @@ export default function LeadDetailPage() {
 
       const updatedLead = await res.json()
       setLead(updatedLead)
+      populateForm(updatedLead)
       setNewNote('')
       setSuccessMessage('Lead actualizado correctamente')
     } catch {
@@ -256,6 +294,8 @@ export default function LeadDetailPage() {
 
   if (!lead) return null
 
+  const inputClass = 'w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+
   // ── Render ────────────────────────────────────────────────────────────────────
 
   return (
@@ -299,34 +339,65 @@ export default function LeadDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left column: Lead info + Edit form */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Contact Information */}
+          {/* Contact Information — editable */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Información de contacto</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <InfoField label="Nombre" value={lead.name} />
-              <InfoField label="Email" value={lead.email} />
-              <InfoField label="Teléfono" value={lead.phone} />
-              <InfoField label="Dirección" value={lead.address} />
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Nombre</label>
+                <input type="text" value={editName} onChange={e => setEditName(e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Email</label>
+                <input type="email" value={editEmail} onChange={e => setEditEmail(e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Teléfono</label>
+                <input type="text" value={editPhone} onChange={e => setEditPhone(e.target.value)} className={inputClass} placeholder="+56912345678" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Dirección</label>
+                <input type="text" value={editAddress} onChange={e => setEditAddress(e.target.value)} className={inputClass} />
+              </div>
             </div>
           </div>
 
-          {/* Property Information */}
+          {/* Property Information — editable */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Información de propiedad</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <InfoField label="Comuna" value={lead.comuna} />
-              <InfoField label="Tipo" value={lead.propertyType} />
-              <InfoField label="Superficie" value={lead.surface ? `${lead.surface} m²` : null} />
-              <InfoField label="Amoblado" value={lead.furnished ? 'Sí' : 'No'} />
-              <InfoField label="Estacionamiento" value={lead.parking ? 'Sí' : 'No'} />
-              <InfoField
-                label="Amenities"
-                value={lead.amenities.length > 0 ? lead.amenities.join(', ') : null}
-              />
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Comuna</label>
+                <input type="text" value={editComuna} onChange={e => setEditComuna(e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Tipo</label>
+                <select value={editPropertyType} onChange={e => setEditPropertyType(e.target.value)} className={`${inputClass} bg-white`}>
+                  <option value="">Sin especificar</option>
+                  <option value="departamento">Departamento</option>
+                  <option value="casa">Casa</option>
+                  <option value="estudio">Estudio</option>
+                  <option value="loft">Loft</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Superficie (m²)</label>
+                <input type="number" value={editSurface} onChange={e => setEditSurface(e.target.value)} className={inputClass} placeholder="ej: 45" />
+              </div>
+              <div className="flex items-end gap-6 pb-2">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={editFurnished} onChange={e => setEditFurnished(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                  <span className="text-sm text-gray-700">Amoblado</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={editParking} onChange={e => setEditParking(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                  <span className="text-sm text-gray-700">Estacionamiento</span>
+                </label>
+              </div>
             </div>
           </div>
 
-          {/* ROI Data */}
+          {/* ROI Data — read-only */}
           {(lead.estimatedRevenue || lead.roiProjected !== null) && (
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Proyección de ingresos</h2>
@@ -367,9 +438,9 @@ export default function LeadDetailPage() {
             </div>
           )}
 
-          {/* Edit Form */}
+          {/* Pipeline & Notes Form */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Actualizar lead</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Estado y seguimiento</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
@@ -377,7 +448,7 @@ export default function LeadDetailPage() {
                 <select
                   value={editStatus}
                   onChange={(e) => setEditStatus(e.target.value as LeadStatus)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className={`${inputClass} bg-white`}
                 >
                   {STATUS_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -392,7 +463,7 @@ export default function LeadDetailPage() {
                 <select
                   value={editPriority}
                   onChange={(e) => setEditPriority(e.target.value as LeadPriority)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className={`${inputClass} bg-white`}
                 >
                   {PRIORITY_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -410,7 +481,7 @@ export default function LeadDetailPage() {
                   type="date"
                   value={editNextFollowUp}
                   onChange={(e) => setEditNextFollowUp(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className={inputClass}
                 />
               </div>
 
@@ -420,7 +491,7 @@ export default function LeadDetailPage() {
                   value={editNotes}
                   onChange={(e) => setEditNotes(e.target.value)}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  className={`${inputClass} resize-none`}
                   placeholder="Notas generales del lead..."
                 />
               </div>
@@ -435,7 +506,7 @@ export default function LeadDetailPage() {
                 value={newNote}
                 onChange={(e) => setNewNote(e.target.value)}
                 rows={2}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className={`${inputClass} resize-none`}
                 placeholder="Escribir una nota sobre una llamada, reunión, etc..."
               />
             </div>
@@ -528,17 +599,6 @@ export default function LeadDetailPage() {
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-// ── Info Field Component ────────────────────────────────────────────────────────
-
-function InfoField({ label, value }: { label: string; value: string | null | undefined }) {
-  return (
-    <div>
-      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{label}</p>
-      <p className="text-sm text-gray-900 mt-0.5">{value || '-'}</p>
     </div>
   )
 }

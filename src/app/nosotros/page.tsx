@@ -141,10 +141,10 @@ export default function NosotrosPage() {
             <Image
               src="/images/team/equipo.jpg"
               alt="Equipo completo de Mr.BnB"
-              width={800}
-              height={533}
+              width={1600}
+              height={1066}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 960px"
-              quality={90}
+              quality={95}
               className="w-full h-[280px] md:h-[400px] lg:h-[480px] object-cover"
               priority
             />
@@ -172,10 +172,10 @@ export default function NosotrosPage() {
                   <Image
                     src={member.image}
                     alt={`${member.name} - ${member.role} de Mr.BnB`}
-                    width={288}
-                    height={288}
-                    sizes="144px"
-                    quality={90}
+                    width={500}
+                    height={500}
+                    sizes="288px"
+                    quality={95}
                     className="w-full h-full object-cover"
                   />
                 </div>

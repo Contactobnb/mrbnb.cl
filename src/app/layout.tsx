@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     title: 'Mr.BnB — Gestión Profesional Airbnb Santiago',
     description: 'Más rentabilidad. Cero estrés. Servicio Premium.',
   },
+  alternates: {
+    canonical: './',
+  },
   robots: {
     index: true,
     follow: true,
@@ -102,14 +105,14 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <Header />
         <main>{children}</main>
         <Footer />

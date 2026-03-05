@@ -77,7 +77,7 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} Mr.BnB. Todos los derechos reservados.
+            &copy; 2025 Mr.BnB. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-4">
             <Link href="/politica-privacidad" className="text-sm text-gray-400 hover:text-white transition-colors">

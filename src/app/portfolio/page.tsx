@@ -1,111 +1,181 @@
 'use client'
 
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 
-const successCases = [
-  {
-    name: 'Suite Premium Pedro de Valdivia',
-    comuna: 'Providencia',
-    type: '1 Dormitorio',
-    rating: 4.9,
-    reviews: 127,
-    highlight: 'Superhost desde 2022',
-    image: '/images/properties/providencia-emilio-vaisse.jpg',
-    imageAlt: 'Cocina abierta y living en departamento premium en Providencia',
-  },
-  {
-    name: 'Penthouse Providencia',
-    comuna: 'Providencia',
-    type: '2 Dormitorios',
-    rating: 4.9,
-    reviews: 98,
-    highlight: 'Top 10% de propiedades en Santiago',
-    image: '/images/properties/providencia-helvecia-living.jpg',
-    imageAlt: 'Living con arte y diseño en penthouse en Providencia',
-  },
-  {
-    name: 'Loft Barrio Italia',
-    comuna: 'Providencia',
-    type: '1 Dormitorio',
-    rating: 4.9,
-    reviews: 156,
-    highlight: 'Guest Favorite Airbnb',
-    image: '/images/properties/providencia-helvecia-bedroom.jpg',
-    imageAlt: 'Dormitorio con vista a la ciudad en loft en Providencia',
-  },
-  {
-    name: 'Suite Ejecutiva El Golf',
-    comuna: 'Las Condes',
-    type: '1 Dormitorio',
-    rating: 4.9,
-    reviews: 89,
-    highlight: '+40% vs arriendo tradicional',
-    image: '/images/properties/las-condes-capitania.jpg',
-    imageAlt: 'Living con vistas panorámicas en Las Condes',
-  },
-  {
-    name: 'Depto Premium Isidora',
-    comuna: 'Las Condes',
-    type: '2 Dormitorios',
-    rating: 4.8,
-    reviews: 112,
-    highlight: 'Favorito huéspedes corporativos',
-    image: '/images/properties/las-condes-encomenderos.jpg',
-    imageAlt: 'Living moderno en departamento premium en Las Condes',
-  },
-  {
-    name: 'Suite Ejecutiva Costanera',
-    comuna: 'Providencia',
-    type: '1 Dormitorio',
-    rating: 4.9,
-    reviews: 143,
-    highlight: '90% ocupación promedio',
-    image: '/images/properties/las-condes-balcon-andes.jpg',
-    imageAlt: 'Balcón con vista a la Cordillera de los Andes',
-  },
-  {
-    name: 'Penthouse Kennedy',
-    comuna: 'Vitacura',
-    type: '3 Dormitorios',
-    rating: 4.9,
-    reviews: 67,
-    highlight: 'Propiedad premium exclusiva',
-    image: '/images/properties/vitacura-living.jpg',
-    imageAlt: 'Living y cocina abierta en penthouse en Vitacura',
-  },
-  {
-    name: 'Apt Familiar Salvador',
-    comuna: 'Providencia',
-    type: '2 Dormitorios',
-    rating: 4.8,
-    reviews: 201,
-    highlight: 'Más de 200 reseñas positivas',
-    image: '/images/properties/nunoa-ebro-living.jpg',
-    imageAlt: 'Living de diseño con arte en departamento familiar',
-  },
-  {
-    name: 'Depto Vista Parque Bicentenario',
-    comuna: 'Vitacura',
-    type: '2 Dormitorios',
-    rating: 4.9,
-    reviews: 74,
-    highlight: 'Vista panorámica destacada',
-    image: '/images/properties/santiago-carmen-vista.jpg',
-    imageAlt: 'Living con vista panorámica de la ciudad de Santiago',
-  },
+const PropertyMapWrapper = dynamic(() => import('@/components/portfolio/PropertyMapWrapper'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[500px] bg-gray-100 rounded-2xl animate-pulse" />
+  ),
+})
+
+// All property locations grouped by building (lat, lng, number of units)
+const propertyLocations = [
+  { lat: -33.4082, lng: -70.564, units: 1 },
+  { lat: -33.4579014, lng: -70.6703093, units: 3 },
+  { lat: -33.4170867, lng: -70.5895629, units: 1 },
+  { lat: -33.45309, lng: -70.6062, units: 4 },
+  { lat: -33.4425, lng: -70.6475, units: 1 },
+  { lat: -33.44817, lng: -70.64242, units: 2 },
+  { lat: -33.4241331, lng: -70.6109296, units: 1 },
+  { lat: -33.41519, lng: -70.60175, units: 1 },
+  { lat: -33.4115365, lng: -70.5880771, units: 1 },
+  { lat: -33.4514, lng: -70.626, units: 1 },
+  { lat: -33.4173431, lng: -70.6016604, units: 1 },
+  { lat: -33.4168, lng: -70.6019, units: 1 },
+  { lat: -33.416741, lng: -70.6030433, units: 1 },
+  { lat: -33.4153509, lng: -70.5941317, units: 1 },
+  { lat: -33.41495, lng: -70.603, units: 1 },
+  { lat: -33.412, lng: -70.5736, units: 1 },
+  { lat: -33.4106951, lng: -70.5717029, units: 1 },
+  { lat: -33.4116, lng: -70.5732, units: 1 },
+  { lat: -33.4108266, lng: -70.5768105, units: 1 },
+  { lat: -33.3868, lng: -70.5385, units: 1 },
+  { lat: -33.4461326, lng: -70.6401726, units: 1 },
+  { lat: -33.417, lng: -70.6005, units: 1 },
+  { lat: -33.44723, lng: -70.64089, units: 2 },
+  { lat: -33.449, lng: -70.642, units: 1 },
+  { lat: -33.443, lng: -70.6478, units: 1 },
+  { lat: -33.42026, lng: -70.59764, units: 1 },
+  { lat: -33.4369689, lng: -70.6407097, units: 1 },
+  { lat: -33.4382, lng: -70.6535, units: 7 },
+  { lat: -33.43557, lng: -70.65447, units: 1 },
+  { lat: -33.43689, lng: -70.64438, units: 1 },
+  { lat: -33.4214, lng: -70.6103, units: 1 },
+  { lat: -33.4288, lng: -70.6185, units: 1 },
+  { lat: -33.42179, lng: -70.60857, units: 1 },
+  { lat: -33.4259, lng: -70.6159, units: 3 },
+  { lat: -33.42582, lng: -70.61601, units: 1 },
+  { lat: -33.4247143, lng: -70.611633, units: 1 },
+  { lat: -33.4488897, lng: -70.6692655, units: 1 },
+  { lat: -33.3832, lng: -70.5332, units: 1 },
+  { lat: -33.424, lng: -70.6105, units: 1 },
+  { lat: -33.4347, lng: -70.6275, units: 2 },
+  { lat: -33.4347933, lng: -70.6276529, units: 2 },
+  { lat: -33.4251167, lng: -70.6088405, units: 1 },
+  { lat: -33.434367, lng: -70.6590292, units: 1 },
+  { lat: -33.4151, lng: -70.6003, units: 1 },
+  { lat: -33.4143, lng: -70.599, units: 1 },
+  { lat: -33.421113, lng: -70.609612, units: 1 },
+  { lat: -33.4235, lng: -70.6085, units: 1 },
+  { lat: -33.4512889, lng: -70.626442, units: 1 },
+  { lat: -33.4542775, lng: -70.6614314, units: 1 },
+  { lat: -33.5205724, lng: -70.60223, units: 1 },
+  { lat: -33.4122122, lng: -70.6034847, units: 1 },
 ]
 
-const comunasPresencia = [
-  { nombre: 'Providencia', cantidad: '15+' },
-  { nombre: 'Las Condes', cantidad: '12+' },
-  { nombre: 'Santiago Centro', cantidad: '10+' },
-  { nombre: 'Ñuñoa', cantidad: '8+' },
-  { nombre: 'Vitacura', cantidad: '5+' },
-  { nombre: 'La Reina', cantidad: '4+' },
-  { nombre: 'San Miguel', cantidad: '4+' },
-  { nombre: 'Estación Central', cantidad: '3+' },
+const successCases = [
+  {
+    name: 'Depto 2D en Las Condes con piscina',
+    comuna: 'Las Condes',
+    type: '2 Dormitorios',
+    rating: 4.91,
+    reviews: 11,
+    highlight: 'Piscina en el edificio',
+    image: '/images/properties/las-condes-piscina.jpg',
+    imageAlt: 'Departamento moderno de 2 dormitorios con piscina en Las Condes',
+    lat: -33.4170,
+    lng: -70.5980,
+  },
+  {
+    name: 'Depto 2D en Barrio Italia con vista panorámica',
+    comuna: 'Ñuñoa',
+    type: '2 Dormitorios',
+    rating: 4.89,
+    reviews: 75,
+    highlight: '75+ reseñas positivas',
+    image: '/images/properties/nunoa-barrio-italia.jpg',
+    imageAlt: 'Living con vista panorámica de Santiago y la cordillera en Barrio Italia',
+    lat: -33.4510,
+    lng: -70.6330,
+  },
+  {
+    name: 'Acogedor y moderno depto con terraza en La Florida',
+    comuna: 'La Florida',
+    type: '1 Dormitorio',
+    rating: 4.94,
+    reviews: 35,
+    highlight: '4.94 en Airbnb',
+    image: '/images/properties/la-florida-terraza.jpg',
+    imageAlt: 'Departamento moderno con terraza en La Florida',
+    lat: -33.5170,
+    lng: -70.5980,
+  },
+  {
+    name: 'Duplex 2D en El Golf',
+    comuna: 'Las Condes',
+    type: '2 Dormitorios',
+    rating: 4.81,
+    reviews: 32,
+    highlight: 'Duplex en barrio El Golf',
+    image: '/images/properties/las-condes-el-golf.jpg',
+    imageAlt: 'Duplex moderno de 2 dormitorios en El Golf, Las Condes',
+    lat: -33.4120,
+    lng: -70.6010,
+  },
+  {
+    name: 'Céntrico y amplio 3D con terraza',
+    comuna: 'Santiago Centro',
+    type: '3 Dormitorios',
+    rating: 4.92,
+    reviews: 25,
+    highlight: 'Centro histórico con terraza',
+    image: '/images/properties/santiago-centro-terraza.jpg',
+    imageAlt: 'Amplio departamento de 3 dormitorios con terraza en centro histórico de Santiago',
+    lat: -33.4380,
+    lng: -70.6520,
+  },
+  {
+    name: 'Depto acogedor con vista panorámica',
+    comuna: 'Santiago Centro',
+    type: '1 Dormitorio',
+    rating: 4.85,
+    reviews: 27,
+    highlight: 'Vista panorámica piso 21',
+    image: '/images/properties/santiago-panoramica.jpg',
+    imageAlt: 'Departamento piso 21 con vista panorámica de Santiago y los Andes',
+    lat: -33.4420,
+    lng: -70.6480,
+  },
+  {
+    name: 'Apartamento de lujo con terraza en Las Condes',
+    comuna: 'Las Condes',
+    type: '2 Dormitorios',
+    rating: 4.87,
+    reviews: 15,
+    highlight: 'Lujo con terraza',
+    image: '/images/properties/las-condes-lujo-terraza.jpg',
+    imageAlt: 'Apartamento de lujo con terraza y vista en Las Condes',
+    lat: -33.4200,
+    lng: -70.5900,
+  },
+  {
+    name: 'Departamento elegante y tranquilo en Ñuñoa',
+    comuna: 'Ñuñoa',
+    type: '1 Dormitorio',
+    rating: 4.92,
+    reviews: 13,
+    highlight: '4.92 en Airbnb',
+    image: '/images/properties/nunoa-elegante.jpg',
+    imageAlt: 'Departamento elegante con dormitorio minimalista en Ñuñoa',
+    lat: -33.4560,
+    lng: -70.6100,
+  },
+  {
+    name: 'Depto Ejecutivo Deluxe con Terraza Piso 31',
+    comuna: 'Santiago Centro',
+    type: '1 Dormitorio',
+    rating: 5.0,
+    reviews: 3,
+    highlight: '5.0 rating perfecto',
+    image: '/images/properties/santiago-ejecutivo-piso31.jpg',
+    imageAlt: 'Departamento ejecutivo deluxe con terraza y vista panorámica desde piso 31',
+    lat: -33.4400,
+    lng: -70.6530,
+  },
 ]
 
 export default function PortfolioPage() {
@@ -234,27 +304,19 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Presencia por Comuna */}
+      {/* Mapa de Presencia en Santiago */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="heading-2 mb-4">Presencia en Santiago</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Operamos en las comunas con mayor demanda turística y corporativa,
-              donde la renta corta genera los mejores resultados.
+              con <span className="font-semibold text-[#1e3a5f]">68 departamentos</span> en{' '}
+              <span className="font-semibold text-[#1e3a5f]">51 ubicaciones</span> a lo largo de Santiago.
             </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {comunasPresencia.map((comuna) => (
-              <div
-                key={comuna.nombre}
-                className="bg-[#faf8f5] rounded-xl p-5 text-center border border-gray-100 hover:border-[#1e3a5f]/20 transition-colors"
-              >
-                <p className="text-2xl font-bold text-[#1e3a5f] mb-1">{comuna.cantidad}</p>
-                <p className="text-sm text-gray-600">{comuna.nombre}</p>
-              </div>
-            ))}
+          <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+            <PropertyMapWrapper locations={propertyLocations} />
           </div>
         </div>
       </section>

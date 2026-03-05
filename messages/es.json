@@ -96,7 +96,9 @@
     "stat5Value": "+55%",
     "stat5Label": "En temporada alta",
     "stat6Value": "2x",
-    "stat6Label": "Duplicamos ingresos en algunos casos"
+    "stat6Label": "Duplicamos ingresos en algunos casos",
+    "stat7Value": "+1400",
+    "stat7Label": "Reviews en Airbnb"
   },
   "Services": {
     "title": "Nuestro modelo de negocios",

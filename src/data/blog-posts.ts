@@ -8,6 +8,7 @@ export interface BlogPostData {
   date: string
   tags: string[]
   readTime: number
+  locale?: string
 }
 
 export const blogPosts: BlogPostData[] = [

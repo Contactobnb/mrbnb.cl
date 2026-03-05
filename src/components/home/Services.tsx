@@ -1,51 +1,54 @@
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
+import { getTranslations } from 'next-intl/server'
 
-const services = [
-  {
-    icon: (
-      <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-    title: 'Administramos',
-    description: 'Administración profesional de propiedades en renta corta. Publicación, pricing, atención 24/7, limpieza, mantenimiento, verificación y reportes.',
-    plan: 'Plan Variable — 17% + IVA',
-    href: '/servicios',
-  },
-  {
-    icon: (
-      <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-    title: 'Desarrollo a medida',
-    description: 'Compra, rediseño y operación de propiedades con alto potencial. Buscamos, negociamos, remodelamos e integramos tu propiedad para renta corta con estándar hotelero.',
-    plan: 'Presupuesto caso a caso',
-    href: '/servicios#inversion',
-  },
-  {
-    icon: (
-      <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-    title: 'Corretaje con visión de renta corta',
-    description: 'Te ayudamos a comprar o vender mejor, con evaluación real de rentabilidad. Selección de propiedades con potencial y apoyo en compra o venta.',
-    plan: 'Comisión 2% + IVA — incluye 6 meses de administración gratis',
-    href: '/servicios#corretaje',
-  },
-]
+export default async function Services() {
+  const t = await getTranslations('Services')
 
-export default function Services() {
+  const services = [
+    {
+      icon: (
+        <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      title: t('service1Title'),
+      description: t('service1Desc'),
+      plan: t('service1Plan'),
+      href: '/servicios',
+    },
+    {
+      icon: (
+        <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      title: t('service2Title'),
+      description: t('service2Desc'),
+      plan: t('service2Plan'),
+      href: '/servicios#inversion',
+    },
+    {
+      icon: (
+        <svg className="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      title: t('service3Title'),
+      description: t('service3Desc'),
+      plan: t('service3Plan'),
+      href: '/servicios#corretaje',
+    },
+  ]
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">Nuestro modelo de negocios</h2>
+          <h2 className="heading-2 mb-4">{t('title')}</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Inversión + Diseño + Operación + Comercialización. Todo bajo una misma marca.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -59,7 +62,7 @@ export default function Services() {
                 <p className="text-sm font-semibold text-[#1e3a5f]">{service.plan}</p>
               </div>
               <Button href={service.href} variant="secondary" size="sm">
-                Más información
+                {t('moreInfo')}
               </Button>
             </Card>
           ))}
@@ -67,7 +70,7 @@ export default function Services() {
 
         <div className="text-center mt-10">
           <p className="text-xl font-semibold text-[#1e3a5f]">
-            Somos tu socio de largo plazo en renta corta — desde la compra hasta la operación.
+            {t('footerText')}
           </p>
         </div>
       </div>

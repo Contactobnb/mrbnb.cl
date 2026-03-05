@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-
-const AUTH_COOKIE_NAME = 'mrbnb_admin_token'
-const AUTH_TOKEN_VALUE = 'mrbnb_authenticated'
+import { createToken, verifyToken, AUTH_COOKIE_NAME } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,9 +31,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create a simple token by hashing the password with a timestamp
-    // This is a simple approach - for production, use proper JWT tokens
-    const token = Buffer.from(`${AUTH_TOKEN_VALUE}:${Date.now()}`).toString('base64')
+    const token = await createToken()
 
     const response = NextResponse.json({ success: true })
 
@@ -44,7 +40,7 @@ export async function POST(request: NextRequest) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24, // 24 hours
     })
 
     return response
@@ -64,7 +60,7 @@ export async function DELETE() {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
-    maxAge: 0, // Expire immediately
+    maxAge: 0,
   })
 
   return response
@@ -78,16 +74,11 @@ export async function GET() {
     return NextResponse.json({ authenticated: false }, { status: 401 })
   }
 
-  try {
-    const decoded = Buffer.from(token.value, 'base64').toString('utf-8')
-    const isValid = decoded.startsWith(AUTH_TOKEN_VALUE)
+  const payload = await verifyToken(token.value)
 
-    if (!isValid) {
-      return NextResponse.json({ authenticated: false }, { status: 401 })
-    }
-
-    return NextResponse.json({ authenticated: true })
-  } catch {
+  if (!payload) {
     return NextResponse.json({ authenticated: false }, { status: 401 })
   }
+
+  return NextResponse.json({ authenticated: true })
 }

@@ -1,47 +1,54 @@
-import Image from 'next/image'
+'use client'
 
-const galleryPhotos = [
-  {
-    src: '/images/properties/las-condes-balcon-andes.jpg',
-    alt: 'Balcón con vista panorámica a la Cordillera de los Andes, Las Condes',
-    label: 'Las Condes',
-  },
-  {
-    src: '/images/properties/providencia-helvecia-living.jpg',
-    alt: 'Living con arte y diseño en departamento en Providencia',
-    label: 'Providencia',
-  },
-  {
-    src: '/images/properties/nunoa-ebro-living.jpg',
-    alt: 'Living de diseño con arte en departamento en Ñuñoa',
-    label: 'Ñuñoa',
-  },
-  {
-    src: '/images/properties/santiago-carmen-vista.jpg',
-    alt: 'Living con vista panorámica de la ciudad, Santiago Centro',
-    label: 'Santiago Centro',
-  },
-  {
-    src: '/images/properties/vitacura-living.jpg',
-    alt: 'Living y cocina abierta en departamento en Vitacura',
-    label: 'Vitacura',
-  },
-  {
-    src: '/images/properties/las-condes-capitania.jpg',
-    alt: 'Living con vistas panorámicas en Las Condes',
-    label: 'Las Condes',
-  },
-]
+import { useState } from 'react'
+import Image from 'next/image'
+import Lightbox from '@/components/ui/Lightbox'
+import { useTranslations } from 'next-intl'
 
 export default function PropertyGallery() {
+  const t = useTranslations('PropertyGallery')
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const galleryPhotos = [
+    {
+      src: '/images/properties/las-condes-balcon-andes.jpg',
+      alt: t('photo1Alt'),
+      label: 'Las Condes',
+    },
+    {
+      src: '/images/properties/providencia-helvecia-living.jpg',
+      alt: t('photo2Alt'),
+      label: 'Providencia',
+    },
+    {
+      src: '/images/properties/nunoa-ebro-living.jpg',
+      alt: t('photo3Alt'),
+      label: 'Ñuñoa',
+    },
+    {
+      src: '/images/properties/santiago-carmen-vista.jpg',
+      alt: t('photo4Alt'),
+      label: 'Santiago Centro',
+    },
+    {
+      src: '/images/properties/vitacura-living.jpg',
+      alt: t('photo5Alt'),
+      label: 'Vitacura',
+    },
+    {
+      src: '/images/properties/las-condes-capitania.jpg',
+      alt: t('photo6Alt'),
+      label: 'Las Condes',
+    },
+  ]
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">Propiedades que administramos</h2>
+          <h2 className="heading-2 mb-4">{t('title')}</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Departamentos premium en las mejores ubicaciones de Santiago, con diseño
-            y estándar hotelero.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -50,6 +57,7 @@ export default function PropertyGallery() {
             <div
               key={i}
               className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer"
+              onClick={() => setLightboxIndex(i)}
             >
               <Image
                 src={photo.src}
@@ -72,6 +80,14 @@ export default function PropertyGallery() {
           ))}
         </div>
       </div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={galleryPhotos.map((p) => ({ src: p.src, alt: p.alt }))}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
     </section>
   )
 }

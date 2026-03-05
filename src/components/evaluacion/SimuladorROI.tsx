@@ -1,33 +1,9 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 
 const COMUNAS_OPERACION = ['Providencia', 'Las Condes', 'Vitacura', 'Ñuñoa', 'Santiago']
-
-const TIPOLOGIAS = [
-  { value: 'studio_1d', label: 'Studio / 1 Dormitorio' },
-  { value: '2d', label: '2 Dormitorios' },
-  { value: '3d', label: '3 Dormitorios' },
-  { value: '4d_plus', label: '4+ Dormitorios' },
-]
-
-const TIPOS_PROPIEDAD = [
-  { value: 'departamento', label: 'Departamento' },
-  { value: 'casa', label: 'Casa' },
-]
-
-const AMENIDADES = [
-  { value: 'amoblado', label: 'Amoblado' },
-  { value: 'piscina', label: 'Piscina' },
-  { value: 'estacionamiento', label: 'Estacionamiento' },
-  { value: 'vista', label: 'Vista' },
-  { value: 'ac', label: 'Aire acondicionado' },
-]
-
-const STEPS = [
-  { number: 1, label: 'Tu propiedad' },
-  { number: 2, label: 'Tus datos' },
-]
 
 interface PropertyForm {
   tipoPropiedad: string
@@ -49,7 +25,33 @@ interface ContactForm {
 type SubmitResult = 'success' | 'no_cobertura' | 'no_tipologia_santiago'
 
 export default function SimuladorROI() {
+  const t = useTranslations('SimuladorROI')
   const [currentStep, setCurrentStep] = useState(1)
+
+  const TIPOLOGIAS = [
+    { value: 'studio_1d', label: t('typologyStudio') },
+    { value: '2d', label: t('typology2d') },
+    { value: '3d', label: t('typology3d') },
+    { value: '4d_plus', label: t('typology4d') },
+  ]
+
+  const TIPOS_PROPIEDAD = [
+    { value: 'departamento', label: t('typeDepartamento') },
+    { value: 'casa', label: t('typeCasa') },
+  ]
+
+  const AMENIDADES = [
+    { value: 'amoblado', label: t('amenityFurnished') },
+    { value: 'piscina', label: t('amenityPool') },
+    { value: 'estacionamiento', label: t('amenityParking') },
+    { value: 'vista', label: t('amenityView') },
+    { value: 'ac', label: t('amenityAC') },
+  ]
+
+  const STEPS = [
+    { number: 1, label: t('step1Label') },
+    { number: 2, label: t('step2Label') },
+  ]
 
   const [propertyForm, setPropertyForm] = useState<PropertyForm>({
     tipoPropiedad: '',
@@ -76,29 +78,29 @@ export default function SimuladorROI() {
 
   const validateStep1 = useCallback((): boolean => {
     const newErrors: Record<string, string> = {}
-    if (!propertyForm.tipoPropiedad) newErrors.tipoPropiedad = 'Selecciona el tipo de propiedad'
-    if (!propertyForm.tipologia) newErrors.tipologia = 'Selecciona la tipología'
-    if (!propertyForm.comuna) newErrors.comuna = 'Selecciona una comuna'
+    if (!propertyForm.tipoPropiedad) newErrors.tipoPropiedad = t('errorPropertyType')
+    if (!propertyForm.tipologia) newErrors.tipologia = t('errorTypology')
+    if (!propertyForm.comuna) newErrors.comuna = t('errorComuna')
     if (propertyForm.comuna === 'Otra' && !propertyForm.otraComuna.trim()) {
-      newErrors.otraComuna = 'Indica la comuna'
+      newErrors.otraComuna = t('errorOtraComuna')
     }
-    if (!propertyForm.direccion.trim()) newErrors.direccion = 'Ingresa la dirección'
+    if (!propertyForm.direccion.trim()) newErrors.direccion = t('errorAddress')
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
-  }, [propertyForm])
+  }, [propertyForm, t])
 
   const validateStep2 = useCallback((): boolean => {
     const newErrors: Record<string, string> = {}
-    if (!contact.name.trim()) newErrors.name = 'Ingresa tu nombre'
+    if (!contact.name.trim()) newErrors.name = t('errorName')
     if (!contact.email.trim()) {
-      newErrors.email = 'Ingresa tu email'
+      newErrors.email = t('errorEmail')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
-      newErrors.email = 'Ingresa un email válido'
+      newErrors.email = t('errorEmailInvalid')
     }
-    if (!contact.phone.trim()) newErrors.phone = 'Ingresa tu teléfono'
+    if (!contact.phone.trim()) newErrors.phone = t('errorPhone')
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
-  }, [contact])
+  }, [contact, t])
 
   const handleNext = () => {
     if (currentStep === 1) {
@@ -172,7 +174,7 @@ export default function SimuladorROI() {
       setSubmitResult(resultType)
       setSubmitted(true)
     } catch {
-      setSubmitError('Hubo un error al enviar tu información. Intenta nuevamente.')
+      setSubmitError(t('submitError'))
     } finally {
       setSubmitting(false)
     }
@@ -199,14 +201,13 @@ export default function SimuladorROI() {
         <div className="container-custom mx-auto px-4 md:px-8 pt-32 pb-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
             <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <span className="text-sm font-medium">Evaluación gratuita y sin compromiso</span>
+              <span className="text-sm font-medium">{t('heroBadge')}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Evalúa el potencial de <span className="text-[#e53e3e] italic">tu propiedad</span>
+              {t('heroTitle')} <span className="text-[#e53e3e] italic">{t('heroTitleHighlight')}</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              Déjanos los datos de tu propiedad y nuestro equipo te enviará una evaluación
-              personalizada con el potencial de ingresos en renta corta.
+              {t('heroSubtitle')}
             </p>
           </div>
         </div>
@@ -267,15 +268,15 @@ export default function SimuladorROI() {
             {currentStep === 1 && !submitted && (
               <div className="animate-fade-in-up">
                 <div className="card">
-                  <h2 className="heading-2 mb-2">Datos de tu propiedad</h2>
+                  <h2 className="heading-2 mb-2">{t('step1Title')}</h2>
                   <p className="text-gray-500 mb-8">
-                    Cuéntanos sobre tu propiedad para poder evaluar su potencial.
+                    {t('step1Subtitle')}
                   </p>
 
                   {/* Tipo de propiedad */}
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-3">
-                      Tipo de propiedad
+                      {t('labelPropertyType')}
                     </label>
                     <div className="grid grid-cols-2 gap-3">
                       {TIPOS_PROPIEDAD.map((tipo) => (
@@ -315,7 +316,7 @@ export default function SimuladorROI() {
                   {/* Tipología */}
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-3">
-                      Tipología
+                      {t('labelTypology')}
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {TIPOLOGIAS.map((tip) => (
@@ -344,7 +345,7 @@ export default function SimuladorROI() {
                   {/* Comuna */}
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">
-                      Comuna
+                      {t('labelComuna')}
                     </label>
                     <select
                       value={propertyForm.comuna}
@@ -356,11 +357,11 @@ export default function SimuladorROI() {
                         errors.comuna ? 'border-[#c53030]' : 'border-gray-200'
                       }`}
                     >
-                      <option value="">Selecciona una comuna</option>
+                      <option value="">{t('comunaPlaceholder')}</option>
                       {COMUNAS_OPERACION.map((comuna) => (
                         <option key={comuna} value={comuna}>{comuna}</option>
                       ))}
-                      <option value="Otra">Otra comuna</option>
+                      <option value="Otra">{t('comunaOtra')}</option>
                     </select>
                     {errors.comuna && (
                       <p className="text-[#c53030] text-sm mt-1">{errors.comuna}</p>
@@ -371,7 +372,7 @@ export default function SimuladorROI() {
                   {propertyForm.comuna === 'Otra' && (
                     <div className="mb-6 animate-fade-in-up">
                       <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">
-                        Indica la comuna
+                        {t('labelOtraComuna')}
                       </label>
                       <input
                         type="text"
@@ -380,7 +381,7 @@ export default function SimuladorROI() {
                           setPropertyForm((prev) => ({ ...prev, otraComuna: e.target.value }))
                           if (errors.otraComuna) setErrors((prev) => ({ ...prev, otraComuna: '' }))
                         }}
-                        placeholder="Ej: Recoleta, Maipú, etc."
+                        placeholder={t('placeholderOtraComuna')}
                         className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] ${
                           errors.otraComuna ? 'border-[#c53030]' : 'border-gray-200'
                         }`}
@@ -394,7 +395,7 @@ export default function SimuladorROI() {
                   {/* Dirección exacta */}
                   <div className="mb-8">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">
-                      Dirección exacta
+                      {t('labelAddress')}
                     </label>
                     <input
                       type="text"
@@ -403,7 +404,7 @@ export default function SimuladorROI() {
                         setPropertyForm((prev) => ({ ...prev, direccion: e.target.value }))
                         if (errors.direccion) setErrors((prev) => ({ ...prev, direccion: '' }))
                       }}
-                      placeholder="Ej: Av. Providencia 1234, Depto 501"
+                      placeholder={t('placeholderAddress')}
                       className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] ${
                         errors.direccion ? 'border-[#c53030]' : 'border-gray-200'
                       }`}
@@ -416,7 +417,7 @@ export default function SimuladorROI() {
                   {/* Amenidades */}
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-3">
-                      Amenidades
+                      {t('labelAmenities')}
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {AMENIDADES.map((amenidad) => (
@@ -459,12 +460,12 @@ export default function SimuladorROI() {
                   {/* Otra información */}
                   <div className="mb-8">
                     <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">
-                      Otra información relevante
+                      {t('labelOtherInfo')}
                     </label>
                     <textarea
                       value={propertyForm.otraInfo}
                       onChange={(e) => setPropertyForm((prev) => ({ ...prev, otraInfo: e.target.value }))}
-                      placeholder="Ej: Terraza con vista panorámica, edificio con conserjería 24/7, recientemente remodelado..."
+                      placeholder={t('placeholderOtherInfo')}
                       rows={3}
                       className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] resize-none"
                     />
@@ -473,7 +474,7 @@ export default function SimuladorROI() {
                   {/* Next button */}
                   <div className="flex justify-end">
                     <button type="button" onClick={handleNext} className="btn-primary text-lg px-10">
-                      Siguiente
+                      {t('nextButton')}
                       <svg className="inline-block w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
@@ -493,22 +494,21 @@ export default function SimuladorROI() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>
-                    <h2 className="heading-2 mb-2">Tus datos de contacto</h2>
+                    <h2 className="heading-2 mb-2">{t('step2Title')}</h2>
                     <p className="text-gray-500 max-w-md mx-auto">
-                      Nuestro equipo te contactará con una evaluación personalizada
-                      del potencial de tu propiedad.
+                      {t('step2Subtitle')}
                     </p>
                   </div>
 
                   {/* Summary of property */}
                   <div className="bg-[#faf8f5] rounded-xl p-4 mb-8">
-                    <p className="text-sm font-semibold text-[#1e3a5f] mb-2">Tu propiedad:</p>
+                    <p className="text-sm font-semibold text-[#1e3a5f] mb-2">{t('propertySummary')}</p>
                     <div className="flex flex-wrap gap-2">
                       <span className="text-xs bg-[#1e3a5f]/10 text-[#1e3a5f] px-2.5 py-1 rounded-full font-medium">
-                        {TIPOS_PROPIEDAD.find(t => t.value === propertyForm.tipoPropiedad)?.label}
+                        {TIPOS_PROPIEDAD.find(tp => tp.value === propertyForm.tipoPropiedad)?.label}
                       </span>
                       <span className="text-xs bg-[#1e3a5f]/10 text-[#1e3a5f] px-2.5 py-1 rounded-full font-medium">
-                        {TIPOLOGIAS.find(t => t.value === propertyForm.tipologia)?.label}
+                        {TIPOLOGIAS.find(tp => tp.value === propertyForm.tipologia)?.label}
                       </span>
                       <span className="text-xs bg-[#1e3a5f]/10 text-[#1e3a5f] px-2.5 py-1 rounded-full font-medium">
                         {propertyForm.comuna === 'Otra' ? propertyForm.otraComuna : propertyForm.comuna}
@@ -531,7 +531,7 @@ export default function SimuladorROI() {
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">Nombre</label>
+                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">{t('labelContactName')}</label>
                       <input
                         type="text"
                         value={contact.name}
@@ -539,7 +539,7 @@ export default function SimuladorROI() {
                           setContact((prev) => ({ ...prev, name: e.target.value }))
                           if (errors.name) setErrors((prev) => ({ ...prev, name: '' }))
                         }}
-                        placeholder="Tu nombre completo"
+                        placeholder={t('placeholderContactName')}
                         className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] ${
                           errors.name ? 'border-[#c53030]' : 'border-gray-200'
                         }`}
@@ -548,7 +548,7 @@ export default function SimuladorROI() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">Email</label>
+                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">{t('labelContactEmail')}</label>
                       <input
                         type="email"
                         value={contact.email}
@@ -556,7 +556,7 @@ export default function SimuladorROI() {
                           setContact((prev) => ({ ...prev, email: e.target.value }))
                           if (errors.email) setErrors((prev) => ({ ...prev, email: '' }))
                         }}
-                        placeholder="tu@email.com"
+                        placeholder={t('placeholderContactEmail')}
                         className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] ${
                           errors.email ? 'border-[#c53030]' : 'border-gray-200'
                         }`}
@@ -565,7 +565,7 @@ export default function SimuladorROI() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">Teléfono</label>
+                      <label className="block text-sm font-semibold text-[#1e3a5f] mb-1">{t('labelContactPhone')}</label>
                       <input
                         type="tel"
                         value={contact.phone}
@@ -573,7 +573,7 @@ export default function SimuladorROI() {
                           setContact((prev) => ({ ...prev, phone: e.target.value }))
                           if (errors.phone) setErrors((prev) => ({ ...prev, phone: '' }))
                         }}
-                        placeholder="+56 9 1234 5678"
+                        placeholder={t('placeholderContactPhone')}
                         className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 bg-white text-gray-900 focus:outline-none focus:border-[#1e3a5f] ${
                           errors.phone ? 'border-[#c53030]' : 'border-gray-200'
                         }`}
@@ -583,7 +583,7 @@ export default function SimuladorROI() {
 
                     {/* Honeypot field - hidden from humans */}
                     <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
-                      <label htmlFor="website">Deja este campo vacío</label>
+                      <label htmlFor="website">Leave this field empty</label>
                       <input
                         type="text"
                         id="website"
@@ -606,7 +606,7 @@ export default function SimuladorROI() {
                         <svg className="inline-block w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
                         </svg>
-                        Atrás
+                        {t('backButton')}
                       </button>
                       <button
                         type="submit"
@@ -619,16 +619,16 @@ export default function SimuladorROI() {
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                             </svg>
-                            Enviando...
+                            {t('submitting')}
                           </span>
                         ) : (
-                          'Solicitar evaluación'
+                          t('submitButton')
                         )}
                       </button>
                     </div>
 
                     <p className="text-center text-xs text-gray-400 pt-2">
-                      Sin compromiso. No compartimos tu información con terceros.
+                      {t('privacyNote')}
                     </p>
                   </form>
                 </div>
@@ -647,14 +647,13 @@ export default function SimuladorROI() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="heading-2 mb-2">Solicitud recibida</h3>
+                      <h3 className="heading-2 mb-2">{t('successTitle')}</h3>
                       <p className="text-gray-500 max-w-md mx-auto mb-6">
-                        Nuestro equipo evaluará tu propiedad y te contactará a la brevedad
-                        con un informe personalizado del potencial de ingresos en renta corta.
+                        {t('successDesc')}
                       </p>
                       <div className="bg-[#faf8f5] rounded-xl p-4 max-w-sm mx-auto mb-6">
-                        <p className="text-sm text-gray-500 mb-1">Tiempo de respuesta estimado</p>
-                        <p className="text-lg font-bold text-[#1e3a5f]">24 a 48 horas hábiles</p>
+                        <p className="text-sm text-gray-500 mb-1">{t('successResponseLabel')}</p>
+                        <p className="text-lg font-bold text-[#1e3a5f]">{t('successResponseTime')}</p>
                       </div>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
@@ -666,10 +665,10 @@ export default function SimuladorROI() {
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                           </svg>
-                          Hablar por WhatsApp
+                          {t('successWhatsapp')}
                         </a>
                         <button type="button" onClick={resetForm} className="btn-secondary">
-                          Evaluar otra propiedad
+                          {t('successNewEval')}
                         </button>
                       </div>
                     </div>
@@ -683,10 +682,9 @@ export default function SimuladorROI() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                         </svg>
                       </div>
-                      <h3 className="heading-2 mb-2">Aún no tenemos cobertura en tu zona</h3>
+                      <h3 className="heading-2 mb-2">{t('noCoverageTitle')}</h3>
                       <p className="text-gray-500 max-w-md mx-auto mb-6">
-                        Por el momento operamos en Providencia, Las Condes, Vitacura, Ñuñoa y Santiago.
-                        Hemos registrado tu solicitud y te contactaremos cuando ampliemos nuestra cobertura a tu comuna.
+                        {t('noCoverageDesc')}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
@@ -698,10 +696,10 @@ export default function SimuladorROI() {
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                           </svg>
-                          Consultar por WhatsApp
+                          {t('noCoverageWhatsapp')}
                         </a>
                         <button type="button" onClick={resetForm} className="btn-secondary">
-                          Evaluar otra propiedad
+                          {t('successNewEval')}
                         </button>
                       </div>
                     </div>
@@ -715,11 +713,9 @@ export default function SimuladorROI() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="heading-2 mb-2">Tipología no disponible en Santiago</h3>
+                      <h3 className="heading-2 mb-2">{t('noTypologyTitle')}</h3>
                       <p className="text-gray-500 max-w-md mx-auto mb-6">
-                        En la comuna de Santiago operamos solo con propiedades de 2 o más dormitorios.
-                        Hemos registrado tu solicitud y te contactaremos si hay novedades.
-                        Si tienes otra propiedad, puedes evaluarla a continuación.
+                        {t('noTypologyDesc')}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
@@ -731,10 +727,10 @@ export default function SimuladorROI() {
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                           </svg>
-                          Consultar por WhatsApp
+                          {t('noTypologyWhatsapp')}
                         </a>
                         <button type="button" onClick={resetForm} className="btn-secondary">
-                          Evaluar otra propiedad
+                          {t('successNewEval')}
                         </button>
                       </div>
                     </div>

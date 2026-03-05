@@ -1,31 +1,48 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-
-const navLinks = [
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/proceso', label: 'Cómo funciona' },
-  { href: '/evaluacion', label: 'Evalúa tu propiedad' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/nosotros', label: 'Nosotros' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contacto', label: 'Contacto' },
-]
+import { usePathname, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('Header')
+
+  const navLinks = [
+    { href: '/servicios', label: t('servicios') },
+    { href: '/proceso', label: t('proceso') },
+    { href: '/evaluacion', label: t('evaluacion') },
+    { href: '/portfolio', label: t('portfolio') },
+    { href: '/nosotros', label: t('nosotros') },
+    { href: '/blog', label: t('blog') },
+    { href: '/contacto', label: t('contacto') },
+  ]
+
+  // Strip locale prefix for active check
+  const pathWithoutLocale = pathname.replace(/^\/(es|en)/, '') || '/'
 
   const isActive = (href: string) =>
-    pathname === href || (href !== '/' && pathname.startsWith(href))
+    pathWithoutLocale === href || (href !== '/' && pathWithoutLocale.startsWith(href))
+
+  const switchLocale = () => {
+    const newLocale = locale === 'es' ? 'en' : 'es'
+    // Replace locale in current path
+    const newPath = pathname.replace(/^\/(es|en)/, `/${newLocale}`)
+    router.push(newPath)
+  }
+
+  // Build locale-aware hrefs
+  const localePath = (href: string) => `/${locale}${href}`
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 shadow-sm">
       <div className="container-custom mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
-        <Link href="/" className="flex items-center gap-2 p-1">
+        <NextLink href={localePath('/')} className="flex items-center gap-2 p-1">
           <Image
             src="/images/Logo_MB.png"
             alt="Mr.BnB"
@@ -34,14 +51,14 @@ export default function Header() {
             className="h-10 w-10 md:h-12 md:w-12 rounded-lg"
             priority
           />
-        </Link>
+        </NextLink>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link
+            <NextLink
               key={link.href}
-              href={link.href}
+              href={localePath(link.href)}
               className={`text-sm font-medium transition-colors ${
                 isActive(link.href)
                   ? 'text-[#c53030]'
@@ -49,11 +66,21 @@ export default function Header() {
               }`}
             >
               {link.label}
-            </Link>
+            </NextLink>
           ))}
-          <Link href="/evaluacion" className="btn-primary text-sm !py-2 !px-4">
-            Evalúa gratis
-          </Link>
+
+          {/* Language Selector */}
+          <button
+            onClick={switchLocale}
+            className="text-xs font-bold border border-gray-300 rounded px-2 py-1 text-gray-600 hover:bg-gray-100 transition-colors uppercase"
+            aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+          >
+            {locale === 'es' ? 'EN' : 'ES'}
+          </button>
+
+          <NextLink href={localePath('/evaluacion')} className="btn-primary text-sm !py-2 !px-4">
+            {t('cta')}
+          </NextLink>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -92,9 +119,9 @@ export default function Header() {
       >
         <nav className="container-custom mx-auto py-4 px-4 flex flex-col gap-3">
           {navLinks.map((link) => (
-            <Link
+            <NextLink
               key={link.href}
-              href={link.href}
+              href={localePath(link.href)}
               onClick={() => setIsOpen(false)}
               className={`text-base font-medium py-2 ${
                 isActive(link.href)
@@ -103,15 +130,27 @@ export default function Header() {
               }`}
             >
               {link.label}
-            </Link>
+            </NextLink>
           ))}
-          <Link
-            href="/evaluacion"
+
+          {/* Mobile Language Selector */}
+          <button
+            onClick={() => {
+              switchLocale()
+              setIsOpen(false)
+            }}
+            className="text-base font-medium py-2 text-gray-700 hover:text-[#1e3a5f] text-left"
+          >
+            {locale === 'es' ? '🌐 English' : '🌐 Español'}
+          </button>
+
+          <NextLink
+            href={localePath('/evaluacion')}
             onClick={() => setIsOpen(false)}
             className="btn-primary text-center mt-2"
           >
-            Evalúa gratis
-          </Link>
+            {t('cta')}
+          </NextLink>
         </nav>
       </div>
     </header>

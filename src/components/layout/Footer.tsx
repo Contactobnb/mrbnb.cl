@@ -1,8 +1,15 @@
-import Link from 'next/link'
+'use client'
+
+import NextLink from 'next/link'
 import Image from 'next/image'
 import { CONTACT_PHONE, WHATSAPP_URL } from '@/lib/utils'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function Footer() {
+  const locale = useLocale()
+  const t = useTranslations('Footer')
+  const localePath = (href: string) => `/${locale}${href}`
+
   return (
     <footer className="bg-[#1e3a5f] text-white">
       <div className="container-custom mx-auto section-padding !py-12 md:!py-16">
@@ -17,7 +24,7 @@ export default function Footer() {
               className="h-12 w-12 rounded-lg mb-4"
             />
             <p className="text-gray-300 text-sm leading-relaxed">
-              Transformamos departamentos en hoteles. Administración profesional de propiedades en renta corta con estándar boutique.
+              {t('description')}
             </p>
             <div className="flex gap-4 mt-4">
               <a href="https://www.instagram.com/mrbnb.cl" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">
@@ -34,31 +41,31 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Servicios</h3>
+            <h3 className="font-bold text-lg mb-4">{t('servicios')}</h3>
             <ul className="space-y-2">
-              <li><Link href="/servicios" className="text-gray-300 hover:text-white text-sm transition-colors">Administración</Link></li>
-              <li><Link href="/servicios#inversion" className="text-gray-300 hover:text-white text-sm transition-colors">Desarrollo a medida</Link></li>
-              <li><Link href="/servicios#corretaje" className="text-gray-300 hover:text-white text-sm transition-colors">Corretaje</Link></li>
-              <li><Link href="/evaluacion" className="text-gray-300 hover:text-white text-sm transition-colors">Evaluación gratuita</Link></li>
-              <li><a href="https://mrbnb.hostify.club/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white text-sm transition-colors">Reservar alojamiento</a></li>
+              <li><NextLink href={localePath('/servicios')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('administracion')}</NextLink></li>
+              <li><NextLink href={localePath('/servicios#inversion')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('desarrollo')}</NextLink></li>
+              <li><NextLink href={localePath('/servicios#corretaje')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('corretaje')}</NextLink></li>
+              <li><NextLink href={localePath('/evaluacion')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('evaluacionGratis')}</NextLink></li>
+              <li><a href="https://mrbnb.hostify.club/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white text-sm transition-colors">{t('reservar')}</a></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Empresa</h3>
+            <h3 className="font-bold text-lg mb-4">{t('empresa')}</h3>
             <ul className="space-y-2">
-              <li><Link href="/nosotros" className="text-gray-300 hover:text-white text-sm transition-colors">Quiénes somos</Link></li>
-              <li><Link href="/proceso" className="text-gray-300 hover:text-white text-sm transition-colors">Cómo funciona</Link></li>
-              <li><Link href="/portfolio" className="text-gray-300 hover:text-white text-sm transition-colors">Portfolio</Link></li>
-              <li><Link href="/blog" className="text-gray-300 hover:text-white text-sm transition-colors">Blog</Link></li>
-              <li><Link href="/faq" className="text-gray-300 hover:text-white text-sm transition-colors">Preguntas frecuentes</Link></li>
+              <li><NextLink href={localePath('/nosotros')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('quienesSomos')}</NextLink></li>
+              <li><NextLink href={localePath('/proceso')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('comoFunciona')}</NextLink></li>
+              <li><NextLink href={localePath('/portfolio')} className="text-gray-300 hover:text-white text-sm transition-colors">Portfolio</NextLink></li>
+              <li><NextLink href={localePath('/blog')} className="text-gray-300 hover:text-white text-sm transition-colors">Blog</NextLink></li>
+              <li><NextLink href={localePath('/faq')} className="text-gray-300 hover:text-white text-sm transition-colors">{t('preguntasFrecuentes')}</NextLink></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Contacto</h3>
+            <h3 className="font-bold text-lg mb-4">{t('contacto')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -70,7 +77,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Santiago, Chile
+                {t('santiago')}
               </li>
             </ul>
           </div>
@@ -78,16 +85,16 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} Mr.BnB. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {t('derechos')}
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/politica-privacidad" className="text-sm text-gray-400 hover:text-white transition-colors">
-              Política de privacidad
-            </Link>
+            <NextLink href={localePath('/politica-privacidad')} className="text-sm text-gray-400 hover:text-white transition-colors">
+              {t('privacidad')}
+            </NextLink>
             <span className="text-white/20">|</span>
-            <Link href="/terminos" className="text-sm text-gray-400 hover:text-white transition-colors">
-              Términos de servicio
-            </Link>
+            <NextLink href={localePath('/terminos')} className="text-sm text-gray-400 hover:text-white transition-colors">
+              {t('terminos')}
+            </NextLink>
           </div>
         </div>
       </div>

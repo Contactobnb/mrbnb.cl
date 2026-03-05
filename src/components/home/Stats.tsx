@@ -1,19 +1,23 @@
-const stats = [
-  { value: '+60', label: 'Propiedades en Santiago', suffix: '' },
-  { value: '4.81', label: 'Rating en Airbnb', suffix: '★' },
-  { value: '8.9', label: 'Rating en Booking', suffix: '' },
-  { value: '+30%', label: 'Ingresos vs arriendo tradicional', suffix: '' },
-  { value: '+55%', label: 'En temporada alta', suffix: '' },
-  { value: '2x', label: 'Duplicamos ingresos en algunos casos', suffix: '' },
-]
+import { getTranslations } from 'next-intl/server'
 
-export default function Stats() {
+export default async function Stats() {
+  const t = await getTranslations('Stats')
+
+  const stats = [
+    { value: t('stat1Value'), label: t('stat1Label'), suffix: '' },
+    { value: t('stat2Value'), label: t('stat2Label'), suffix: t('stat2Suffix') },
+    { value: t('stat3Value'), label: t('stat3Label'), suffix: '' },
+    { value: t('stat4Value'), label: t('stat4Label'), suffix: '' },
+    { value: t('stat5Value'), label: t('stat5Label'), suffix: '' },
+    { value: t('stat6Value'), label: t('stat6Label'), suffix: '' },
+  ]
+
   return (
     <section className="bg-[#faf8f5] section-padding">
       <div className="container-custom mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">Resultados reales</h2>
-          <p className="text-gray-600 text-lg">Números que hablan por nosotros. Somos <strong>Superhost</strong> en Airbnb.</p>
+          <h2 className="heading-2 mb-4">{t('title')}</h2>
+          <p className="text-gray-600 text-lg" dangerouslySetInnerHTML={{ __html: t('subtitle') }} />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

@@ -80,20 +80,21 @@ model Activity {
 
 model BlogPost {
   id          String   @id @default(cuid())
-  slug        String   @unique
+  slug        String
   title       String
   excerpt     String
   content     String
   coverImage  String?
   author      String   @default("MR BnB")
   tags        String[]
+  locale      String   @default("es")
   published   Boolean  @default(false)
   publishedAt DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@index([slug])
-  @@index([published])
+  @@unique([slug, locale])
+  @@index([locale, published])
 }
 
 model ContactSubmission {

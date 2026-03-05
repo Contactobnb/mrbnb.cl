@@ -1,29 +1,4 @@
-const testimonials = [
-  {
-    quote:
-      'Llevamos 8 meses con Mr.BnB y los ingresos superaron todas nuestras expectativas. Pasamos de tener el departamento vacío a una ocupación del 82%. Lo mejor es que no tengo que preocuparme de nada.',
-    name: 'María Fernanda L.',
-    location: 'Providencia',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    quote:
-      'Al principio tenía dudas sobre la renta corta, pero el equipo de Mr.BnB me dio la confianza. Los reportes mensuales son súper detallados y siempre están disponibles cuando los necesito.',
-    name: 'Carlos R.',
-    location: 'Las Condes',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-  },
-  {
-    quote:
-      'Tenía mi depto en arriendo tradicional y decidí probar con Mr.BnB. En el primer trimestre ya estaba ganando un 40% más. El proceso fue rapidísimo, en 10 días ya tenía mi primera reserva.',
-    name: 'Javiera M.',
-    location: 'Ñuñoa',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
-  },
-]
+import { getTranslations } from 'next-intl/server'
 
 function StarRating({ count }: { count: number }) {
   return (
@@ -42,14 +17,40 @@ function StarRating({ count }: { count: number }) {
   )
 }
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const t = await getTranslations('Testimonials')
+
+  const testimonials = [
+    {
+      quote: t('quote1'),
+      name: t('name1'),
+      location: t('location1'),
+      rating: 5,
+      image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    },
+    {
+      quote: t('quote2'),
+      name: t('name2'),
+      location: t('location2'),
+      rating: 5,
+      image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    },
+    {
+      quote: t('quote3'),
+      name: t('name3'),
+      location: t('location3'),
+      rating: 5,
+      image: 'https://randomuser.me/api/portraits/women/68.jpg',
+    },
+  ]
+
   return (
     <section className="section-padding bg-[#faf8f5]">
       <div className="container-custom mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">Lo que dicen nuestros propietarios</h2>
+          <h2 className="heading-2 mb-4">{t('title')}</h2>
           <p className="text-gray-600 text-lg">
-            Resultados reales de propietarios que confían en Mr.BnB para gestionar sus propiedades.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -57,7 +58,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
               {/* Quote icon */}
               <div className="mb-4">
@@ -74,12 +75,12 @@ export default function Testimonials() {
               <StarRating count={testimonial.rating} />
 
               {/* Quote text */}
-              <blockquote className="mt-4 mb-6 text-gray-600 leading-relaxed">
+              <blockquote className="mt-4 mb-6 text-gray-600 leading-relaxed flex-1">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 
               {/* Author info */}
-              <div className="border-t border-gray-100 pt-4 flex items-center gap-3">
+              <div className="border-t border-gray-100 pt-4 flex items-center gap-3 mt-auto">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={testimonial.image}

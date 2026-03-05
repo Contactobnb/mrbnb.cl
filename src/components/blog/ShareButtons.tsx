@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface ShareButtonsProps {
   title: string
@@ -8,6 +9,7 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
+  const t = useTranslations('ShareButtons')
   const [copied, setCopied] = useState(false)
   const url = `https://mrbnb.cl/blog/${slug}`
   const encodedUrl = encodeURIComponent(url)
@@ -21,14 +23,14 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-sm text-gray-500 font-medium">Compartir:</span>
+      <span className="text-sm text-gray-500 font-medium">{t('share')}</span>
 
       {/* WhatsApp */}
       <a
         href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Compartir en WhatsApp"
+        aria-label={t('whatsappAria')}
         className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:opacity-80 transition-opacity"
       >
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -41,7 +43,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Compartir en LinkedIn"
+        aria-label={t('linkedinAria')}
         className="w-9 h-9 rounded-full bg-[#0A66C2] text-white flex items-center justify-center hover:opacity-80 transition-opacity"
       >
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +54,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
       {/* Copy Link */}
       <button
         onClick={copyLink}
-        aria-label="Copiar enlace"
+        aria-label={t('copyAria')}
         className="w-9 h-9 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-gray-300 transition-colors relative"
       >
         {copied ? (

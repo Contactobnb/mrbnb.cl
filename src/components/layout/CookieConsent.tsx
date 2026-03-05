@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export default function CookieConsent() {
+  const t = useTranslations('CookieConsent')
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -30,10 +32,9 @@ export default function CookieConsent() {
       <div className="container-custom mx-auto max-w-2xl">
         <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-4 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <p className="text-sm text-gray-600 flex-1">
-            Usamos cookies para mejorar tu experiencia en nuestro sitio.
-            Al continuar navegando, aceptas nuestra{' '}
+            {t('message')}{' '}
             <Link href="/politica-privacidad" className="text-[#1e3a5f] underline hover:text-[#c53030]">
-              política de privacidad
+              {t('privacyLink')}
             </Link>.
           </p>
           <div className="flex gap-3 flex-shrink-0">
@@ -41,13 +42,13 @@ export default function CookieConsent() {
               onClick={accept}
               className="bg-[#1e3a5f] text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-[#152a45] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] focus-visible:ring-offset-2"
             >
-              Aceptar
+              {t('accept')}
             </button>
             <button
               onClick={dismiss}
               className="text-gray-500 px-3 py-2 rounded-lg text-sm hover:text-gray-700 transition-colors"
             >
-              Cerrar
+              {t('dismiss')}
             </button>
           </div>
         </div>

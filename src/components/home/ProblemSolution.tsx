@@ -2,7 +2,7 @@ export default function ProblemSolution() {
   return (
     <section className="section-padding bg-[#faf8f5]">
       <div className="container-custom mx-auto">
-        <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-lg">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-0 rounded-2xl overflow-hidden shadow-lg">
           {/* Problem */}
           <div className="bg-white p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-8">

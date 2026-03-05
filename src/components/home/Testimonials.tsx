@@ -5,6 +5,7 @@ const testimonials = [
     name: 'María Fernanda L.',
     location: 'Providencia',
     rating: 5,
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
   },
   {
     quote:
@@ -12,6 +13,7 @@ const testimonials = [
     name: 'Carlos R.',
     location: 'Las Condes',
     rating: 5,
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
   },
   {
     quote:
@@ -19,6 +21,7 @@ const testimonials = [
     name: 'Javiera M.',
     location: 'Ñuñoa',
     rating: 5,
+    image: 'https://randomuser.me/api/portraits/women/68.jpg',
   },
 ]
 
@@ -76,9 +79,19 @@ export default function Testimonials() {
               </blockquote>
 
               {/* Author info */}
-              <div className="border-t border-gray-100 pt-4">
-                <p className="font-semibold text-[#1e3a5f]">{testimonial.name}</p>
-                <p className="text-sm text-gray-500">{testimonial.location}</p>
+              <div className="border-t border-gray-100 pt-4 flex items-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  width={56}
+                  height={56}
+                  className="w-14 h-14 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-semibold text-[#1e3a5f]">{testimonial.name}</p>
+                  <p className="text-sm text-gray-500">{testimonial.location}</p>
+                </div>
               </div>
             </div>
           ))}

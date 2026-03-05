@@ -27,16 +27,19 @@ body {
   .btn-primary {
     @apply bg-[#1e3a5f] text-white px-6 py-3 rounded-lg font-semibold
            hover:bg-[#152a45] transition-all duration-200
-           shadow-md hover:shadow-lg active:scale-[0.98];
+           shadow-md hover:shadow-lg active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] focus-visible:ring-offset-2;
   }
   .btn-secondary {
     @apply border-2 border-[#1e3a5f] text-[#1e3a5f] px-6 py-3 rounded-lg font-semibold
-           hover:bg-[#1e3a5f] hover:text-white transition-all duration-200;
+           hover:bg-[#1e3a5f] hover:text-white transition-all duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] focus-visible:ring-offset-2;
   }
   .btn-red {
     @apply bg-[#c53030] text-white px-6 py-3 rounded-lg font-semibold
            hover:bg-[#e53e3e] transition-all duration-200
-           shadow-md hover:shadow-lg active:scale-[0.98];
+           shadow-md hover:shadow-lg active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c53030] focus-visible:ring-offset-2;
   }
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8;
@@ -87,4 +90,14 @@ body {
 
 .stat-number {
   animation: countUp 0.8s ease-out forwards;
+}
+
+/* WhatsApp pulse */
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+.animate-whatsapp-pulse {
+  animation: whatsapp-pulse 2s ease-in-out 3;
 }

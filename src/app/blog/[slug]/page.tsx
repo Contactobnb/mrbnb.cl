@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { blogPosts } from '@/data/blog-posts'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
+import ShareButtons from '@/components/blog/ShareButtons'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -293,15 +294,28 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="bg-[#1e3a5f] text-white section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              Volver al blog
-            </Link>
+            {/* Breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex items-center gap-2 text-sm text-gray-400">
+                <li>
+                  <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+                </li>
+                <li>
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+                </li>
+                <li>
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </li>
+                <li className="text-white/70 truncate max-w-[250px]">{post.title}</li>
+              </ol>
+            </nav>
 
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
@@ -318,7 +332,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold">
                   {post.author
@@ -342,6 +356,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </div>
                 </div>
               </div>
+              <ShareButtons title={post.title} slug={post.slug} />
             </div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://mrbnb.cl',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL === 'http://localhost:3000'
+    ? 'https://mrbnb.cl'
+    : (process.env.NEXT_PUBLIC_SITE_URL || 'https://mrbnb.cl'),
   generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: 'weekly',
@@ -27,6 +29,7 @@ module.exports = {
       '/nosotros': 0.7,
       '/contacto': 0.8,
       '/blog': 0.7,
+      '/faq': 0.7,
     }
 
     return {

@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import WhatsAppFloat from '@/components/layout/WhatsAppFloat'
+import CookieConsent from '@/components/layout/CookieConsent'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     title: 'Mr.BnB — Transformamos Departamentos en Hoteles',
     description:
       'Administración profesional de propiedades en renta corta. +60 propiedades en Santiago. Superhost.',
-    images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'Mr.BnB' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Mr.BnB' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -116,6 +118,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
+        <CookieConsent />
 
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_ID && (

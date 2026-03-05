@@ -12,6 +12,391 @@ export interface BlogPostData {
 
 export const blogPosts: BlogPostData[] = [
   {
+    slug: 'regulacion-arriendo-corto-plazo-chile',
+    title: 'Regulación del Arriendo Corto Plazo en Chile: Lo Que Todo Propietario Debe Saber en 2026',
+    excerpt: 'Patente comercial, SII, gastos comunes y reglamentos de copropiedad: todo lo que necesitas saber sobre la regulación del arriendo de corto plazo en Chile antes de publicar tu propiedad.',
+    content: `
+## Un mercado en crecimiento que necesita reglas claras
+
+El arriendo de corto plazo en Chile ha crecido exponencialmente en los últimos años. Con este crecimiento, la regulación se ha vuelto un tema prioritario tanto para municipios como para el Servicio de Impuestos Internos. Como propietario, entender el marco legal actual no es opcional: es fundamental para operar sin riesgos.
+
+En Mr.BnB gestionamos más de 60 propiedades y nos encargamos de que cada una cumpla con la normativa vigente. Aquí te explicamos lo que necesitas saber.
+
+## La situación legal actual en Chile
+
+### No existe una ley específica para el arriendo corto plazo
+
+A diferencia de ciudades como Barcelona o Nueva York, Chile **no tiene una legislación específica** que regule el arriendo de corto plazo tipo Airbnb. Esto no significa que no haya reglas: la actividad se enmarca dentro de normativas existentes.
+
+### Inicio de actividades y obligaciones tributarias
+
+Si arriendas tu propiedad de forma habitual en plataformas como Airbnb o Booking.com, el **SII considera que estás realizando una actividad económica**. Esto implica:
+
+- **Inicio de actividades**: Debes registrarte ante el SII como prestador de servicios de alojamiento
+- **Emisión de boletas**: Cada ingreso debe estar respaldado por un documento tributario
+- **Declaración de impuestos**: Los ingresos se declaran como renta de primera categoría
+- **IVA**: La prestación de servicios de alojamiento temporal está afecta a IVA (19%)
+
+### Patente comercial municipal
+
+Muchos municipios en Santiago están comenzando a **fiscalizar la operación de arriendos cortos** y exigir patente comercial. Las comunas donde esto es más activo incluyen:
+
+- **Providencia**: Fiscalización activa desde 2024
+- **Las Condes**: Requiere patente para operación comercial
+- **Santiago Centro**: En proceso de regulación
+- **Ñuñoa**: Fiscalización creciente
+
+El costo de la patente varía según la comuna y el capital declarado, pero generalmente oscila entre $50.000 y $200.000 CLP semestrales.
+
+## El reglamento de copropiedad: tu mayor riesgo
+
+### ¿Puede tu edificio prohibir el arriendo corto plazo?
+
+Sí. El **reglamento de copropiedad** es el documento clave que debes revisar antes de invertir. Existen tres escenarios:
+
+1. **Prohibición explícita**: Algunos reglamentos prohíben expresamente el arriendo por períodos menores a ciertos meses. Si tu edificio tiene esta cláusula, operar puede traer consecuencias legales.
+
+2. **Sin mención**: Si el reglamento no dice nada sobre arriendo corto plazo, en principio no hay prohibición. Sin embargo, la asamblea de copropietarios podría modificar el reglamento.
+
+3. **Regulación parcial**: Algunos edificios permiten el arriendo corto con condiciones (horarios de check-in, uso de áreas comunes, etc.).
+
+### Gastos comunes y copropiedad
+
+Un punto de tensión frecuente son los **gastos comunes**. Algunos edificios han intentado cobrar gastos comunes diferenciados a unidades que operan en renta corta, argumentando mayor desgaste de áreas comunes. Este es un tema en evolución legal.
+
+**Nuestra recomendación**: Antes de invertir, revisa el reglamento de copropiedad y consulta con la administración del edificio.
+
+## Seguros: protege tu inversión
+
+### Seguro de contenido
+
+Tu póliza de seguro residencial estándar probablemente **no cubre** la actividad comercial de arriendo corto plazo. Necesitas:
+
+- **Seguro de contenido comercial**: Cubre mobiliario y equipamiento contra daños
+- **Seguro de responsabilidad civil**: Fundamental en caso de accidentes de huéspedes
+- **Garantía de Airbnb (AirCover)**: Complementaria pero no reemplaza un seguro profesional
+
+### ¿Cuánto cuesta?
+
+Un seguro adecuado para una propiedad en renta corta cuesta entre $15.000 y $40.000 CLP mensuales dependiendo del valor asegurado.
+
+## Lo que viene: tendencias regulatorias
+
+### Proyectos de ley en discusión
+
+Existen iniciativas parlamentarias que buscan:
+- Crear un **registro nacional de alojamientos turísticos**
+- Establecer un **límite de días** de arriendo corto al año
+- Requerir **certificación de seguridad** para propiedades
+- Regular la **relación con comunidades de copropietarios**
+
+### Nuestra visión
+
+En Mr.BnB creemos que la regulación es positiva para el mercado. Un marco legal claro:
+- Elimina operadores informales
+- Profesionaliza la industria
+- Da seguridad jurídica a propietarios e inversionistas
+- Mejora la convivencia con vecinos
+
+## Checklist de cumplimiento legal
+
+1. ✅ Revisar reglamento de copropiedad
+2. ✅ Inicio de actividades en SII
+3. ✅ Obtener patente comercial municipal
+4. ✅ Contratar seguro adecuado
+5. ✅ Emitir documentos tributarios por cada ingreso
+6. ✅ Declarar impuestos correspondientes
+7. ✅ Mantener registros de huéspedes
+
+## ¿Cómo te ayuda Mr.BnB?
+
+Nosotros nos encargamos de la operación completa, incluyendo la orientación sobre cumplimiento normativo. No somos asesores legales, pero nuestra experiencia con más de 60 propiedades nos permite guiarte en el proceso.
+
+[Evalúa tu propiedad →](/evaluacion) | [Consulta con nuestro equipo →](/contacto)
+    `,
+    coverImage: '/images/properties/santiago-centro-terraza.jpg',
+    author: 'Felipe Ruiz Paredes',
+    date: '2026-03-01',
+    tags: ['regulación', 'normativa', 'legal', 'patente'],
+    readTime: 7,
+  },
+  {
+    slug: 'preparar-departamento-airbnb-equipamiento-decoracion',
+    title: 'Cómo Preparar tu Departamento para Airbnb: Guía de Equipamiento y Decoración',
+    excerpt: 'El checklist definitivo de equipamiento, amenities y decoración para que tu departamento destaque en Airbnb y Booking. Basado en nuestra experiencia equipando más de 60 propiedades.',
+    content: `
+## La primera impresión lo es todo
+
+En el mundo del arriendo corto plazo, las fotos de tu propiedad son tu principal herramienta de venta. Un departamento bien equipado y decorado puede cobrar entre un **15% y 25% más** que uno similar sin preparación. En Mr.BnB lo hemos comprobado una y otra vez.
+
+Esta guía resume lo que hemos aprendido equipando y decorando más de 60 propiedades en Santiago.
+
+## Checklist de equipamiento esencial
+
+### Dormitorio principal
+- Colchón de buena calidad (mínimo semi-ortopédico)
+- Sábanas blancas de 300 hilos mínimo (estándar hotelero)
+- 2 almohadas por persona (una firme, una suave)
+- Duvet o plumón blanco
+- Veladores con lámparas y enchufes accesibles
+- Cortinas blackout
+- Perchas suficientes en el clóset (mínimo 10)
+- Espejo de cuerpo completo
+
+### Baño
+- Set de toallas blancas (2 de cuerpo + 2 de mano por huésped)
+- Amenities: shampoo, acondicionador, jabón, crema corporal
+- Secador de pelo (no negociable)
+- Espejo con buena iluminación
+- Papelero con bolsa
+- Papel higiénico extra (mínimo 4 rollos de reserva)
+- Alfombra de baño antideslizante
+
+### Cocina
+- Juego de ollas y sartenes (mínimo 3 piezas)
+- Set de cuchillos de calidad
+- Vajilla completa para capacidad máxima + 2 extra
+- Copas de vino y vasos
+- Utensilios básicos: espátula, cucharón, colador, tabla de cortar
+- Cafetera (idealmente Nespresso o similar)
+- Hervidor eléctrico
+- Tostador
+- Papel de cocina, esponja, lavaloza
+- Sal, aceite, azúcar, café y té básicos
+- Bolsas de basura
+
+### Living/Comedor
+- Sofá cómodo y en buen estado
+- Mesa de centro
+- Smart TV con Netflix/streaming (obligatorio en 2026)
+- WiFi de alta velocidad (mínimo 100 Mbps)
+- Mesa de comedor con sillas para capacidad completa
+
+### Lavandería
+- Lavadora (idealmente con secadora)
+- Detergente disponible para huéspedes
+- Tendedero si no hay secadora
+- Plancha y tabla de planchar
+
+## Amenities premium que marcan la diferencia
+
+Estos detalles no son obligatorios pero elevan significativamente la experiencia y las reviews:
+
+### Alto impacto, bajo costo
+- **Cápsula de café de bienvenida** con una nota personalizada
+- **Botella de agua** en el refrigerador
+- **Guía local impresa** con recomendaciones de restaurantes y atracciones
+- **Cargador USB** junto a la cama
+- **Adaptador de enchufe universal** (para turistas internacionales)
+- **Bolsas reutilizables** para compras
+
+### Inversión media, retorno alto
+- **Máquina Nespresso** con cápsulas variadas
+- **Parlante Bluetooth**
+- **Juegos de mesa** o naipes
+- **Paraguas** disponible para huéspedes
+- **Kit de costura y kit de primeros auxilios** básico
+
+## Decoración orientada a fotos y conversión
+
+### Los principios clave
+
+1. **Paleta neutra con acentos de color**: Base blanca o gris claro con 1-2 colores de acento. Esto fotografía mejor y agrada a más perfiles de huéspedes.
+
+2. **Menos es más**: Evita el exceso de decoración. Los espacios despejados se ven más grandes y limpios en fotos.
+
+3. **Texturas sobre colores**: Usa cojines, mantas y alfombras para agregar interés visual sin saturar.
+
+4. **Plantas**: Una o dos plantas verdes (reales o de alta calidad artificial) transforman cualquier espacio.
+
+5. **Arte local**: Cuadros o prints de artistas chilenos dan personalidad sin ser polarizantes.
+
+6. **Iluminación cálida**: La luz cálida (2700K-3000K) crea ambiente acogedor. Evita tubos fluorescentes.
+
+### Errores comunes que debes evitar
+
+- **Decoración religiosa o política**: Puede incomodar a huéspedes
+- **Fotos familiares**: El huésped quiere sentirse en un espacio propio, no en la casa de alguien
+- **Muebles oscuros y pesados**: Achican visualmente el espacio
+- **Cortinas con diseños recargados**: Opta por cortinas lisas y neutras
+- **Ropa de cama con estampados**: Siempre blanco. Siempre
+- **Demasiados adornos**: Cada objeto es algo que limpiar y algo que se puede romper
+
+## La fotografía profesional: no es opcional
+
+Después de equipar y decorar, **invierte en fotografía profesional**. No uses tu celular. Una sesión profesional cuesta entre $80.000 y $150.000 CLP y es la inversión con mayor ROI de todo el proceso.
+
+### Tips para el día de la sesión
+- Limpieza profunda antes de la sesión
+- Abre todas las cortinas para máxima luz natural
+- Retira objetos personales y desorden
+- Coloca amenities visibles (cafetera, toallas decorativas)
+- Haz la cama como en un hotel 5 estrellas
+
+## Presupuesto estimado de equipamiento
+
+| Categoría | Rango de inversión |
+|-----------|-------------------|
+| Ropa blanca completa | $300.000 - $500.000 |
+| Menaje y cocina | $200.000 - $400.000 |
+| Amenities iniciales | $50.000 - $100.000 |
+| Decoración y textiles | $300.000 - $800.000 |
+| Electrónicos (TV, cafetera) | $200.000 - $500.000 |
+| Fotografía profesional | $80.000 - $150.000 |
+| **Total estimado** | **$1.130.000 - $2.450.000** |
+
+Este rango varía según el tamaño del departamento y el estado actual del mobiliario existente.
+
+## ¿No sabes por dónde empezar?
+
+En Mr.BnB nos encargamos del equipamiento y puesta en marcha de tu propiedad. Nuestro equipo de diseño sabe exactamente qué funciona para maximizar reservas y tarifas.
+
+[Evalúa tu propiedad gratis →](/evaluacion) | [Agenda una visita →](/contacto)
+    `,
+    coverImage: '/images/properties/nunoa-elegante.jpg',
+    author: 'Pedro Pablo Tort',
+    date: '2026-02-20',
+    tags: ['decoración', 'equipamiento', 'amenities', 'fotografía'],
+    readTime: 8,
+  },
+  {
+    slug: 'temporadas-demanda-santiago-maximizar-ocupacion',
+    title: 'Temporadas de Alta y Baja Demanda en Santiago: Cuándo y Cómo Maximizar tu Ocupación',
+    excerpt: 'Calendario completo de demanda en Santiago, eventos clave y estrategias de pricing estacional para mantener tu ocupación alta todo el año.',
+    content: `
+## Entender la demanda es entender tu negocio
+
+Uno de los errores más comunes de propietarios que operan solos es usar **tarifas fijas todo el año**. Santiago tiene una estacionalidad bien definida, y quien no ajusta su estrategia según la temporada deja dinero sobre la mesa.
+
+En Mr.BnB analizamos datos de más de 60 propiedades para optimizar el pricing diario. Aquí compartimos lo que hemos aprendido.
+
+## El calendario de demanda en Santiago
+
+### Temporada alta: noviembre a marzo
+
+Este es el período de mayor demanda y donde se concentra el grueso de los ingresos anuales.
+
+**¿Por qué sube la demanda?**
+- Temporada de vacaciones en el hemisferio sur
+- Mayor flujo de turistas internacionales (especialmente europeos y norteamericanos)
+- Eventos de fin de año y festividades
+- Congresos y eventos corporativos de cierre de año
+
+**Impacto en números:**
+- Ocupación promedio: **85-92%**
+- Tarifas: **+40% a +55%** sobre el promedio anual
+- Estadía promedio: 3-5 noches
+
+**Estrategia recomendada:**
+- Aumentar tarifas progresivamente desde octubre
+- Establecer mínimo de noches (3 noches en diciembre-enero)
+- Priorizar reservas largas que aseguren ocupación continua
+
+### Temporada media: abril a junio y septiembre a octubre
+
+Períodos de transición con demanda estable pero menor que la temporada alta.
+
+**Perfil del huésped:**
+- Mayor proporción de viajeros de negocios
+- Turistas regionales (argentinos, brasileños)
+- Estadías más cortas (2-3 noches)
+
+**Impacto en números:**
+- Ocupación promedio: **75-82%**
+- Tarifas: promedio anual estándar
+- Mayor importancia de la demanda corporativa
+
+**Estrategia recomendada:**
+- Tarifas competitivas para mantener ocupación
+- Reducir mínimo de noches a 1-2
+- Ofrecer descuentos por estadías semanales
+- Apuntar a nómadas digitales con tarifas mensuales atractivas
+
+### Temporada baja: julio y agosto
+
+El período más desafiante del año, pero lejos de ser improductivo si se maneja bien.
+
+**¿Por qué baja la demanda?**
+- Invierno en Santiago
+- Menor flujo turístico internacional
+- Vacaciones escolares de invierno (puede ser positivo para cierto segmento)
+
+**Impacto en números:**
+- Ocupación promedio: **65-73%**
+- Tarifas: **-15% a -25%** bajo el promedio anual
+- Estadías más largas (relocaciones, proyectos temporales)
+
+**Estrategia recomendada:**
+- Pricing agresivo para mantener ocupación sobre 65%
+- Ofrecer descuentos atractivos por mes completo
+- Apuntar a estadías corporativas largas y relocaciones
+- Destacar calefacción y comodidades de invierno en el listing
+
+## Eventos clave que disparan la demanda
+
+### Eventos anuales recurrentes
+
+| Evento | Fechas aproximadas | Impacto en demanda |
+|--------|-------------------|-------------------|
+| Año Nuevo | 28 dic - 2 ene | Muy alto |
+| Fiestas Patrias | 17-20 septiembre | Alto |
+| Lollapalooza Chile | Marzo | Alto en comunas cercanas |
+| Feria del Libro | Octubre-noviembre | Moderado |
+| Congresos en CasaPiedra/Espacio Riesco | Todo el año | Moderado-alto |
+| Festival de Viña (impacto Santiago) | Febrero | Moderado |
+| Marathon de Santiago | Abril | Moderado |
+
+### Cómo aprovechar los eventos
+
+1. **Anticípate**: Ajusta tarifas al menos 30 días antes del evento
+2. **Mínimo de noches**: Aumenta a 3-4 noches durante eventos grandes
+3. **Listado optimizado**: Menciona cercanía al evento en la descripción
+4. **Cancellation policy**: Usa política estricta durante eventos de alta demanda
+
+## Estrategias para la temporada baja
+
+La temporada baja es donde se separan los profesionales de los amateurs. Estas son las estrategias que usamos en Mr.BnB:
+
+### 1. Estadías mensuales
+Ofrecer descuentos de 30-40% para reservas de 28+ noches. Un mes completo a tarifa reducida es mejor que semanas vacías.
+
+### 2. Nómadas digitales
+Santiago es cada vez más popular entre trabajadores remotos. Destacar WiFi rápido, escritorio de trabajo y buena ubicación para este segmento.
+
+### 3. Relocaciones corporativas
+Empresas que trasladan empleados temporalmente. Tarifas competitivas vs apart-hotel pero con mejor experiencia.
+
+### 4. Mantenimiento preventivo
+Aprovechar la baja ocupación para realizar mantenimiento, renovaciones menores y actualización de fotos.
+
+## El impacto del pricing dinámico
+
+La diferencia entre pricing fijo y dinámico es dramática:
+
+| Métrica | Pricing fijo | Pricing dinámico (Mr.BnB) |
+|---------|-------------|--------------------------|
+| Ingreso anual promedio (1D Providencia) | $5.400.000 | $7.200.000 |
+| Ocupación anual | 68% | 80% |
+| ADR promedio | $52.000 | $58.000 |
+| Revenue por noche disponible | $35.360 | $46.400 |
+
+**La diferencia es de +33% en ingresos anuales**, simplemente por ajustar tarifas según la demanda real.
+
+## Conclusión
+
+Entender la estacionalidad de Santiago y ajustar tu estrategia en consecuencia es fundamental para maximizar el retorno de tu inversión. No se trata solo de subir precios en temporada alta: se trata de tener una estrategia integral que mantenga tu ocupación y tus ingresos optimizados durante todo el año.
+
+En Mr.BnB hacemos esto automáticamente con algoritmos de pricing que analizan la demanda en tiempo real.
+
+[Simula los ingresos de tu propiedad →](/evaluacion) | [Habla con nosotros →](/contacto)
+    `,
+    coverImage: '/images/properties/las-condes-piscina.jpg',
+    author: 'Felipe Ruiz Paredes',
+    date: '2026-02-10',
+    tags: ['temporadas', 'demanda', 'pricing', 'ocupación', 'eventos'],
+    readTime: 6,
+  },
+  {
     slug: 'guia-completa-ganar-airbnb-santiago',
     title: 'Guía Completa: Cómo Maximizar tus Ingresos con Airbnb en Santiago',
     excerpt: 'Descubre las estrategias probadas que usamos en Mr.BnB para generar hasta un 30% más de ingresos que el arriendo tradicional en más de 60 propiedades en Santiago.',

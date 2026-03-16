@@ -657,7 +657,7 @@ export default function SimuladorROI() {
                       </div>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                          href="https://wa.me/56942237814"
+                          href={`https://wa.me/56958034957?text=${encodeURIComponent('Hola, quiero solicitar una evaluación de mi propiedad en renta corta con Mr.BnB')}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-primary inline-flex items-center justify-center gap-2"
@@ -688,7 +688,7 @@ export default function SimuladorROI() {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                          href="https://wa.me/56942237814"
+                          href={`https://wa.me/56958034957?text=${encodeURIComponent('Hola, quiero solicitar una evaluación de mi propiedad en renta corta con Mr.BnB')}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-primary inline-flex items-center justify-center gap-2"
@@ -719,7 +719,7 @@ export default function SimuladorROI() {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                          href="https://wa.me/56942237814"
+                          href={`https://wa.me/56958034957?text=${encodeURIComponent('Hola, quiero solicitar una evaluación de mi propiedad en renta corta con Mr.BnB')}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-primary inline-flex items-center justify-center gap-2"

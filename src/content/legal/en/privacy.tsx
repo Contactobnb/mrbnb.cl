@@ -150,8 +150,8 @@ export default function PrivacyContentEN() {
                 </ul>
                 <p className="text-gray-600 leading-relaxed">
                   To exercise any of these rights, you can contact us via email at{' '}
-                  <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                    felipe@mrbnb.cl
+                  <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                    clientes@mrbnb.cl
                   </a>
                   . We will respond to your request within the timeframes established by law.
                 </p>
@@ -194,8 +194,8 @@ export default function PrivacyContentEN() {
                   </li>
                   <li>
                     <strong>Email:</strong>{' '}
-                    <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                      felipe@mrbnb.cl
+                    <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                      clientes@mrbnb.cl
                     </a>
                   </li>
                   <li>

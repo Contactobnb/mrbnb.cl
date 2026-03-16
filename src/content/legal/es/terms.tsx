@@ -181,8 +181,8 @@ export default function TermsContentES() {
                   </li>
                   <li>
                     <strong>Email:</strong>{' '}
-                    <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                      felipe@mrbnb.cl
+                    <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                      clientes@mrbnb.cl
                     </a>
                   </li>
                   <li>

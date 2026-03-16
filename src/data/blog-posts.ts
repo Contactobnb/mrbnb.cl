@@ -792,4 +792,676 @@ Muchos propietarios no saben cuánto podrían estar generando. Nuestro diagnóst
     tags: ['caso de estudio', 'resultados', 'transformación', 'providencia'],
     readTime: 6,
   },
+  {
+    slug: 'mejores-vinas-cerca-santiago-guia-huespedes',
+    title: 'Las Mejores Viñas Cerca de Santiago: Guía para Huéspedes Mr.BnB',
+    excerpt: 'Descubre las viñas imperdibles a menos de 2 horas de Santiago. Desde Cousiño Macul (a la que puedes llegar en metro) hasta Emiliana en el Valle de Casablanca, con precios, tours y un código de descuento exclusivo.',
+    content: `
+## Santiago: puerta de entrada al mejor vino del mundo
+
+Chile es uno de los principales productores de vino del mundo, y lo mejor es que muchas de las viñas más emblemáticas están a minutos de tu departamento Mr.BnB. Ya sea que prefieras un tour con degustación, un paseo en bicicleta entre viñedos o una experiencia de vendimia, hay opciones para todos los gustos y presupuestos.
+
+## Nuestra recomendación #1: Viña Cousiño Macul
+
+### La única viña de clase mundial a la que llegas en metro
+
+Cousiño Macul es **la viña más antigua de Chile que sigue en manos de su familia fundadora**, actualmente en su séptima generación desde 1856. Y lo mejor: está dentro de Santiago, en Peñalolén, a solo 8 minutos caminando desde la estación **Grecia** de la Línea 4 del Metro.
+
+**Dirección:** Av. Quilín 7100, Peñalolén
+
+### Tours disponibles
+
+| Tour | Precio/persona | Duración | Incluye |
+|------|---------------|----------|---------|
+| Tradicional | $26.500 | ~1 hora | 3 copas de degustación |
+| Premium | $45.000 | ~1.5 horas | 3 copas en tour + 3 degustaciones línea Premium |
+| Bike Tour | $37.500 | ~1.5 horas | Recorrido en bicicleta por los viñedos + 4 copas |
+| Sunset | $48.000 | ~3 horas | Tour de bodega, 3 catas, tabla de quesos, botella de vino y vista a los Andes |
+| Vendimia (marzo-abril) | $50.000 | ~2.5 horas | 3 catas, tabla de quesos con botella, vistas a la cordillera |
+| Jardín de Macul (familiar) | $5.000 adultos / $3.500 niños | ~3.5 horas | Tour familiar, zona de picnic, actividades para niños |
+
+### Código de descuento exclusivo Mr.BnB
+
+Como huésped Mr.BnB, tienes acceso a un **código de descuento exclusivo** para tu visita a Cousiño Macul. Encuéntralo en la guía de bienvenida de tu departamento o consulta a tu anfitrión por WhatsApp.
+
+### Por qué nos encanta
+
+- Es la **única viña importante accesible en metro** en todo Chile
+- Bodegas centenarias con más de 100 años de historia
+- Vista directa a la Cordillera de los Andes desde el recinto
+- El **Bike Tour** es una experiencia única que no encontrarás en otras viñas
+- El Tour Sunset incluye quesos, vino y atardecer con vista a la cordillera
+- El Jardín de Macul es perfecto para familias con niños
+
+**Horarios:** Martes a domingo. Tours en español, inglés y portugués.
+**Reservas:** cousinomacul.tourpay.cl
+
+## Otras viñas imperdibles cerca de Santiago
+
+### Viña Concha y Toro — La más famosa del mundo
+
+La viña más grande y reconocida de Latinoamérica, hogar del icónico **Casillero del Diablo**. La experiencia sensorial en la bodega subterránea (con la leyenda del diablo que custodia los mejores vinos) es inolvidable.
+
+- **Ubicación:** Pirque (~45 min en auto desde Santiago)
+- **Tour Premium:** desde $50.000/persona (incluye parques centenarios, bodega subterránea y degustación)
+- **Duración:** ~2 horas
+- **Idiomas:** Español, inglés, portugués
+- **Ideal para:** Quienes buscan la marca chilena más emblemática
+
+### Viña Santa Rita — Historia y cultura
+
+Más que una viña, es un viaje al pasado. La **Bodega de los 120 Patriotas** es Monumento Nacional: aquí se escondieron 120 soldados durante la guerra de independencia. Incluye el **Museo Andino** (gratuito) con más de 3.000 piezas de arte precolombino.
+
+- **Ubicación:** Buin, Alto Jahuel (~45 min al sur de Santiago)
+- **Tour Clásico:** $27.000/persona (viñedos, producción, cata de 3 vinos + copa de regalo)
+- **Tour Premium:** $38.000/persona (+ tabla de quesos y degustaciones adicionales)
+- **Ideal para:** Amantes de la historia y la cultura
+
+### Viña Undurraga — Jardines y tradición
+
+Una de las primeras viñas chilenas en exportar vino. Destaca por sus jardines diseñados por Pierre Dubois (el paisajista del Parque Forestal de Santiago) y su arquitectura histórica.
+
+- **Ubicación:** Talagante (~40 min de Santiago)
+- **Tour con transporte:** $51.000/persona (incluye pickup en tu alojamiento, tour guiado, cata de 3 vinos y copa de recuerdo)
+- **Mínimo:** 2 pasajeros
+- **Ideal para:** Una experiencia cómoda sin preocuparse por el transporte
+
+### Viña Emiliana — 100% orgánica y biodinámica
+
+La primera viña completamente orgánica y biodinámica de Latinoamérica. Llamas, caballos y animales de granja conviven en el recinto. Ofrecen una experiencia única: **"Haz tu Vino"**, donde creas tu propia mezcla y te llevas tu botella personalizada.
+
+- **Ubicación:** Valle de Casablanca (~1-1.5 horas, camino a Valparaíso)
+- **Tour Orgánico Ge:** $40.000/persona (viñedos, jardín orgánico, cata de 5 vinos)
+- **Haz tu Vino:** $50.000/persona (creas tu mezcla, embotellas tu vino, tabla de charcutería)
+- **Ideal para:** Amantes de lo natural y experiencias únicas
+
+### Viña Santa Carolina — Económica y en metro
+
+Fundada en 1875, tiene una **bodega subterránea declarada Monumento Nacional** (desde 1880). La opción más económica y accesible: está a pasos de la estación **Rodrigo de Araya** del Metro.
+
+- **Ubicación:** Av. Rodrigo de Araya 1431, Macul (dentro de Santiago)
+- **Tours:** desde $12.000/persona (bodega, jardín con copihues, cata de 3 vinos + botellita de regalo)
+- **Ideal para:** Presupuesto ajustado o poco tiempo disponible
+
+### Viña Aquitania — Boutique y exclusiva
+
+Viña boutique en Peñalolén con un **mirador panorámico 360°** al pie de los Andes. Producción pequeña y selecta, experiencia íntima.
+
+- **Ubicación:** Av. Consistorial 5090, Peñalolén (dentro de Santiago)
+- **Tour Premium:** $30.000/persona (mirador, viñedos, bodega, cata de vinos Premium e Ícono)
+- **Solo con reserva previa.** Cerrada fines de semana.
+- **Ideal para:** Quienes buscan exclusividad y una experiencia íntima
+
+## Cuadro comparativo rápido
+
+| Viña | Distancia | Precio desde | Lo mejor para... |
+|------|-----------|-------------|-----------------|
+| **Cousiño Macul** | En metro (Peñalolén) | $5.000 | Primera visita, familias, accesibilidad |
+| Concha y Toro | 45 min en auto | $50.000 | Marca icónica, experiencia premium |
+| Santa Rita | 45 min sur | $27.000 | Historia + cultura + museo |
+| Undurraga | 40 min | $51.000 | Tour con transporte incluido |
+| Emiliana | 1-1.5 hrs | $40.000 | Vinos orgánicos, hacer tu propio vino |
+| Santa Carolina | En metro (Macul) | $12.000 | Presupuesto ajustado, visita rápida |
+| Aquitania | En Santiago | $30.000 | Exclusividad, vista 360° |
+
+## Consejos prácticos
+
+### Mejor época para visitar
+- **Vendimia (marzo-abril):** La más emocionante, muchas viñas ofrecen tours especiales de cosecha
+- **Primavera (septiembre-noviembre):** Viñedos verdes, menos turistas
+- **Verano (diciembre-febrero):** Días largos, ideal para tours al aire libre
+
+### Tips importantes
+- **Siempre reservar con anticipación**, especialmente fines de semana y temporada alta
+- Si vas a degustar, **no manejes**. Usa Uber, taxi o tour con transporte
+- Lleva **zapatos cómodos** (se camina por viñedos y bodegas) y **protector solar**
+- Las bodegas subterráneas son frescas: lleva una chaqueta liviana
+- En un día puedes combinar 2-3 viñas si están en la misma zona
+- **Comprar en la tienda de la viña** suele ser más barato que en supermercados, y hay vinos exclusivos
+
+**¿Necesitas ayuda organizando tu visita?** Escríbenos por WhatsApp y te orientamos.
+
+[Contáctanos →](/contacto)
+    `,
+    coverImage: '/images/properties/santiago-panoramica.jpg',
+    author: 'Mr.BnB',
+    date: '2026-03-15',
+    tags: ['viñas', 'enoturismo', 'huéspedes', 'Santiago', 'Cousiño Macul'],
+    readTime: 9,
+  },
+  {
+    slug: 'mejores-panoramas-santiago-guia-turistica',
+    title: 'Los Mejores Panoramas para Hacer en Santiago: Guía Completa para Huéspedes',
+    excerpt: 'Desde el Sky Costanera y los barrios bohemios hasta el Cajón del Maipo y los outlets: todo lo que puedes hacer en Santiago organizado por tipo de actividad.',
+    content: `
+## Santiago tiene mucho más de lo que imaginas
+
+Santiago es una ciudad que sorprende. En pocas horas puedes pasar de hacer shopping en el mall más alto de Sudamérica a hacer trekking con vista a glaciares. Como huésped Mr.BnB, tienes la ventaja de estar ubicado en las mejores zonas para explorar todo esto.
+
+Aquí te dejamos nuestra selección de los mejores panoramas, organizados por tipo de actividad.
+
+## Shopping: Malls y Outlets
+
+### Costanera Center + Sky Costanera
+El centro comercial más icónico de Santiago, ubicado en la **torre más alta de Sudamérica** (300 metros). Más de 300 tiendas en 6 niveles, y en los pisos 61 y 62 el mirador **Sky Costanera** con vista panorámica 360° de Santiago y la Cordillera de los Andes.
+
+- **Ubicación:** Av. Andrés Bello 2425, Providencia. Metro Tobalaba
+- **Sky Costanera:** ~$20.000 CLP. Abierto de 10:00 a 21:00
+- **Tip:** Ve al atardecer para ver Santiago de día y de noche. Compra entradas en la boletería del primer piso para evitar filas
+
+### Parque Arauco
+El mall más exclusivo de Santiago con más de 350 tiendas. Destaca el **Boulevard al aire libre** que combina tiendas premium con gastronomía gourmet. Marcas como Louis Vuitton, Gucci y Prada.
+
+- **Ubicación:** Av. Presidente Kennedy 5413, Las Condes. Metro Manquehue
+- **Tip:** Al lado está el Parque Araucano, perfecto para combinar compras con un paseo verde
+
+### Mall Alto Las Condes
+Referente del segmento premium con más de 200 tiendas de alta gama. Ambiente más tranquilo y exclusivo que Costanera Center.
+
+- **Ubicación:** Av. Presidente Kennedy 9001, Las Condes. Metro Escuela Militar + bus
+- **Tip:** Ideal si prefieres una experiencia de compra relajada y sofisticada
+
+### Arauco Premium Outlet Buenaventura
+El principal outlet de Santiago. Marcas como Michael Kors, Hugo Boss, Nike, Adidas y Patagonia con **descuentos de hasta 70%** sobre precio retail.
+
+- **Ubicación:** San Ignacio 532, Quilicura (~20 km del sector oriente)
+- **Horario:** 10:00 a 20:00
+- **Tip:** Ve entre semana para mejor stock y menos filas. Conviene ir en auto o transfer
+
+## Naturaleza y Aire Libre
+
+### Cerro San Cristóbal / Parque Metropolitano
+El parque urbano más grande de Chile. Senderos, miradores espectaculares, Jardín Japonés, Zoológico Nacional, piscinas (en verano) y la icónica Virgen en la cumbre. Se sube a pie, en funicular o en teleférico.
+
+- **Ubicación:** Acceso por Pío Nono, Bellavista. Metro Baquedano
+- **Funicular:** ~$2.250 CLP | **Teleférico:** ~$4.000-$5.500 CLP
+- **Tip:** Sube en funicular (desde Pío Nono) y baja en teleférico (hacia Pedro de Valdivia Norte) para ver todo el cerro. El Jardín Japonés es una joya escondida
+
+### Cerro Santa Lucía
+Cerro histórico en pleno centro con jardines, fuentes, el Castillo Hidalgo y la Terraza Caupolicán con vistas panorámicas. Aquí Pedro de Valdivia fundó Santiago en 1541.
+
+- **Ubicación:** Alameda esquina Santa Lucía. Metro Santa Lucía
+- **Costo:** Gratuito (registro en la entrada)
+- **Tip:** Combínalo con Barrio Lastarria, que está justo al lado. Visitas guiadas gratuitas sábado, domingo y lunes a las 10:00
+
+### Parque Bicentenario de Vitacura
+30 hectáreas con laguna de cisnes de cuello negro, Paseo de Esculturas, anfiteatro y más de 5.400 árboles. Uno de los parques más bonitos y tranquilos de Santiago.
+
+- **Ubicación:** Av. Bicentenario, Vitacura
+- **Costo:** Gratuito
+- **Tip:** Lleva pan para los cisnes y peces koi. En verano hay festivales de jazz gratuitos al aire libre
+
+### Parque Araucano
+Más de 22 hectáreas en Las Condes con canchas deportivas, skatepark, juegos infantiles, las **Aguas Danzantes** (chorros de agua con luces y música) y KidZania para niños.
+
+- **Ubicación:** Al lado del Mall Parque Arauco, Las Condes
+- **KidZania:** ~$20.950 niños / $11.950 adultos
+- **Tip:** Las Aguas Danzantes en tardes de verano son un hit para los niños
+
+### Cajón del Maipo
+Un cañón de montaña a menos de 2 horas de Santiago con paisajes andinos espectaculares. Incluye el **Embalse El Yeso** (laguna turquesa), las **Termas de Colina** (piscinas termales naturales), trekking en el Monumento Natural El Morado y rafting en el Río Maipo.
+
+- **Ubicación:** Al sureste de Santiago, por Ruta G-25
+- **Embalse El Yeso:** ~$1.500 CLP entrada | **Tours organizados:** desde ~$40.000 CLP
+- **Tip:** Si no tienes auto, ve con tour organizado (~10 horas). El Embalse está a 2.500 msnm, lleva abrigo incluso en verano
+
+## Barrios Turísticos
+
+### Barrio Lastarria / Bellas Artes
+El barrio más cultural y bohemio de Santiago. Calles empedradas con cafés de especialidad, galerías de arte, librerías independientes y restaurantes de autor. Feria de antigüedades los fines de semana en Calle Rosal.
+
+- **Metro:** Bellas Artes o Universidad Católica
+- **Tip:** Desayuno en café de especialidad → Museo de Bellas Artes (gratis) → Feria Calle Rosal → Cerro Santa Lucía
+
+### Barrio Italia
+El barrio hipster de Santiago. Tiendas de antigüedades, diseño independiente, decoración, cerveza artesanal y algunos de los mejores brunchs de la ciudad. Fachadas coloridas y pasajes escondidos.
+
+- **Metro:** Italia (Línea 5)
+- **Tip:** Recorre los pasajes interiores (como Pasaje Caupolicán) donde están las mejores tiendas. Los domingos muchas cierran
+
+### Barrio Bellavista
+El epicentro de la vida nocturna y la cultura bohemia. De día: arte callejero, galerías, la casa de Pablo Neruda (**La Chascona**). De noche: restaurantes, bares, discotecas y música en vivo. El **Patio Bellavista** es un centro comercial al aire libre con tiendas de diseño y restaurantes.
+
+- **Metro:** Baquedano
+- **Tip:** Visita La Chascona temprano antes de que se llene. Viernes y sábados por la noche es cuando más vibra el barrio
+
+### Centro Histórico / Plaza de Armas
+El corazón fundacional de Santiago. Catedral Metropolitana, Correo Central, Museo Histórico Nacional, Palacio de La Moneda y el imperdible **Mercado Central** (mariscos y pescados frescos).
+
+- **Metro:** Plaza de Armas
+- **Tip:** El Mercado Central es obligatorio para probar un caldillo de congrio o pastel de jaiba. Ve antes de las 12:00 para la mejor experiencia
+
+## Cultura y Museos
+
+### Museo Nacional de Bellas Artes (MNBA)
+El museo de arte más importante de Chile, en un edificio neoclásico espectacular en el Parque Forestal. Más de 300 obras de 250 artistas.
+
+- **Ubicación:** Parque Forestal. Metro Bellas Artes
+- **Costo:** Gratuito | **Horario:** Martes a domingo 10:00 a 18:30
+- **Tip:** No te pierdas la cúpula de vidrio del hall central
+
+### Museo de la Memoria y los Derechos Humanos
+Dedicado a la memoria de las víctimas de la dictadura (1973-1990). Experiencia conmovedora y fundamental para entender Chile.
+
+- **Ubicación:** Matucana 501. Metro Quinta Normal
+- **Costo:** Gratuito | **Horario:** Martes a domingo 10:00 a 18:00
+- **Tip:** Destina al menos 2 horas. Combina con Barrio Yungay y Parque Quinta Normal
+
+### Centro Cultural Gabriela Mistral (GAM)
+Teatro, danza, exposiciones, talleres y ferias culturales. Siempre hay algo interesante y muchas actividades son gratuitas.
+
+- **Ubicación:** Alameda 227. Metro Universidad Católica
+- **Tip:** Revisa la cartelera en gam.cl antes de ir. Las ferias de diseño son excelentes para regalos
+
+### Teatro Municipal de Santiago
+El escenario más antiguo de Latinoamérica (1857). Ópera, ballet, conciertos sinfónicos. Arquitectura neoclásica francesa espectacular.
+
+- **Ubicación:** Agustinas 794. Metro Santa Lucía
+- **Tip:** Aprovecha las visitas guiadas (jueves y viernes) para subir al escenario y conocer los camerinos
+
+## Excursiones de un Día
+
+### Valparaíso + Viña del Mar
+**Valparaíso** es Patrimonio UNESCO: 42 cerros con casas coloridas, arte callejero espectacular, ascensores patrimoniales y gastronomía de mar. **Viña del Mar** (a 15 min) ofrece playas, el Reloj de Flores y el Casino.
+
+- **Cómo llegar:** Bus desde Terminal Alameda (~1.5-2 horas, ~$5.000-8.000 CLP ida)
+- **Tip:** Combina ambas ciudades en un solo día. Almuerza mariscos en Valparaíso y toma café con vista al mar en Viña
+
+### Centros de Ski (junio-septiembre)
+Santiago es una de las pocas capitales del mundo con centros de ski a menos de 2 horas: **Valle Nevado**, **El Colorado**, **La Parva** y **Farellones** (el más familiar, ideal para jugar en la nieve sin esquiar).
+
+- **Cómo llegar:** Auto (~1.5 horas) o bus SkiTotal (~$25.000 CLP ida y vuelta)
+- **Tip:** Sube antes de las 8:00 AM para evitar el control vehicular. Farellones es perfecto si no esquías
+
+**¿Necesitas recomendaciones personalizadas?** Pregúntale a tu anfitrión Mr.BnB por WhatsApp.
+
+[Contáctanos →](/contacto)
+    `,
+    coverImage: '/images/properties/santiago-centro-terraza.jpg',
+    author: 'Mr.BnB',
+    date: '2026-03-14',
+    tags: ['panoramas', 'turismo', 'huéspedes', 'Santiago', 'actividades'],
+    readTime: 12,
+  },
+  {
+    slug: 'mejores-restaurantes-santiago-por-comuna',
+    title: 'Los 40 Mejores Restaurantes de Santiago por Comuna: Guía Gastronómica para Huéspedes',
+    excerpt: 'Los 10 mejores restaurantes de Las Condes, Providencia, Vitacura y Santiago Centro. Tipo de cocina, precios, ambiente y qué pedir en cada uno.',
+    content: `
+## Santiago: una capital gastronómica de clase mundial
+
+Santiago se ha consolidado como uno de los destinos gastronómicos más importantes de Latinoamérica. Con restaurantes en el ranking de los 50 Best del mundo, una escena de cocina chilena reinventada y opciones para todos los presupuestos, comer bien en Santiago es fácil si sabes dónde ir.
+
+Como huésped Mr.BnB, estás ubicado en las mejores comunas para explorar esta oferta. Aquí te dejamos los 10 mejores restaurantes de cada una.
+
+## Las Condes: El Polo Corporativo y Cosmopolita
+
+La zona financiera de Santiago, con una oferta que va desde steakhouses argentinos premium hasta cocina nikkei de nivel mundial.
+
+### 1. Karai by Mitsuharu
+- **Cocina:** Nikkei (fusión peruana-japonesa)
+- **Precio:** $$$$ (~$50.000+/persona)
+- **Ambiente:** Elegante y moderno, dentro del Hotel W Santiago
+- **Qué pedir:** Ceviches, tiraditos y nigiri con técnicas japonesas y alma peruana
+- **Dato:** #45 en Latin America's 50 Best Restaurants 2025. Reserva obligatoria
+- **Dirección:** Isidora Goyenechea 3000
+
+### 2. Happening
+- **Cocina:** Steakhouse argentino-chileno
+- **Precio:** $$$$ (~$40.000-60.000/persona)
+- **Ambiente:** Sofisticado pero relajado, vibe cosmopolita
+- **Qué pedir:** Bife de chorizo, entraña a la parrilla
+- **Dirección:** Av. Apoquindo 3090
+
+### 3. Estro Santiago
+- **Cocina:** Nueva cocina chilena contemporánea
+- **Precio:** $$$ (~$30.000-50.000/persona)
+- **Ambiente:** Sofisticado y cálido, dentro del Ritz-Carlton
+- **Qué pedir:** Menú de temporada con productos locales orgánicos
+- **Dato:** "Best of the Best 2025" de TripAdvisor
+- **Dirección:** El Alcalde 15
+
+### 4. La Cabrera
+- **Cocina:** Parrilla argentina
+- **Precio:** $$$$ (~$50.000-70.000/persona)
+- **Ambiente:** Rústico-elegante, porciones muy generosas
+- **Qué pedir:** Ojo de bife con las famosas guarniciones en pequeños sartenes
+- **Dirección:** Isidora Goyenechea 3275
+
+### 5. Pizzería Tiramisú
+- **Cocina:** Italiana
+- **Precio:** $$ (~$12.000-20.000/persona)
+- **Ambiente:** Casual, animado, terraza agradable. Perfecto para familias
+- **Qué pedir:** Pizzas artesanales y el tiramisú de la casa
+- **Dirección:** Isidora Goyenechea 3141
+
+### 6. Cívico Las Condes
+- **Cocina:** Chilena contemporánea / parrilla
+- **Precio:** $$$ (~$20.000-35.000/persona)
+- **Ambiente:** Amplio y moderno, ideal para almuerzos de negocios
+- **Qué pedir:** Clásicos chilenos remasterizados, carnes a la parrilla
+- **Dirección:** Centro empresarial Nueva Las Condes
+
+### 7. Tip y Tap
+- **Cocina:** Brasserie chilena / internacional
+- **Precio:** $$ (~$12.000-18.000/persona)
+- **Ambiente:** Casual-chic, buena relación calidad-precio
+- **Qué pedir:** Tartar de salmón ($10.900), ceviche Tip y Tap
+- **Dirección:** Isidora Goyenechea 2922
+
+### 8. Café Med
+- **Cocina:** Mediterránea con esencia chilena
+- **Precio:** $$$ (~$25.000-40.000/persona)
+- **Ambiente:** Acogedor, dentro del Marriott Hotel
+- **Qué pedir:** Platos mediterráneos con ingredientes chilenos, brunch de fin de semana
+- **Dirección:** Av. Kennedy 5741
+
+### 9. Confitería Torres
+- **Cocina:** Chilena tradicional / histórica
+- **Precio:** $$ (~$10.000-18.000/persona)
+- **Ambiente:** Clásico, histórico, patrimonio gastronómico
+- **Qué pedir:** El Barros Luco (sandwich inventado aquí en 1910), costillar asado
+- **Dato:** El restaurante más antiguo de Chile (fundado en 1879)
+- **Dirección:** Isidora Goyenechea 2962
+
+### 10. Tanta
+- **Cocina:** Peruana (del chef Gastón Acurio)
+- **Precio:** $$$ (~$18.000-30.000/persona)
+- **Ambiente:** Colorido, animado, casual-elegante
+- **Qué pedir:** Ceviche clásico, lomo saltado, causa limeña
+- **Dirección:** Av. Isidora Goyenechea, sector El Bosque Norte
+
+---
+
+## Providencia: Bohemia, Gastronomía y Vida Nocturna
+
+La comuna favorita de turistas y locales por igual. Desde wine bars premiados hasta la sandwichería más auténtica de Santiago.
+
+### 1. Bocanáriz
+- **Cocina:** Wine bar gourmet / chilena contemporánea
+- **Precio:** $$$ (~$20.000-40.000/persona)
+- **Ambiente:** Acogedor, íntimo, romántico
+- **Qué pedir:** Maridajes de vinos chilenos con tapas gourmet. Más de 400 etiquetas
+- **Dato:** Probablemente el wine bar más famoso de Santiago
+- **Dirección:** José Victorino Lastarria 276
+
+### 2. Baco Restaurante
+- **Cocina:** Bistró francés
+- **Precio:** $$$ (~$20.000-40.000/persona)
+- **Ambiente:** Elegante, clásico, atmósfera parisina
+- **Qué pedir:** Confit de canard, boeuf bourguignon, mariscos frescos
+- **Dato:** Más de 20 años de trayectoria. No cobran cargo por servicio
+- **Dirección:** Nueva de Lyon 113
+
+### 3. Bar Liguria
+- **Cocina:** Chilena contemporánea
+- **Precio:** $$ (~$12.000-22.000/persona)
+- **Ambiente:** Vibrante, bohemio, punto de encuentro de artistas y periodistas. Ícono santiaguino
+- **Qué pedir:** Carne mechada, ostras con parmesano. Porciones generosas
+- **Dato:** No acepta reservas. Cerrado domingos. Llega temprano
+- **Dirección:** Av. Providencia 1353
+
+### 4. Yum Cha
+- **Cocina:** Pescetariana de inspiración china, maridaje de té
+- **Precio:** $$$$ (~$100.000 menú degustación)
+- **Ambiente:** Íntimo, exclusivo, experiencia gastronómica completa
+- **Qué pedir:** Menú degustación de 10 tiempos. El té es protagonista del maridaje
+- **Dato:** #28 en Latin America's 50 Best 2025. Solo martes a sábado. Reserva esencial
+- **Dirección:** La Herradura 2722
+
+### 5. La Bifería
+- **Cocina:** Parrilla / carnes a la brasa
+- **Precio:** $$ (~$15.000-25.000/persona)
+- **Ambiente:** Moderno, ideal para familias y celebraciones
+- **Qué pedir:** Cortes premium de carne, especialmente la entraña
+- **Dato:** Considerada la mejor parrilla de Providencia
+- **Dirección:** Av. Pedro de Valdivia 065
+
+### 6. El Ancla
+- **Cocina:** Mariscos y pescados
+- **Precio:** $$$ (~$20.000-40.000/persona)
+- **Ambiente:** Especializado, con estanques de agua salada
+- **Qué pedir:** Ostras frescas, chupe de jaiba, langosta al vapor. Selección de mariscos vivos en estanques
+- **Dirección:** Santa Beatriz 191
+
+### 7. Fora Restaurant & Bar
+- **Cocina:** Internacional con influencias locales
+- **Precio:** $$$ (~$20.000-40.000/persona)
+- **Ambiente:** Trendy, moderno, ideal para cócteles y cena
+- **Qué pedir:** Menú variado con cócteles artesanales de autor
+- **Dato:** Jueves a sábado abierto hasta las 02:30
+- **Dirección:** Av. Tobalaba 1185
+
+### 8. El Zócalo
+- **Cocina:** Mexicana
+- **Precio:** $$ (~$15.000-20.000/persona)
+- **Ambiente:** Vibrante, colorido, decoración que transporta a México
+- **Qué pedir:** Tacos, fajitas, enchiladas, margaritas artesanales
+- **Dirección:** Av. Providencia 455, Local 107
+
+### 9. Domani Pizzeria
+- **Cocina:** Pizza napolitana artesanal
+- **Precio:** $$ (~$15.000-20.000/persona)
+- **Ambiente:** Casual, acogedor, con barra de cervezas craft
+- **Qué pedir:** Pizzas napolitanas con masa madre y horno de leña
+- **Dirección:** Av. Tobalaba 1145
+
+### 10. Fuente Mardoqueo
+- **Cocina:** Chilena tradicional / sandwichería
+- **Precio:** $ (~$10.000-15.000/persona)
+- **Ambiente:** Familiar, cálido, sin pretensiones. La auténtica experiencia del sandwich chileno
+- **Qué pedir:** Mechada, asados, sandwiches chilenos clásicos abundantes
+- **Dato:** No acepta reservas. Ideal para probar la comida casera chilena real
+- **Dirección:** Francisco Bilbao 2639
+
+---
+
+## Vitacura: Fine Dining y Experiencias Premium
+
+La comuna gastronómica más exclusiva de Santiago, con restaurantes en los rankings mundiales.
+
+### 1. Boragó
+- **Cocina:** Chilena endémica de autor / fine dining
+- **Precio:** $$$$ (~$120.000-180.000/persona, menú degustación)
+- **Ambiente:** Fine dining experimental, experiencia inmersiva de 3+ horas
+- **Qué pedir:** Menú "Endémica" de 15-18 tiempos con ingredientes recolectados a lo largo de Chile
+- **Dato:** **#6 Latin America's 50 Best 2025, #23 World's 50 Best 2025.** Chef Rodolfo Guzmán. Reservar con semanas de anticipación
+- **Dirección:** San Josemaría Escrivá de Balaguer 5970
+
+### 2. Casa Las Cujas
+- **Cocina:** Mariscos y pescados chilenos
+- **Precio:** $$$$ (~$40.000-60.000/persona)
+- **Ambiente:** Elegante pero cálido
+- **Qué pedir:** Ostras de Chiloé, centolla, empanadas de queso de cangrejo, croquetas de loco
+- **Dato:** #14 en Latin America's 50 Best 2025. Primer restaurante sustentable de Chile
+- **Dirección:** Nueva Costanera
+
+### 3. Osaka
+- **Cocina:** Nikkei (fusión japonesa-peruana)
+- **Precio:** $$$$ (~$40.000-60.000/persona)
+- **Ambiente:** Elegante y estilizado, sofisticado
+- **Qué pedir:** Tiraditos, nikkei roll, wasabi ceviche, pork belly ahumado
+- **Dirección:** Av. Nueva Costanera 3736B
+
+### 4. Europeo
+- **Cocina:** Europea contemporánea con toques asiáticos
+- **Precio:** $$$$ (~$35.000-55.000/persona)
+- **Ambiente:** Pulido y sofisticado con lámparas que crean calidez e intimidad
+- **Qué pedir:** Alta gastronomía con productos nativos y técnicas de vanguardia
+- **Dato:** Chef Carlos Meyer. También tiene "La Brasserie" más casual
+- **Dirección:** Av. Alonso de Córdova 2417
+
+### 5. Carnal Prime Steakhouse
+- **Cocina:** Steakhouse premium (carnes USDA)
+- **Precio:** $$$$ (~$40.000-55.000/persona)
+- **Ambiente:** Elegante, para amantes de la carne
+- **Qué pedir:** Cortes Angus Aberdeen certificados USDA Prime, cocidos en broiler infrarrojo a 700°C
+- **Dato:** Primer restaurante en Santiago especializado en carnes USDA Prime
+- **Dirección:** Alonso de Córdova 3053
+
+### 6. Jardín Secreto
+- **Cocina:** Italiana, japonesa y coctelería de autor
+- **Precio:** $$$ (~$25.000-40.000/persona)
+- **Ambiente:** Íntimo, abundante vegetación, iluminación tenue. Romántico
+- **Qué pedir:** Sushi innovador, masas de masa madre, tartares. Cócteles fantásticos
+- **Dato:** Premio World Class Chile en mixología
+- **Dirección:** Alonso de Córdova 2417
+
+### 7. Mestizo
+- **Cocina:** Chilena mestiza / fusión chileno-peruana
+- **Precio:** $$$ (~$20.000-35.000/persona)
+- **Ambiente:** Terraza con vistas al Parque Bicentenario, ideal para atardeceres
+- **Qué pedir:** Plateada sobre puré con albahaca, mariscos chilenos
+- **Dato:** Perfecto para almuerzo familiar de fin de semana o cena romántica al atardecer
+- **Dirección:** Av. Bicentenario 4050 (Parque Bicentenario)
+
+### 8. Zanzíbar
+- **Cocina:** Fusión asiática-africana-mediterránea
+- **Precio:** $$$$ (~$35.000-50.000/persona)
+- **Ambiente:** Exótico, decoración con mosaicos y linternas. Rooftop con vista panorámica
+- **Qué pedir:** Camarones Szechuan, satay indonesio, platos tailandeses y marroquíes
+- **Dirección:** Av. Monseñor Escrivá de Balaguer 6400
+
+### 9. La Mar
+- **Cocina:** Peruana (mariscos y ceviches)
+- **Precio:** $$$$ (~$35.000-50.000/persona)
+- **Ambiente:** Luminoso, terraza espectacular con techo blanco que simula velas de barco
+- **Qué pedir:** 7 variedades de ceviche, pisco sours "entre los mejores de Santiago"
+- **Dato:** Del chef Gastón Acurio. Reserva esencial
+- **Dirección:** Nueva Costanera 4076
+
+### 10. Demencia Gastrobar
+- **Cocina:** Chilena-asiática fusión / platos para compartir
+- **Precio:** $$ (~$18.000-30.000/persona)
+- **Ambiente:** Trendy, relajado, ambiente de bar gastronómico
+- **Qué pedir:** Platos pequeños para compartir con toques asiáticos, vieiras en salsa de hierbas con ají
+- **Dato:** Chef Benjamín Nast. Cerrado domingos
+- **Dirección:** Av. Vitacura 3520
+
+---
+
+## Santiago Centro: Historia, Mercado y Vanguardia
+
+La zona fundacional de la ciudad, donde conviven la tradición del Mercado Central con restaurantes de vanguardia en el ranking latinoamericano.
+
+### 1. DeMo Magnolia
+- **Cocina:** Degustación chilena contemporánea de autor
+- **Precio:** $$$$ (~$75.000/persona, 9 tiempos + maridaje $45.000)
+- **Ambiente:** Exclusivo e íntimo, solo 15-16 comensales. Dentro del Hotel Magnolia
+- **Qué pedir:** Menú degustación de 9-10 tiempos inspirado en el casco histórico
+- **Dato:** **#31 Latin America's 50 Best 2025.** Chef Pedro Chavarría. Solo martes a sábado 19:00-23:00
+- **Dirección:** Huérfanos 539
+
+### 2. Confitería Torres (sede principal)
+- **Cocina:** Chilena tradicional / histórica
+- **Precio:** $$ (~$10.000-18.000/persona)
+- **Ambiente:** Histórico, patrimonio cultural, punto de encuentro de políticos desde 1879
+- **Qué pedir:** Barros Luco (inventado aquí en 1910), costillar asado, chacarero
+- **Dato:** El restaurante más antiguo de Chile
+- **Dirección:** Alameda 1570
+
+### 3. Donde Augusto (Mercado Central)
+- **Cocina:** Mariscos y pescados chilenos
+- **Precio:** $$ (~$12.000-25.000/persona)
+- **Ambiente:** Mercado, bullicioso, auténtico
+- **Qué pedir:** Caldillo de congrio, paila marina, machas a la parmesana, centolla
+- **Dato:** Imperdible para la experiencia de mariscos frescos en el Mercado Central
+- **Dirección:** San Pablo 967, Mercado Central
+
+### 4. Peumayen Ancestral Food
+- **Cocina:** Indígena chilena (Mapuche, Aymara, Rapa Nui)
+- **Precio:** $$$ (~$25.000-40.000/persona)
+- **Ambiente:** Educativo y cultural, experiencia única de ancestralidad
+- **Qué pedir:** Menú degustación con luche (alga), piñones, huacatay, merkén
+- **Dato:** "Peumayen" significa "lugar de sueños" en mapudungún. Cerrado domingos y lunes
+- **Dirección:** Constitución 134, Barrio Bellavista
+
+### 5. Chipe Libre
+- **Cocina:** Fusión chilena con pisco / ceviches
+- **Precio:** $$ (~$15.000-25.000/persona)
+- **Ambiente:** Divertido, bohemio, en pleno Barrio Lastarria
+- **Qué pedir:** Ceviches (plato estrella) y más de 100 piscos de Chile y Perú para probar
+- **Dato:** La mayor colección de piscos de Santiago. Imprescindible para amantes del pisco sour
+- **Dirección:** Barrio Lastarria
+
+### 6. Salvador Cocina y Café
+- **Cocina:** Chilena de mercado, contemporánea
+- **Precio:** $$ (~$12.000-20.000/persona)
+- **Ambiente:** Escondido, íntimo, favorito de foodies locales
+- **Qué pedir:** Menú diario que cambia según el mercado. Ensalada de zapallo, paté de corazones de pollo
+- **Dato:** Joya oculta. Cambia el menú diariamente. Cerrado sábado y domingo
+- **Dirección:** Ossa 1059
+
+### 7. Liguria (Barrio Lastarria)
+- **Cocina:** Bistró chileno tradicional
+- **Precio:** $$ (~$12.000-22.000/persona)
+- **Ambiente:** Bohemio por excelencia, frecuentado por artistas y escritores
+- **Qué pedir:** Osobuco de cordero con puré, carne mechada con pasta, pisco sours de la casa
+- **Dato:** No acepta reservas. Cerrado domingos. Hay que llegar temprano
+- **Dirección:** Merced 298, Barrio Lastarria
+
+### 8. Ocean Pacific's
+- **Cocina:** Mariscos y pescados
+- **Precio:** $$$ (~$20.000-35.000/persona)
+- **Ambiente:** Temático, decoración que simula estar a bordo de un barco o submarino
+- **Qué pedir:** Mariscos frescos y abundantes, centolla, langostinos
+- **Dato:** Decoración única tipo museo náutico
+- **Dirección:** Av. Padre Hurtado Norte 1480
+
+### 9. José Ramón 277
+- **Cocina:** Sandwiches chilenos de autor / cerveza craft
+- **Precio:** $ (~$8.000-15.000/persona)
+- **Ambiente:** Hip, moderno, fachada con grafiti, relajado y joven
+- **Qué pedir:** Sanguches de pernil, prieta (morcilla), lengua. Cervezas artesanales chilenas
+- **Dirección:** José Ramón 277, Barrio Lastarria
+
+### 10. Mercado Central (experiencia completa)
+- **Cocina:** Mariscos chilenos
+- **Precio:** $-$$ (~$8.000-25.000/persona)
+- **Ambiente:** Edificio de hierro forjado de 1872, bullicioso, 100% auténtico
+- **Qué pedir:** Caldillo de congrio (el plato que Neruda inmortalizó en un poema), paila marina, pastel de jaiba
+- **Dato:** Nombrado por National Geographic como uno de los 10 mejores mercados del mundo
+- **Dirección:** San Pablo 967. Metro Cal y Canto
+
+---
+
+## Guía Práctica para Comer en Santiago
+
+### Horarios que debes saber
+- **Almuerzo:** 13:00 a 15:00 (la comida principal del día en Chile)
+- **Once:** 17:00 a 20:00 (tradición chilena: pan, queso, palta, té o café)
+- **Cena:** 20:00 a 22:30 (los chilenos cenan tarde; la mayoría llega entre 21:00 y 22:00)
+- **Tip:** Si quieres evitar multitudes, llega al almuerzo a las 12:30 y a la cena a las 19:30
+
+### Reservas
+- **Fine dining (Boragó, DeMo, Yum Cha, Karai):** Con semanas de anticipación
+- **Restaurantes populares (Liguria, Fuente Mardoqueo):** No aceptan reservas, llega temprano
+- **Mid-range:** 1-2 días antes, especialmente viernes y sábado
+- **Plataformas:** Mesa 24/7, OpenTable, o directo por WhatsApp
+
+### Propina
+- La propina estándar en Chile es del **10%**
+- Por ley, te deben **preguntar** si deseas agregarla. No es obligatoria pero sí esperada
+- En servicio excepcional, un 15% es un gesto apreciado
+
+### Apps de delivery
+1. **PedidosYa** — La más popular en Chile
+2. **Uber Eats** — Segunda más usada
+3. **Rappi** — También ofrece supermercado y farmacia
+
+### Tips adicionales
+- **Vestimenta:** Smart casual para restaurantes $$$ y $$$$
+- **Domingos:** Muchos restaurantes de alta gama cierran o solo abren para almuerzo
+- **Agua:** El agua de la llave en Santiago es potable, pero en restaurantes te ofrecerán agua mineral aparte
+
+**¿Quieres una recomendación personalizada?** Pregúntale a tu anfitrión Mr.BnB por WhatsApp.
+
+[Contáctanos →](/contacto)
+    `,
+    coverImage: '/images/properties/providencia-helvecia-living.jpg',
+    author: 'Mr.BnB',
+    date: '2026-03-13',
+    tags: ['restaurantes', 'gastronomía', 'huéspedes', 'Santiago', 'recomendaciones'],
+    readTime: 18,
+  },
 ]

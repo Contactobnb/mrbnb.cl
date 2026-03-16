@@ -261,7 +261,7 @@ export default function ContactoPage() {
                   {t('whatsappDesc')}
                 </p>
                 <Button
-                  href="https://wa.me/56942237814"
+                  href={`https://wa.me/56958034957?text=${encodeURIComponent('Hola, quiero solicitar una evaluación de mi propiedad en renta corta con Mr.BnB')}`}
                   variant="primary"
                   external
                   className="!bg-green-600 hover:!bg-green-700 w-full justify-center flex items-center gap-2"
@@ -285,8 +285,8 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('contactEmail')}</p>
-                      <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                        felipe@mrbnb.cl
+                      <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                        clientes@mrbnb.cl
                       </a>
                     </div>
                   </div>
@@ -299,8 +299,8 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('contactPhone')}</p>
-                      <a href="tel:+56942237814" className="text-[#1e3a5f] font-semibold hover:underline">
-                        +56 9 4223 7814
+                      <a href="tel:+56958034957" className="text-[#1e3a5f] font-semibold hover:underline">
+                        +56 9 5803 4957
                       </a>
                     </div>
                   </div>

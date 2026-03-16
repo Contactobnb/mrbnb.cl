@@ -23,7 +23,7 @@ async function sendMailgun(to: string, from: string, subject: string, html: stri
   }
 }
 
-const NOTIFICATION_EMAIL = 'felipe@mrbnb.cl'
+const NOTIFICATION_EMAIL = 'clientes@mrbnb.cl'
 const FROM_EMAIL = 'Mr.BnB <notificaciones@mrbnb.cl>'
 
 function emailWrapper(title: string, body: string): string {

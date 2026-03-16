@@ -74,8 +74,8 @@ const jsonLd = {
   image: 'https://mrbnb.cl/icon-512.png',
   description: 'Administración profesional de propiedades en renta corta en Santiago, Chile.',
   url: 'https://mrbnb.cl',
-  telephone: '+56942237814',
-  email: 'felipe@mrbnb.cl',
+  telephone: '+56958034957',
+  email: 'clientes@mrbnb.cl',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Santiago',

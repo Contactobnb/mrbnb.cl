@@ -23,9 +23,9 @@ services:
       - key: MAILGUN_DOMAIN
         value: "mrbnb.cl"
       - key: NEXT_PUBLIC_WHATSAPP
-        value: "+56942237814"
+        value: "+56958034957"
       - key: CONTACT_EMAIL
-        value: "felipe@mrbnb.cl"
+        value: "clientes@mrbnb.cl"
       - key: CRON_SECRET
         generateValue: true
       - key: NODE_OPTIONS

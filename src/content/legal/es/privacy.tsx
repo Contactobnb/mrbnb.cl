@@ -154,8 +154,8 @@ export default function PrivacyContentES() {
                 <p className="text-gray-600 leading-relaxed">
                   Para ejercer cualquiera de estos derechos, puedes contactarnos a traves
                   del correo electronico{' '}
-                  <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                    felipe@mrbnb.cl
+                  <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                    clientes@mrbnb.cl
                   </a>
                   . Responderemos tu solicitud dentro de los plazos establecidos por la ley.
                 </p>
@@ -199,8 +199,8 @@ export default function PrivacyContentES() {
                   </li>
                   <li>
                     <strong>Email:</strong>{' '}
-                    <a href="mailto:felipe@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
-                      felipe@mrbnb.cl
+                    <a href="mailto:clientes@mrbnb.cl" className="text-[#1e3a5f] font-semibold hover:underline">
+                      clientes@mrbnb.cl
                     </a>
                   </li>
                   <li>

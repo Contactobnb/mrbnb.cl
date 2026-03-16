@@ -923,7 +923,7 @@ Viña boutique en Peñalolén con un **mirador panorámico 360°** al pie de los
 
 [Contáctanos →](/contacto)
     `,
-    coverImage: '/images/properties/santiago-panoramica.jpg',
+    coverImage: '/images/blog/vinas-santiago.jpg',
     author: 'Mr.BnB',
     date: '2026-03-15',
     tags: ['viñas', 'enoturismo', 'huéspedes', 'Santiago', 'Cousiño Macul'],
@@ -1077,7 +1077,7 @@ Santiago es una de las pocas capitales del mundo con centros de ski a menos de 2
 
 [Contáctanos →](/contacto)
     `,
-    coverImage: '/images/properties/santiago-centro-terraza.jpg',
+    coverImage: '/images/blog/panoramas-santiago.jpg',
     author: 'Mr.BnB',
     date: '2026-03-14',
     tags: ['panoramas', 'turismo', 'huéspedes', 'Santiago', 'actividades'],
@@ -1458,7 +1458,7 @@ La zona fundacional de la ciudad, donde conviven la tradición del Mercado Centr
 
 [Contáctanos →](/contacto)
     `,
-    coverImage: '/images/properties/providencia-helvecia-living.jpg',
+    coverImage: '/images/blog/restaurantes-santiago.jpg',
     author: 'Mr.BnB',
     date: '2026-03-13',
     tags: ['restaurantes', 'gastronomía', 'huéspedes', 'Santiago', 'recomendaciones'],

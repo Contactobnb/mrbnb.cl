@@ -330,6 +330,16 @@ export default function AdminDashboard() {
                 </svg>
                 {exporting ? 'Exportando...' : 'Exportar CSV'}
               </button>
+              <Link
+                href="/admin/leads/nuevo"
+                className="px-3 py-2 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap"
+                style={{ backgroundColor: '#c53030' }}
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Nuevo Lead
+              </Link>
             </div>
           </div>
         </div>

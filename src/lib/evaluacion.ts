@@ -153,31 +153,6 @@ export function calculateCashFlow(inputs: EvaluacionInputs): EvaluacionResult {
   }
 }
 
-// ── PDF Text Metadata Extraction ────────────────────────────────────────────
-// Extracts text-based metadata from PriceLabs PDFs (name, revenue, averages)
-// Monthly chart values (ADR, occupancy) are extracted via Gemini Vision in the API route
-
-export function parsePdfMetadata(text: string): {
-  propertyName?: string
-  annualRevenue?: number
-  avgAdr?: number
-  avgOccupancy?: number
-} {
-  const nameMatch = text.match(/Revenue Estimate for:\s*\n?\s*(.+?)(?:\n|$)/)
-  const propertyName = nameMatch?.[1]?.trim()
-
-  const revenueMatch = text.match(/Estimated Annual Revenue\s*\n?\s*\$?([\d,]+)/)
-  const annualRevenue = revenueMatch ? parseInt(revenueMatch[1].replace(/,/g, '')) : undefined
-
-  const adrMatch = text.match(/Average Daily Rate\s*\n?\s*\$?([\d,]+)/)
-  const avgAdr = adrMatch ? parseInt(adrMatch[1].replace(/,/g, '')) : undefined
-
-  const occMatch = text.match(/Occupancy\s*\n?\s*(\d+)%/)
-  const avgOccupancy = occMatch ? parseInt(occMatch[1]) : undefined
-
-  return { propertyName, annualRevenue, avgAdr, avgOccupancy }
-}
-
 // ── Format Helpers ──────────────────────────────────────────────────────────
 
 export function formatCLP(amount: number): string {

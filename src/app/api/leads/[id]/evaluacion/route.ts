@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { PDFParse } from 'pdf-parse'
-import { parsePdfMetadata, calculateCashFlow } from '@/lib/evaluacion'
+import { calculateCashFlow } from '@/lib/evaluacion'
 
 // POST /api/leads/[id]/evaluacion
 // Two modes:
-// - Content-Type: multipart/form-data → parse PDF (extract charts with Gemini Vision)
+// - Content-Type: multipart/form-data → parse PDF via Gemini Vision
 // - Content-Type: application/json → save evaluation with all data
 export async function POST(
   request: NextRequest,
@@ -22,7 +21,7 @@ export async function POST(
 
     const contentType = request.headers.get('content-type') || ''
 
-    // Mode 1: Parse PDF
+    // Mode 1: Parse PDF via Gemini Vision (send PDF directly, no pdf-parse needed)
     if (contentType.includes('multipart/form-data')) {
       const formData = await request.formData()
       const file = formData.get('pdf') as File | null
@@ -31,64 +30,33 @@ export async function POST(
         return NextResponse.json({ error: 'No se recibió archivo PDF' }, { status: 400 })
       }
 
-      const arrayBuffer = await file.arrayBuffer()
-      const data = new Uint8Array(arrayBuffer)
-      const parser = new PDFParse({ data })
-
-      // 1. Extract text metadata (property name, annual revenue, etc.)
-      const textResult = await parser.getText()
-      const metadata = parsePdfMetadata(textResult.text)
-
-      // 2. Screenshot page 2 (the charts page) for Gemini Vision
-      const screenshotResult = await parser.getScreenshot({
-        partial: [2],
-        scale: 2,
-        imageBuffer: true,
-      })
-      await parser.destroy()
-
-      const page2 = screenshotResult.pages[0]
-      if (!page2?.data) {
-        return NextResponse.json({
-          error: 'No se pudo renderizar la página de gráficos del PDF.',
-          metadata,
-        }, { status: 422 })
-      }
-
-      // 3. Send screenshot to Gemini Vision to extract chart values
       const geminiKey = process.env.GEMINI_API_KEY
       if (!geminiKey) {
         return NextResponse.json({
           error: 'GEMINI_API_KEY no configurada. Ingresa los datos manualmente.',
-          metadata,
           needsManualEntry: true,
         }, { status: 422 })
       }
 
-      const imageBase64 = Buffer.from(page2.data).toString('base64')
-      const chartData = await extractChartDataWithGemini(geminiKey, imageBase64)
+      const arrayBuffer = await file.arrayBuffer()
+      const pdfBase64 = Buffer.from(arrayBuffer).toString('base64')
 
-      if (!chartData) {
+      const extracted = await extractDataWithGemini(geminiKey, pdfBase64)
+
+      if (!extracted) {
         return NextResponse.json({
-          error: 'No se pudieron extraer los datos de los gráficos. Ingresa los datos manualmente.',
-          metadata,
+          error: 'No se pudieron extraer los datos del PDF. Ingresa los datos manualmente.',
           needsManualEntry: true,
         }, { status: 422 })
       }
 
-      return NextResponse.json({
-        adr: chartData.adr,
-        occupancy: chartData.occupancy,
-        propertyName: metadata.propertyName,
-        annualRevenue: metadata.annualRevenue,
-      })
+      return NextResponse.json(extracted)
     }
 
     // Mode 2: Save evaluation
     if (contentType.includes('application/json')) {
       const body = await request.json()
 
-      // Validate required fields
       const { adr, occupancy, rentaClasica, ggcc } = body
       if (!adr || !occupancy || !Array.isArray(adr) || !Array.isArray(occupancy)) {
         return NextResponse.json({ error: 'Faltan datos de ADR y/u ocupación' }, { status: 400 })
@@ -100,7 +68,6 @@ export async function POST(
         return NextResponse.json({ error: 'Faltan renta clásica y/o gastos comunes' }, { status: 400 })
       }
 
-      // Calculate results
       const result = calculateCashFlow({
         adr,
         occupancy,
@@ -117,7 +84,6 @@ export async function POST(
         garantia: body.garantia || 0,
       })
 
-      // Save to DB
       const evaluation = await prisma.evaluation.create({
         data: {
           leadId: id,
@@ -141,7 +107,6 @@ export async function POST(
         },
       })
 
-      // Create activity for the lead
       await prisma.activity.create({
         data: {
           leadId: id,
@@ -164,24 +129,30 @@ export async function POST(
   }
 }
 
-// ── Gemini Vision chart extraction ──────────────────────────────────────────
+// ── Gemini: extract all data directly from the PDF ──────────────────────────
 
-async function extractChartDataWithGemini(
+async function extractDataWithGemini(
   apiKey: string,
-  imageBase64: string
-): Promise<{ adr: number[]; occupancy: number[] } | null> {
+  pdfBase64: string
+): Promise<{ adr: number[]; occupancy: number[]; propertyName?: string; annualRevenue?: number } | null> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`
 
-  const prompt = `Extract the monthly data from the 3 charts in this PriceLabs Revenue Estimate page.
+  const prompt = `Analyze this PriceLabs Revenue Estimate PDF. Extract:
+
+1. The property name (from "Revenue Estimate for:" on page 1)
+2. The Estimated Annual Revenue number (from page 1)
+3. From the "Average Daily Rate" chart on page 2: the 12 monthly ADR values (Jan-Dec)
+4. From the "Adjusted Occupancy" chart on page 2: the 12 monthly occupancy values (Jan-Dec)
 
 Return ONLY valid JSON (no markdown, no code blocks, no explanation):
-{"adr":[jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec],"occupancy":[jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec]}
+{"propertyName":"...","annualRevenue":number,"adr":[jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec],"occupancy":[jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec]}
 
 Rules:
-- adr values are in CLP (e.g. 47200 for 47.2K on the chart)
-- occupancy values are integers (percentages, e.g. 62 for 62%)
-- Read each labeled data point from the "Average Daily Rate" and "Adjusted Occupancy" charts
-- There must be exactly 12 values per array (January through December)`
+- adr values in CLP as integers (e.g. 47200 for 47.2K on the chart label)
+- occupancy values as integers (percentages, e.g. 62 for 62%)
+- annualRevenue as integer in CLP (e.g. 8795100)
+- Read each labeled data point carefully from the charts
+- Exactly 12 values per array (January through December)`
 
   try {
     const res = await fetch(url, {
@@ -191,7 +162,7 @@ Rules:
         contents: [{
           parts: [
             { text: prompt },
-            { inline_data: { mime_type: 'image/png', data: imageBase64 } },
+            { inline_data: { mime_type: 'application/pdf', data: pdfBase64 } },
           ],
         }],
       }),
@@ -200,9 +171,11 @@ Rules:
     const data = await res.json()
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text
 
-    if (!text) return null
+    if (!text) {
+      console.error('Gemini returned no text. Response:', JSON.stringify(data).substring(0, 500))
+      return null
+    }
 
-    // Clean potential markdown code block wrapping
     const cleaned = text.replace(/```json\s*\n?/g, '').replace(/```\s*$/g, '').trim()
     const parsed = JSON.parse(cleaned)
 
@@ -210,12 +183,17 @@ Rules:
       Array.isArray(parsed.adr) && parsed.adr.length === 12 &&
       Array.isArray(parsed.occupancy) && parsed.occupancy.length === 12
     ) {
-      return { adr: parsed.adr, occupancy: parsed.occupancy }
+      return {
+        adr: parsed.adr,
+        occupancy: parsed.occupancy,
+        propertyName: parsed.propertyName || undefined,
+        annualRevenue: parsed.annualRevenue || undefined,
+      }
     }
 
     return null
   } catch (err) {
-    console.error('Gemini Vision extraction failed:', err)
+    console.error('Gemini extraction failed:', err)
     return null
   }
 }

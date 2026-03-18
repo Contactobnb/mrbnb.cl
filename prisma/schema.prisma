@@ -55,7 +55,8 @@ model Lead {
   assignedTo   String?
 
   // Relations
-  activities Activity[]
+  activities  Activity[]
+  evaluations Evaluation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -95,6 +96,44 @@ model BlogPost {
 
   @@unique([slug, locale])
   @@index([locale, published])
+}
+
+model Evaluation {
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Extracted from PriceLabs PDF (12 monthly values)
+  adr       Json // number[] - Average Daily Rate per month
+  occupancy Json // number[] - Occupancy % per month
+
+  // Manual inputs
+  rentaClasica Float // Monthly long-term rent (CLP)
+  ggcc         Float // Gastos comunes
+  internet     Float @default(0)
+  luz          Float @default(0)
+  agua         Float @default(0)
+  gas          Float @default(0)
+
+  // Initial investment (optional)
+  muebles    Float @default(0)
+  decoracion Float @default(0)
+  arreglos   Float @default(0)
+  arriendo   Float @default(0)
+  garantia   Float @default(0)
+
+  // Calculated results (stored for quick access)
+  noiAnual       Float?
+  resultadoAnual Float?
+  pctSobreRenta  Float? // % advantage over long-term rental
+
+  // Metadata
+  propertyName String? // From PDF
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
 }
 
 model ContactSubmission {

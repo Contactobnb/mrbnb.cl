@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import EvaluacionModal from './EvaluacionModal'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -39,6 +40,15 @@ interface Lead {
   activities: Activity[]
   createdAt: string
   updatedAt: string
+}
+
+interface Evaluation {
+  id: string
+  createdAt: string
+  noiAnual: number | null
+  resultadoAnual: number | null
+  pctSobreRenta: number | null
+  propertyName: string | null
 }
 
 type LeadStatus = 'NEW' | 'EVALUATING' | 'PROPOSAL_SENT' | 'NEGOTIATING' | 'CLOSED_WON' | 'CLOSED_LOST'
@@ -136,6 +146,10 @@ export default function LeadDetailPage() {
   const [editFurnished, setEditFurnished] = useState(false)
   const [editParking, setEditParking] = useState(false)
 
+  // Evaluacion
+  const [showEvalModal, setShowEvalModal] = useState(false)
+  const [evaluations, setEvaluations] = useState<Evaluation[]>([])
+
   // Form state — pipeline
   const [editStatus, setEditStatus] = useState<LeadStatus>('NEW')
   const [editPriority, setEditPriority] = useState<LeadPriority>('MEDIUM')
@@ -184,9 +198,22 @@ export default function LeadDetailPage() {
     }
   }, [id, populateForm])
 
+  const fetchEvaluations = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/leads/${id}/evaluacion`)
+      if (res.ok) {
+        const data = await res.json()
+        setEvaluations(data)
+      }
+    } catch { /* ignore */ }
+  }, [id])
+
   useEffect(() => {
-    if (id) fetchLead()
-  }, [id, fetchLead])
+    if (id) {
+      fetchLead()
+      fetchEvaluations()
+    }
+  }, [id, fetchLead, fetchEvaluations])
 
   // Clear success message after a timeout
   useEffect(() => {
@@ -315,6 +342,13 @@ export default function LeadDetailPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowEvalModal(true)}
+            className="px-4 py-1.5 text-sm font-medium text-white rounded-lg transition-colors hover:opacity-90"
+            style={{ backgroundColor: '#1e3a5f' }}
+          >
+            Realizar evaluación
+          </button>
           <span className={`text-sm font-medium px-3 py-1.5 rounded-full ${STATUS_COLORS[lead.status]}`}>
             {STATUS_OPTIONS.find(s => s.value === lead.status)?.label}
           </span>
@@ -435,6 +469,42 @@ export default function LeadDetailPage() {
                   </p>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Evaluaciones */}
+          {evaluations.length > 0 && (
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                Evaluaciones
+                <span className="text-sm font-normal text-gray-500 ml-2">({evaluations.length})</span>
+              </h2>
+              <div className="space-y-3">
+                {evaluations.map(ev => (
+                  <div key={ev.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div>
+                      <p className="text-sm font-medium text-gray-800">
+                        {ev.propertyName || 'Evaluación'}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {new Date(ev.createdAt).toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      {ev.noiAnual != null && (
+                        <span className="text-green-700 font-medium">
+                          NOI: {formatCLP(ev.noiAnual)}
+                        </span>
+                      )}
+                      {ev.pctSobreRenta != null && (
+                        <span className={`font-medium ${ev.pctSobreRenta >= 0 ? 'text-purple-700' : 'text-red-600'}`}>
+                          {ev.pctSobreRenta > 0 ? '+' : ''}{ev.pctSobreRenta.toFixed(1)}%
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
@@ -599,6 +669,24 @@ export default function LeadDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Evaluacion Modal */}
+      {showEvalModal && (
+        <EvaluacionModal
+          leadId={id}
+          leadName={lead.name}
+          leadAddress={lead.address}
+          leadComuna={lead.comuna}
+          leadPropertyType={lead.propertyType}
+          leadSurface={lead.surface}
+          onClose={() => setShowEvalModal(false)}
+          onSaved={() => {
+            setShowEvalModal(false)
+            fetchLead()
+            fetchEvaluations()
+          }}
+        />
+      )}
     </div>
   )
 }

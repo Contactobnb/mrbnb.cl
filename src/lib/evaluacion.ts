@@ -153,62 +153,29 @@ export function calculateCashFlow(inputs: EvaluacionInputs): EvaluacionResult {
   }
 }
 
-// ── PDF Text Parsing ────────────────────────────────────────────────────────
-// Parses text extracted from PriceLabs Revenue Estimate PDFs
+// ── PDF Text Metadata Extraction ────────────────────────────────────────────
+// Extracts text-based metadata from PriceLabs PDFs (name, revenue, averages)
+// Monthly chart values (ADR, occupancy) are extracted via Gemini Vision in the API route
 
-export function parsePriceLabsPdfText(text: string): {
-  adr: number[]
-  occupancy: number[]
+export function parsePdfMetadata(text: string): {
   propertyName?: string
   annualRevenue?: number
-} | null {
-  // Extract property name from "Revenue Estimate for:" section
+  avgAdr?: number
+  avgOccupancy?: number
+} {
   const nameMatch = text.match(/Revenue Estimate for:\s*\n?\s*(.+?)(?:\n|$)/)
   const propertyName = nameMatch?.[1]?.trim()
 
-  // Extract annual revenue
   const revenueMatch = text.match(/Estimated Annual Revenue\s*\n?\s*\$?([\d,]+)/)
   const annualRevenue = revenueMatch ? parseInt(revenueMatch[1].replace(/,/g, '')) : undefined
 
-  // Strategy: Extract ADR values from the chart data points
-  // PriceLabs PDFs show values like "47.2K", "43.0K" near chart data points
-  // These appear in order Jan-Dec in the ADR section
+  const adrMatch = text.match(/Average Daily Rate\s*\n?\s*\$?([\d,]+)/)
+  const avgAdr = adrMatch ? parseInt(adrMatch[1].replace(/,/g, '')) : undefined
 
-  // Find the ADR section - between "Average Daily Rate" and "Adjusted Occupancy"
-  const adrSection = text.match(/Average Daily Rate[\s\S]*?(?=Adjusted Occupancy)/i)
-  const occSection = text.match(/Adjusted Occupancy[\s\S]*/i)
+  const occMatch = text.match(/Occupancy\s*\n?\s*(\d+)%/)
+  const avgOccupancy = occMatch ? parseInt(occMatch[1]) : undefined
 
-  if (!adrSection || !occSection) return null
-
-  // Parse ADR values like "47.2K", "43.0K", etc.
-  const adrMatches = adrSection[0].match(/(\d+\.?\d*)K/g)
-  if (!adrMatches || adrMatches.length < 12) return null
-
-  // Take the first 12 values that appear in sequence (chart data points)
-  // Skip axis labels (like "60k", "40k", "20k") - they have lowercase 'k'
-  // The actual data points use uppercase 'K' like "47.2K"
-  const adr = adrMatches.slice(0, 12).map(v => {
-    const num = parseFloat(v.replace('K', ''))
-    return Math.round(num * 1000)
-  })
-
-  // Parse occupancy values - just integers near chart points
-  // Filter out axis values (100, 75, 50, 25, 0)
-  const occText = occSection[0]
-  const occMatches = occText.match(/(?<!\d)\d{1,2}(?!\d*[Kk%.])/g)
-
-  if (!occMatches) return null
-
-  // Filter out common axis values and page numbers
-  const axisValues = new Set([0, 25, 50, 75, 100])
-  const occupancy = occMatches
-    .map(v => parseInt(v))
-    .filter(v => v > 0 && v <= 100 && !axisValues.has(v))
-    .slice(0, 12)
-
-  if (adr.length !== 12 || occupancy.length !== 12) return null
-
-  return { adr, occupancy, propertyName, annualRevenue }
+  return { propertyName, annualRevenue, avgAdr, avgOccupancy }
 }
 
 // ── Format Helpers ──────────────────────────────────────────────────────────

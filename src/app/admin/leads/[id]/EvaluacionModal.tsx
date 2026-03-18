@@ -74,6 +74,15 @@ export default function EvaluacionModal({ leadId, leadName, leadAddress, leadCom
       const data = await res.json()
 
       if (!res.ok) {
+        // If Gemini failed but PDF was read, allow manual entry
+        if (data.needsManualEntry) {
+          if (data.metadata?.propertyName) setPropertyName(data.metadata.propertyName)
+          setAdr(new Array<number>(12).fill(0))
+          setOccupancy(new Array<number>(12).fill(0))
+          setError(data.error || 'Ingresa los datos manualmente')
+          setStep('form')
+          return
+        }
         setError(data.error || 'Error al procesar el PDF')
         return
       }

@@ -32,6 +32,21 @@ function fmt(n: number): string {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Doc = any
 
+async function loadLogoBase64(): Promise<string | null> {
+  try {
+    const res = await fetch('/images/Logo_MB.png')
+    if (!res.ok) return null
+    const blob = await res.blob()
+    return await new Promise<string>((resolve) => {
+      const reader = new FileReader()
+      reader.onloadend = () => resolve(reader.result as string)
+      reader.readAsDataURL(blob)
+    })
+  } catch {
+    return null
+  }
+}
+
 export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   const { jsPDF } = await import('jspdf')
   const doc: Doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
@@ -44,22 +59,23 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   const avgNeto = Math.round(r.totalIngresosNetos / 12)
   const avgBruto = Math.round(r.totalIngresosBrutos / 12)
 
+  // Load logo
+  const logoData = await loadLogoBase64()
+
   // ══════════════════════════════════════════════════════════════════════════
   // HEADER
   // ══════════════════════════════════════════════════════════════════════════
   doc.setFillColor(...NAVY)
   doc.rect(0, 0, W, 20, 'F')
+
+  if (logoData) {
+    doc.addImage(logoData, 'PNG', 3, 1.5, 17, 17)
+  }
+
   doc.setTextColor(255, 255, 255)
   doc.setFont('helvetica', 'bold')
-  doc.setFontSize(11)
-  doc.text('MR', 8, 8.5)
-  doc.setFontSize(9)
-  doc.text('BNB', 8, 14)
-  doc.setDrawColor(255, 255, 255)
-  doc.setLineWidth(0.3)
-  doc.line(20, 3, 20, 17)
   doc.setFontSize(14)
-  doc.text('Simulación de flujos anuales en renta corta', 25, 12.5)
+  doc.text('Simulación de flujos anuales en renta corta', 23, 12.5)
 
   // ══════════════════════════════════════════════════════════════════════════
   // LEFT PANEL
@@ -247,9 +263,9 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
     return pct.toFixed(1) + '%'
   }), true)
 
-  // ── % sobre renta clásica highlight box ──
+  // ── % sobre renta clásica highlight box (below summary, right-aligned) ──
   const bxW = 42, bxH = 13
-  const bxX = W - bxW - 5, bxY = ty - 5 * sumRH - 4 - bxH + 2
+  const bxX = W - bxW - 5, bxY = ty + 1
   doc.setFillColor(...NAVY)
   doc.roundedRect(bxX, bxY, bxW, bxH, 2, 2, 'F')
   doc.setTextColor(255, 255, 255)
@@ -258,12 +274,12 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   doc.text('% sobre renta clásica', bxX + bxW / 2, bxY + 4, { align: 'center' })
   doc.setFontSize(12)
   doc.setFont('helvetica', 'bold')
-  doc.text((r.pctSobreRenta > 0 ? '' : '') + r.pctSobreRenta.toFixed(1) + '%', bxX + bxW / 2, bxY + 10.5, { align: 'center' })
+  doc.text(r.pctSobreRenta.toFixed(1) + '%', bxX + bxW / 2, bxY + 10.5, { align: 'center' })
 
   // ══════════════════════════════════════════════════════════════════════════
   // CHARTS
   // ══════════════════════════════════════════════════════════════════════════
-  const chartStartY = Math.max(ty + 3, leftPanelEndY + 3)
+  const chartStartY = Math.max(ty + bxH + 3, leftPanelEndY + 3)
   const chartH = 32
   const fullChartW = (W - 14) / 2 - 4
 

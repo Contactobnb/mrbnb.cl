@@ -468,7 +468,7 @@ function proposalEmailWrapper(body: string): string {
           <tr>
             <td style="background-color:#f9f9f9; padding:16px 32px; text-align:center; border-top:1px solid #e5e5e5;">
               <p style="margin:0; color:#888888; font-size:12px;">
-                Felipe - Mr.BnB | felipe@mrbnb.cl | mrbnb.cl
+                Felipe Ruiz | CoFundador y CEO &middot; MrBnb
               </p>
             </td>
           </tr>
@@ -566,9 +566,11 @@ export async function sendProposalEmail(data: ProposalEmailData): Promise<void> 
       Quedo a tu entera disposici&oacute;n para agendar una breve llamada y revisar estos n&uacute;meros en detalle.
     </p>
     <p style="margin:0; font-size:14px; color:#333333;">
-      Saludos,<br>
-      <strong>Felipe</strong><br>
-      <span style="color:#666666;">Mr.BnB | felipe@mrbnb.cl</span>
+      Saludos,<br><br>
+      <strong>Felipe Ruiz</strong><br>
+      <span style="color:#666666;">CoFundador y CEO &middot; MrBnb</span><br>
+      <span style="color:#666666;">&#128222; +56 9 4 223 7814</span><br>
+      <span style="color:#666666;">Mariano Sanchez Fontecilla 358, Las Condes</span>
     </p>`
 
   const html = proposalEmailWrapper(body)
@@ -602,9 +604,11 @@ export async function sendFollowUpEmail(data: FollowUpEmailData): Promise<void> 
 
   const firma = `
     <p style="margin:24px 0 0; font-size:14px; color:#333333;">
-      Saludos cordiales,<br>
-      <strong>Felipe</strong><br>
-      <span style="color:#666666;">Mr.BnB | felipe@mrbnb.cl</span>
+      Saludos cordiales,<br><br>
+      <strong>Felipe Ruiz</strong><br>
+      <span style="color:#666666;">CoFundador y CEO &middot; MrBnb</span><br>
+      <span style="color:#666666;">&#128222; +56 9 4 223 7814</span><br>
+      <span style="color:#666666;">Mariano Sanchez Fontecilla 358, Las Condes</span>
     </p>`
 
   let subject: string

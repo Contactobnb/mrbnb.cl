@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { calculateCashFlow, formatCLP, formatPct } from '@/lib/evaluacion'
 import type { EvaluacionInputs, EvaluacionResult } from '@/lib/evaluacion'
+import { generateEvaluacionPdf } from '@/lib/generateEvaluacionPdf'
 
 interface Props {
   leadId: string
@@ -187,150 +188,26 @@ export default function EvaluacionModal({ leadId, leadName, leadAddress, leadCom
 
   const handleGeneratePdf = useCallback(async () => {
     if (!result) return
-
-    const { jsPDF } = await import('jspdf')
-    const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
-
-    const pageW = doc.internal.pageSize.getWidth()
-    const pageH = doc.internal.pageSize.getHeight()
-    const margin = 8
-    const propLabel = propertyName || leadName
-    const dateStr = new Date().toLocaleDateString('es-CL')
-
-    // ── Header ──────────────────────────────────────────────────────────
-    doc.setFillColor(30, 58, 95) // navy #1e3a5f
-    doc.rect(0, 0, pageW, 18, 'F')
-    doc.setTextColor(255, 255, 255)
-    doc.setFontSize(14)
-    doc.setFont('helvetica', 'bold')
-    doc.text('MR.BNB — Evaluación de Propiedad', margin, 8)
-    doc.setFontSize(9)
-    doc.setFont('helvetica', 'normal')
-    doc.text(`${propLabel}${leadComuna ? ` | ${leadComuna}` : ''}${leadPropertyType ? ` | ${leadPropertyType}` : ''}${leadSurface ? ` | ${leadSurface}m²` : ''}`, margin, 14)
-    doc.text(dateStr, pageW - margin, 8, { align: 'right' })
-
-    // ── Summary boxes ───────────────────────────────────────────────────
-    const boxY = 22
-    const boxH = 14
-    const boxW = (pageW - margin * 2 - 12) / 4
-
-    const summaryBoxes = [
-      { label: 'NOI Anual', value: formatCLP(result.totalNoi), color: [34, 139, 34] },
-      { label: 'Resultado Anual', value: formatCLP(result.totalResultado), color: [0, 102, 204] },
-      { label: 'vs Renta Clásica', value: `${result.pctSobreRenta > 0 ? '+' : ''}${result.pctSobreRenta.toFixed(1)}%`, color: [153, 51, 153] },
-      { label: 'Ocupación Prom.', value: formatPct(result.avgOccupancy, 0), color: [204, 102, 0] },
-    ]
-
-    summaryBoxes.forEach((box, i) => {
-      const x = margin + i * (boxW + 4)
-      doc.setFillColor(box.color[0], box.color[1], box.color[2])
-      doc.roundedRect(x, boxY, boxW, boxH, 2, 2, 'F')
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(7)
-      doc.setFont('helvetica', 'normal')
-      doc.text(box.label, x + 3, boxY + 4.5)
-      doc.setFontSize(11)
-      doc.setFont('helvetica', 'bold')
-      doc.text(box.value, x + 3, boxY + 11)
+    await generateEvaluacionPdf({
+      result,
+      propertyName: propertyName || leadName,
+      comuna: leadComuna,
+      propertyType: leadPropertyType,
+      surface: leadSurface,
+      rentaClasica: parseFloat(rentaClasica),
+      ggcc: parseFloat(ggcc),
+      internet: parseFloat(internet) || 0,
+      luz: parseFloat(luz) || 0,
+      agua: parseFloat(agua) || 0,
+      gas: parseFloat(gas) || 0,
+      muebles: parseFloat(muebles) || 0,
+      decoracion: parseFloat(decoracion) || 0,
+      arreglos: parseFloat(arreglos) || 0,
+      arriendo: parseFloat(arriendo) || 0,
+      garantia: parseFloat(garantia) || 0,
     })
-
-    // ── Cash Flow Table ─────────────────────────────────────────────────
-    const tableY = 40
-    const colW = (pageW - margin * 2 - 50) / 13 // 12 months + total
-    const labelW = 50
-    const rowH = 6.2
-    const fontSize = 5.8
-
-    const rows = [
-      { label: 'ADR', values: result.months.map(r => formatCLP(r.adr)), total: formatCLP(result.avgAdr), isBold: false, bg: null },
-      { label: 'Ocupación (%)', values: result.months.map(r => formatPct(r.occupancy, 0)), total: formatPct(result.avgOccupancy, 0), isBold: false, bg: null },
-      { label: 'Noches ocupadas', values: result.months.map(r => String(r.nightsOccupied)), total: String(result.months.reduce((s, r) => s + r.nightsOccupied, 0)), isBold: false, bg: null },
-      { label: 'Ingresos brutos', values: result.months.map(r => formatCLP(r.ingresosBrutos)), total: formatCLP(result.totalIngresosBrutos), isBold: true, bg: [232, 245, 233] as [number, number, number] },
-      { label: 'Comisión Airbnb (15%)', values: result.months.map(r => formatCLP(-r.comisionAirbnb)), total: formatCLP(-result.totalComisionAirbnb), isBold: false, bg: null },
-      { label: 'Ingresos netos', values: result.months.map(r => formatCLP(r.ingresosNetos)), total: formatCLP(result.totalIngresosNetos), isBold: true, bg: [232, 245, 233] as [number, number, number] },
-      { label: 'GGCC', values: result.months.map(r => formatCLP(-r.ggcc)), total: formatCLP(-result.months.reduce((s, r) => s + r.ggcc, 0)), isBold: false, bg: null },
-      { label: 'SSBB', values: result.months.map(r => formatCLP(-r.ssbb)), total: formatCLP(-result.months.reduce((s, r) => s + r.ssbb, 0)), isBold: false, bg: null },
-      { label: 'Comisión operador (20.23%)', values: result.months.map(r => formatCLP(-r.comisionOperador)), total: formatCLP(-result.months.reduce((s, r) => s + r.comisionOperador, 0)), isBold: false, bg: null },
-      { label: 'Mantenimiento (10%)', values: result.months.map(r => formatCLP(-r.mantenimiento)), total: formatCLP(-result.months.reduce((s, r) => s + r.mantenimiento, 0)), isBold: false, bg: null },
-      { label: 'Gastos operacionales', values: result.months.map(r => formatCLP(-r.gastosOperacionales)), total: formatCLP(-result.totalGastosOperacionales), isBold: true, bg: [255, 235, 235] as [number, number, number] },
-      { label: 'NOI', values: result.months.map(r => formatCLP(r.noi)), total: formatCLP(result.totalNoi), isBold: true, bg: [232, 245, 233] as [number, number, number] },
-      { label: 'GAV (inversión)', values: result.months.map(r => r.gav > 0 ? formatCLP(-r.gav) : '-'), total: formatCLP(-result.totalGav), isBold: false, bg: null },
-      { label: 'Resultado', values: result.months.map(r => formatCLP(r.resultado)), total: formatCLP(result.totalResultado), isBold: true, bg: [219, 234, 254] as [number, number, number] },
-      { label: 'Acumulado', values: result.months.map(r => formatCLP(r.acumulado)), total: '', isBold: true, bg: [219, 234, 254] as [number, number, number] },
-    ]
-
-    // Table header
-    doc.setFillColor(30, 58, 95)
-    doc.rect(margin, tableY, pageW - margin * 2, rowH, 'F')
-    doc.setTextColor(255, 255, 255)
-    doc.setFontSize(fontSize)
-    doc.setFont('helvetica', 'bold')
-    doc.text('Concepto', margin + 2, tableY + 4.2)
-    MONTH_LABELS.forEach((label, i) => {
-      doc.text(label, margin + labelW + i * colW + colW / 2, tableY + 4.2, { align: 'center' })
-    })
-    doc.text('Total/Prom', margin + labelW + 12 * colW + colW / 2, tableY + 4.2, { align: 'center' })
-
-    // Table rows
-    rows.forEach((row, rowIdx) => {
-      const y = tableY + rowH + rowIdx * rowH
-
-      // Background
-      if (row.bg) {
-        doc.setFillColor(row.bg[0], row.bg[1], row.bg[2])
-        doc.rect(margin, y, pageW - margin * 2, rowH, 'F')
-      } else if (rowIdx % 2 === 0) {
-        doc.setFillColor(248, 249, 250)
-        doc.rect(margin, y, pageW - margin * 2, rowH, 'F')
-      }
-
-      // Row border
-      doc.setDrawColor(220, 220, 220)
-      doc.line(margin, y + rowH, pageW - margin, y + rowH)
-
-      // Label
-      doc.setTextColor(50, 50, 50)
-      doc.setFont('helvetica', row.isBold ? 'bold' : 'normal')
-      doc.setFontSize(fontSize)
-      doc.text(row.label, margin + 2, y + 4.2)
-
-      // Monthly values
-      row.values.forEach((val, i) => {
-        doc.setFont('helvetica', row.isBold ? 'bold' : 'normal')
-        doc.text(val, margin + labelW + i * colW + colW / 2, y + 4.2, { align: 'center' })
-      })
-
-      // Total
-      if (row.total) {
-        doc.setFont('helvetica', 'bold')
-        doc.text(row.total, margin + labelW + 12 * colW + colW / 2, y + 4.2, { align: 'center' })
-      }
-    })
-
-    // ── Renta clásica comparison row ────────────────────────────────────
-    const compY = tableY + rowH + rows.length * rowH + 4
-    doc.setFillColor(245, 240, 255)
-    doc.roundedRect(margin, compY, pageW - margin * 2, 10, 1, 1, 'F')
-    doc.setTextColor(80, 40, 120)
-    doc.setFontSize(7)
-    doc.setFont('helvetica', 'bold')
-    doc.text(`Renta clásica mensual: ${formatCLP(result.rentaClasicaMensual)}`, margin + 4, compY + 4)
-    doc.text(`Neto (- ${(result.comisionAdminRentaClasica * 100).toFixed(0)}% admin): ${formatCLP(result.ingresosNetosRentaClasica)}/mes`, margin + 80, compY + 4)
-    doc.text(`Neto anual: ${formatCLP(result.ingresosNetosRentaClasica * 12)}`, margin + 160, compY + 4)
-    doc.text(`Diferencia STR vs Renta: ${result.pctSobreRenta > 0 ? '+' : ''}${result.pctSobreRenta.toFixed(1)}%`, margin + 220, compY + 4)
-
-    // ── Disclaimer ──────────────────────────────────────────────────────
-    doc.setTextColor(150, 150, 150)
-    doc.setFontSize(5)
-    doc.setFont('helvetica', 'italic')
-    const disclaimer = 'Proyección basada en datos de PriceLabs. Los resultados reales pueden variar según condiciones de mercado, estacionalidad y gestión operativa. Este documento es solo referencial y no constituye una garantía de ingresos.'
-    doc.text(disclaimer, margin, pageH - 5, { maxWidth: pageW - margin * 2 })
-    doc.text('mrbnb.cl', pageW - margin, pageH - 5, { align: 'right' })
-
-    // Save
-    const fileName = `Evaluacion_${(propLabel).replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`
-    doc.save(fileName)
-  }, [result, propertyName, leadName, leadComuna, leadPropertyType, leadSurface])
+  }, [result, propertyName, leadName, leadComuna, leadPropertyType, leadSurface,
+    rentaClasica, ggcc, internet, luz, agua, gas, muebles, decoracion, arreglos, arriendo, garantia])
 
   // ── Render ──────────────────────────────────────────────────────────────
 

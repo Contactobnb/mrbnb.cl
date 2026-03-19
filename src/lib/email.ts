@@ -26,6 +26,8 @@ async function sendMailgun(to: string, from: string, subject: string, html: stri
 const NOTIFICATION_EMAIL = 'clientes@mrbnb.cl'
 const FROM_EMAIL = 'Mr.BnB <notificaciones@mrbnb.cl>'
 
+const LOGO_URL = 'https://mrbnb.cl/images/Logo_MB.png'
+
 function emailWrapper(title: string, body: string): string {
   return `
 <!DOCTYPE html>
@@ -35,15 +37,15 @@ function emailWrapper(title: string, body: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
 </head>
-<body style="margin:0; padding:0; background-color:#f5f5f5; font-family:Arial, Helvetica, sans-serif;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f5f5f5;">
+<body style="margin:0; padding:0; background-color:#faf8f5; font-family:Arial, Helvetica, sans-serif;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#faf8f5;">
     <tr>
       <td align="center" style="padding:24px 16px;">
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color:#ffffff; border-radius:8px; overflow:hidden; max-width:600px; width:100%;">
           <!-- Header -->
           <tr>
-            <td style="background-color:#1e3a5f; padding:24px 32px; text-align:center;">
-              <h1 style="margin:0; color:#ffffff; font-size:22px; font-weight:bold;">Mr.BnB</h1>
+            <td style="background-color:#1e3a5f; padding:20px 32px; text-align:center;">
+              <img src="${LOGO_URL}" alt="Mr.BnB" width="60" height="60" style="display:block; margin:0 auto; border-radius:8px;">
             </td>
           </tr>
           <!-- Title bar -->
@@ -60,9 +62,9 @@ function emailWrapper(title: string, body: string): string {
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color:#f9f9f9; padding:16px 32px; text-align:center; border-top:1px solid #e5e5e5;">
-              <p style="margin:0; color:#888888; font-size:12px;">
-                Este es un mensaje automático del sitio web mrbnb.cl
+            <td style="background-color:#152a45; padding:16px 32px; text-align:center;">
+              <p style="margin:0; color:#a0aec0; font-size:12px;">
+                Este es un mensaje autom&aacute;tico del sitio web mrbnb.cl
               </p>
             </td>
           </tr>
@@ -447,15 +449,15 @@ function proposalEmailWrapper(body: string): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="margin:0; padding:0; background-color:#f5f5f5; font-family:Arial, Helvetica, sans-serif;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f5f5f5;">
+<body style="margin:0; padding:0; background-color:#faf8f5; font-family:Arial, Helvetica, sans-serif;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#faf8f5;">
     <tr>
       <td align="center" style="padding:24px 16px;">
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color:#ffffff; border-radius:8px; overflow:hidden; max-width:600px; width:100%;">
           <!-- Header -->
           <tr>
-            <td style="background-color:#1e3a5f; padding:24px 32px; text-align:center;">
-              <h1 style="margin:0; color:#ffffff; font-size:22px; font-weight:bold;">Mr.BnB</h1>
+            <td style="background-color:#1e3a5f; padding:20px 32px; text-align:center;">
+              <img src="${LOGO_URL}" alt="Mr.BnB" width="60" height="60" style="display:block; margin:0 auto; border-radius:8px;">
             </td>
           </tr>
           <!-- Body -->
@@ -466,8 +468,8 @@ function proposalEmailWrapper(body: string): string {
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color:#f9f9f9; padding:16px 32px; text-align:center; border-top:1px solid #e5e5e5;">
-              <p style="margin:0; color:#888888; font-size:12px;">
+            <td style="background-color:#152a45; padding:16px 32px; text-align:center;">
+              <p style="margin:0; color:#a0aec0; font-size:12px;">
                 Felipe Ruiz | CoFundador y CEO &middot; MrBnb
               </p>
             </td>

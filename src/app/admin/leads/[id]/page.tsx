@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import EvaluacionModal from './EvaluacionModal'
+import { calculateCashFlow } from '@/lib/evaluacion'
+import { generateEvaluacionPdf } from '@/lib/generateEvaluacionPdf'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -49,6 +51,19 @@ interface Evaluation {
   resultadoAnual: number | null
   pctSobreRenta: number | null
   propertyName: string | null
+  adr: number[]
+  occupancy: number[]
+  rentaClasica: number
+  ggcc: number
+  internet: number
+  luz: number
+  agua: number
+  gas: number
+  muebles: number
+  decoracion: number
+  arreglos: number
+  arriendo: number
+  garantia: number
 }
 
 type LeadStatus = 'NEW' | 'EVALUATING' | 'PROPOSAL_SENT' | 'NEGOTIATING' | 'CLOSED_WON' | 'CLOSED_LOST'
@@ -431,44 +446,58 @@ export default function LeadDetailPage() {
             </div>
           </div>
 
-          {/* ROI Data — read-only */}
-          {(lead.estimatedRevenue || lead.roiProjected !== null) && (
+          {/* ROI Data — from latest evaluation or lead fields */}
+          {(lead.estimatedRevenue || lead.roiProjected !== null || evaluations.length > 0) && (
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Proyección de ingresos</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {lead.estimatedRevenue && (
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                    <p className="text-sm text-green-600 font-medium">Ingreso neto mensual</p>
-                    <p className="text-xl font-bold text-green-800 mt-1">
-                      {formatCLP(lead.estimatedRevenue)}
-                    </p>
-                  </div>
-                )}
-                {lead.estimatedRevenue && (
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                    <p className="text-sm text-blue-600 font-medium">Ingreso neto anual</p>
-                    <p className="text-xl font-bold text-blue-800 mt-1">
-                      {formatCLP(lead.estimatedRevenue * 12)}
-                    </p>
-                  </div>
-                )}
-                {lead.roiProjected !== null && lead.roiProjected !== undefined && (
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                    <p className="text-sm text-purple-600 font-medium">Diferencia vs arriendo</p>
-                    <p className="text-xl font-bold text-purple-800 mt-1">
-                      +{Math.round(lead.roiProjected * 100)}%
-                    </p>
-                  </div>
-                )}
-              </div>
-              {lead.investmentRequired && (
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Inversion requerida:</span>{' '}
-                    {formatCLP(lead.investmentRequired)}
-                  </p>
-                </div>
-              )}
+              {(() => {
+                const latestEval = evaluations.length > 0 ? evaluations[0] : null
+                const noiMensual = latestEval?.noiAnual != null ? Math.round(latestEval.noiAnual / 12) : lead.estimatedRevenue
+                const noiAnual = latestEval?.noiAnual != null ? latestEval.noiAnual : (lead.estimatedRevenue ? lead.estimatedRevenue * 12 : null)
+                const pctVsRenta = latestEval?.pctSobreRenta != null ? latestEval.pctSobreRenta : (lead.roiProjected != null ? lead.roiProjected * 100 : null)
+                const resultadoAnual = latestEval?.resultadoAnual
+                const inversion = lead.investmentRequired
+
+                return (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                      {noiMensual != null && (
+                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                          <p className="text-xs text-green-600 font-medium">NOI mensual</p>
+                          <p className="text-lg font-bold text-green-800 mt-1">{formatCLP(noiMensual)}</p>
+                        </div>
+                      )}
+                      {noiAnual != null && (
+                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <p className="text-xs text-blue-600 font-medium">NOI anual</p>
+                          <p className="text-lg font-bold text-blue-800 mt-1">{formatCLP(noiAnual)}</p>
+                        </div>
+                      )}
+                      {pctVsRenta != null && (
+                        <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                          <p className="text-xs text-purple-600 font-medium">vs Renta clásica</p>
+                          <p className="text-lg font-bold text-purple-800 mt-1">
+                            {pctVsRenta > 0 ? '+' : ''}{pctVsRenta.toFixed(1)}%
+                          </p>
+                        </div>
+                      )}
+                      {resultadoAnual != null && (
+                        <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                          <p className="text-xs text-orange-600 font-medium">Resultado anual</p>
+                          <p className="text-lg font-bold text-orange-800 mt-1">{formatCLP(resultadoAnual)}</p>
+                        </div>
+                      )}
+                    </div>
+                    {inversion != null && inversion > 0 && (
+                      <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Inversión requerida:</span> {formatCLP(inversion)}
+                        </p>
+                      </div>
+                    )}
+                  </>
+                )
+              })()}
             </div>
           )}
 
@@ -490,7 +519,7 @@ export default function LeadDetailPage() {
                         {new Date(ev.createdAt).toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: 'numeric' })}
                       </p>
                     </div>
-                    <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-3 text-sm">
                       {ev.noiAnual != null && (
                         <span className="text-green-700 font-medium">
                           NOI: {formatCLP(ev.noiAnual)}
@@ -501,6 +530,47 @@ export default function LeadDetailPage() {
                           {ev.pctSobreRenta > 0 ? '+' : ''}{ev.pctSobreRenta.toFixed(1)}%
                         </span>
                       )}
+                      <button
+                        onClick={async () => {
+                          const result = calculateCashFlow({
+                            adr: ev.adr,
+                            occupancy: ev.occupancy,
+                            rentaClasica: ev.rentaClasica,
+                            ggcc: ev.ggcc,
+                            internet: ev.internet,
+                            luz: ev.luz,
+                            agua: ev.agua,
+                            gas: ev.gas,
+                            muebles: ev.muebles,
+                            decoracion: ev.decoracion,
+                            arreglos: ev.arreglos,
+                            arriendo: ev.arriendo,
+                            garantia: ev.garantia,
+                          })
+                          await generateEvaluacionPdf({
+                            result,
+                            propertyName: ev.propertyName || lead.name,
+                            comuna: lead.comuna,
+                            propertyType: lead.propertyType,
+                            surface: lead.surface,
+                            rentaClasica: ev.rentaClasica,
+                            ggcc: ev.ggcc,
+                            internet: ev.internet,
+                            luz: ev.luz,
+                            agua: ev.agua,
+                            gas: ev.gas,
+                            muebles: ev.muebles,
+                            decoracion: ev.decoracion,
+                            arreglos: ev.arreglos,
+                            arriendo: ev.arriendo,
+                            garantia: ev.garantia,
+                          })
+                        }}
+                        className="px-3 py-1 text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors"
+                        title="Descargar PDF"
+                      >
+                        PDF
+                      </button>
                     </div>
                   </div>
                 ))}

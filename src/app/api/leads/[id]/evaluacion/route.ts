@@ -116,6 +116,16 @@ export async function POST(
         },
       })
 
+      // Update lead with evaluation results
+      await prisma.lead.update({
+        where: { id },
+        data: {
+          estimatedRevenue: Math.round(result.totalNoi / 12),
+          roiProjected: result.pctSobreRenta / 100,
+          investmentRequired: result.totalGav > 0 ? result.totalGav : null,
+        },
+      })
+
       return NextResponse.json({ evaluation, result }, { status: 201 })
     }
 

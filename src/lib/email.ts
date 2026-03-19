@@ -469,9 +469,7 @@ function proposalEmailWrapper(body: string): string {
           <!-- Footer -->
           <tr>
             <td style="background-color:#152a45; padding:16px 32px; text-align:center;">
-              <p style="margin:0; color:#a0aec0; font-size:12px;">
-                Felipe Ruiz | CoFundador y CEO &middot; MrBnb
-              </p>
+              <img src="${LOGO_URL}" alt="Mr.BnB" width="40" height="40" style="display:block; margin:0 auto; border-radius:6px;">
             </td>
           </tr>
         </table>
@@ -488,7 +486,7 @@ export async function sendProposalEmail(data: ProposalEmailData): Promise<void> 
 
   const escenarioHtml = escenarioA
     ? `<div style="background-color:#e8fde8; border-left:4px solid #16a34a; padding:16px 20px; border-radius:4px; margin:20px 0;">
-        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#16a34a;">Escenario A (Recomendado)</p>
+        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#16a34a;">Recomendado</p>
         <p style="margin:0; font-size:14px; color:#333333;">
           Tras analizar los datos, <strong>recomendamos implementar el modelo de renta corta</strong>.
           La proyecci&oacute;n muestra una rentabilidad superior al <strong>${pctDisplay}%</strong> en comparaci&oacute;n con el arriendo tradicional.
@@ -496,7 +494,7 @@ export async function sendProposalEmail(data: ProposalEmailData): Promise<void> 
         </p>
       </div>`
     : `<div style="background-color:#fde8e8; border-left:4px solid #c53030; padding:16px 20px; border-radius:4px; margin:20px 0;">
-        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#c53030;">Escenario B (No recomendado)</p>
+        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#c53030;">No recomendado</p>
         <p style="margin:0; font-size:14px; color:#333333;">
           Tras revisar la simulaci&oacute;n, <strong>en este momento no recomendamos la transici&oacute;n a renta corta</strong>.
           El diferencial de ganancia frente a un arriendo tradicional no alcanza nuestro margen m&iacute;nimo de seguridad del 30% necesario para compensar la variabilidad del modelo.

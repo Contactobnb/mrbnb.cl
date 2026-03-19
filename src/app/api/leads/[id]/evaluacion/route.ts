@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { calculateCashFlow } from '@/lib/evaluacion'
+import { generateEvaluacionPdfBuffer } from '@/lib/generateEvaluacionPdfServer'
+import { sendProposalEmail } from '@/lib/email'
 
 // POST /api/leads/[id]/evaluacion
 // Two modes:
@@ -126,7 +128,87 @@ export async function POST(
         },
       })
 
-      return NextResponse.json({ evaluation, result }, { status: 201 })
+      // ── Send proposal email with PDF attachment (non-blocking) ──
+      let emailSent = false
+      let emailError: string | undefined
+      try {
+        const direccion = lead.address || body.propertyName || 'Propiedad'
+
+        const { buffer: pdfBuffer, filename: pdfFilename } = await generateEvaluacionPdfBuffer({
+          result,
+          propertyName: body.propertyName || lead.address || 'Propiedad',
+          comuna: lead.comuna,
+          propertyType: lead.propertyType,
+          surface: lead.surface,
+          rentaClasica,
+          ggcc,
+          internet: body.internet || 0,
+          luz: body.luz || 0,
+          agua: body.agua || 0,
+          gas: body.gas || 0,
+          muebles: body.muebles || 0,
+          decoracion: body.decoracion || 0,
+          arreglos: body.arreglos || 0,
+          arriendo: body.arriendo || 0,
+          garantia: body.garantia || 0,
+        })
+
+        await sendProposalEmail({
+          to: lead.email,
+          leadName: lead.name,
+          direccion,
+          pctSobreRenta: result.pctSobreRenta,
+          pdfBuffer,
+          pdfFilename,
+        })
+
+        // Create ProposalEmail record with follow-up dates
+        const now = new Date()
+        await prisma.proposalEmail.create({
+          data: {
+            leadId: id,
+            evaluationId: evaluation.id,
+            sentTo: lead.email,
+            pdfFileName: pdfFilename,
+            followUp1Date: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000),
+            followUp2Date: new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000),
+            followUp3Date: new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000),
+          },
+        })
+
+        await prisma.activity.create({
+          data: {
+            leadId: id,
+            type: 'email',
+            title: 'Propuesta enviada por email',
+            body: `Email enviado a ${lead.email} con PDF adjunto`,
+          },
+        })
+
+        // Update lead status if NEW or EVALUATING
+        if (lead.status === 'NEW' || lead.status === 'EVALUATING') {
+          await prisma.lead.update({
+            where: { id },
+            data: { status: 'PROPOSAL_SENT' },
+          })
+        }
+
+        emailSent = true
+      } catch (err) {
+        emailError = err instanceof Error ? err.message : 'Error desconocido al enviar email'
+        console.error('Error sending proposal email:', err)
+        // Log error in activity but don't fail the request
+        await prisma.activity.create({
+          data: {
+            leadId: id,
+            type: 'email',
+            title: 'Error al enviar propuesta por email',
+            body: emailError,
+          },
+        }).catch(() => {}) // Don't fail if activity creation also fails
+      }
+
+      return NextResponse.json({ evaluation, result, emailSent, emailError }, { status: 201 })
     }
 
     return NextResponse.json({ error: 'Content-Type no soportado' }, { status: 400 })

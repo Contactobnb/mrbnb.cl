@@ -55,8 +55,9 @@ model Lead {
   assignedTo   String?
 
   // Relations
-  activities  Activity[]
-  evaluations Evaluation[]
+  activities     Activity[]
+  evaluations    Evaluation[]
+  proposalEmails ProposalEmail[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -130,10 +131,40 @@ model Evaluation {
   // Metadata
   propertyName String? // From PDF
 
+  // Relations
+  proposalEmails ProposalEmail[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([leadId])
+}
+
+model ProposalEmail {
+  id           String     @id @default(cuid())
+  leadId       String
+  lead         Lead       @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  evaluationId String
+  evaluation   Evaluation @relation(fields: [evaluationId], references: [id], onDelete: Cascade)
+  sentTo       String
+  pdfFileName  String?
+
+  followUp1Date   DateTime
+  followUp1Sent   Boolean   @default(false)
+  followUp1SentAt DateTime?
+
+  followUp2Date   DateTime
+  followUp2Sent   Boolean   @default(false)
+  followUp2SentAt DateTime?
+
+  followUp3Date   DateTime
+  followUp3Sent   Boolean   @default(false)
+  followUp3SentAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([evaluationId])
 }
 
 model ContactSubmission {

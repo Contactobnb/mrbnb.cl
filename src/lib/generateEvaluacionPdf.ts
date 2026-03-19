@@ -32,24 +32,12 @@ function fmt(n: number): string {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Doc = any
 
-async function loadLogoBase64(): Promise<string | null> {
-  try {
-    const res = await fetch('/images/Logo_MB.png')
-    if (!res.ok) return null
-    const blob = await res.blob()
-    return await new Promise<string>((resolve) => {
-      const reader = new FileReader()
-      reader.onloadend = () => resolve(reader.result as string)
-      reader.readAsDataURL(blob)
-    })
-  } catch {
-    return null
-  }
+export function buildFileName(propertyName: string): string {
+  return `Evaluacion_${propertyName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`
 }
 
-export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
-  const { jsPDF } = await import('jspdf')
-  const doc: Doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
+/** Shared drawing logic — works on both client and server */
+export function drawPdfContent(doc: Doc, p: PdfParams, logoBase64: string | null): void {
   const W = 297, H = 210
   const r = p.result, ms = r.months
   const ssbb = p.internet + p.luz + p.agua + p.gas
@@ -59,17 +47,14 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   const avgNeto = Math.round(r.totalIngresosNetos / 12)
   const avgBruto = Math.round(r.totalIngresosBrutos / 12)
 
-  // Load logo
-  const logoData = await loadLogoBase64()
-
   // ══════════════════════════════════════════════════════════════════════════
   // HEADER
   // ══════════════════════════════════════════════════════════════════════════
   doc.setFillColor(...NAVY)
   doc.rect(0, 0, W, 20, 'F')
 
-  if (logoData) {
-    doc.addImage(logoData, 'PNG', 3, 1.5, 17, 17)
+  if (logoBase64) {
+    doc.addImage(logoBase64, 'PNG', 3, 1.5, 17, 17)
   }
 
   doc.setTextColor(255, 255, 255)
@@ -82,7 +67,7 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   // ══════════════════════════════════════════════════════════════════════════
   const LX = 5, LW = 78
   let ly = 24
-  const LRH = 3.2 // left row height
+  const LRH = 3.2
 
   const secHead = (t: string) => {
     doc.setFillColor(...NAVY)
@@ -151,14 +136,12 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   const RH = 3.2
   const TFS = 3.6
 
-  // Header row (two-line: MES X + month name)
   doc.setFillColor(...NAVY)
   doc.rect(TX, TY, TW, 6.5, 'F')
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(3.8)
   doc.setFont('helvetica', 'bold')
 
-  // MES 0
   const colX = (i: number) => TX + LBL + CW * i + CW / 2
   doc.text('MES 0', colX(0), TY + 3.8, { align: 'center' })
 
@@ -171,7 +154,7 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   doc.text('Promedio', colX(13), TY + 3.8, { align: 'center' })
 
   let ty = TY + 6.5
-  type RS = 'n' | 'h' | 's' // normal, highlight, sub
+  type RS = 'n' | 'h' | 's'
 
   const tRow = (label: string, m0: string, vals: string[], avg: string, st: RS = 'n') => {
     if (st === 'h') {
@@ -210,7 +193,6 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   tRow('Mantenimiento', d, mv(v => fmt(-v.mantenimiento)), fmt(-Math.round(ms.reduce((s, v) => s + v.mantenimiento, 0) / 12)), 's')
   tRow('NOI', d, mv(v => fmt(v.noi)), fmt(Math.round(r.totalNoi / 12)), 'h')
 
-  // GAV section
   const gavT = r.totalGav
   tRow('GAV', gavT > 0 ? fmt(-gavT) : d, mv(() => d), d, 'h')
   tRow('  Muebles', p.muebles ? fmt(-p.muebles) : d, mv(() => d), d, 's')
@@ -223,7 +205,7 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   tRow('Acumulado', fmt(-gavT), mv(v => fmt(v.acumulado)), '', 'h')
 
   // ══════════════════════════════════════════════════════════════════════════
-  // SUMMARY TABLE (below main table, right side)
+  // SUMMARY TABLE
   // ══════════════════════════════════════════════════════════════════════════
   ty += 2
   const sumLbl = 32
@@ -263,7 +245,7 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
     return pct.toFixed(1) + '%'
   }), true)
 
-  // ── % sobre renta clásica highlight box (below summary, right-aligned) ──
+  // ── % sobre renta clásica highlight box ──
   const bxW = 42, bxH = 13
   const bxX = W - bxW - 5, bxY = ty + 1
   doc.setFillColor(...NAVY)
@@ -295,7 +277,6 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
     const maxAdr = Math.max(...ms.map(v => v.adr)) * 1.15
     const gap = aw / 12, bw = gap * 0.55
 
-    // Y axis ticks
     doc.setFontSize(3)
     doc.setFont('helvetica', 'normal')
     doc.setTextColor(120, 120, 120)
@@ -307,13 +288,11 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
       doc.setLineWidth(0.08)
       doc.line(ax, yy, ax + aw, yy)
     }
-    // Right Y axis (occupancy)
     for (let i = 0; i <= 4; i++) {
       const yy = ay + ah - (ah * i / 4)
       doc.text((i * 25) + '%', ax + aw + 1, yy + 0.8)
     }
 
-    // Bars
     for (let i = 0; i < 12; i++) {
       const barH = (ms[i].adr / maxAdr) * ah
       const bx = ax + i * gap + (gap - bw) / 2
@@ -321,7 +300,6 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
       doc.rect(bx, ay + ah - barH, bw, barH, 'F')
     }
 
-    // Occupancy line
     doc.setDrawColor(200, 60, 40)
     doc.setLineWidth(0.4)
     for (let i = 0; i < 11; i++) {
@@ -331,12 +309,10 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
       doc.line(x1, y1, x2, y2)
     }
 
-    // X labels
     doc.setFontSize(2.8)
     doc.setTextColor(100, 100, 100)
     for (let i = 0; i < 12; i++) doc.text(SM[i], ax + i * gap + gap / 2, ay + ah + 3, { align: 'center' })
 
-    // Legend
     const lgY = cy + ch - 2
     doc.setFillColor(70, 130, 180)
     doc.rect(cx + 15, lgY, 3, 1.5, 'F')
@@ -366,7 +342,6 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
     const valY = (v: number) => ay + ah - ((v - minV) / range) * ah
     const zeroY = valY(0)
 
-    // Y axis ticks
     doc.setFontSize(3)
     doc.setFont('helvetica', 'normal')
     doc.setTextColor(120, 120, 120)
@@ -379,7 +354,6 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
       doc.line(ax, yy, ax + aw, yy)
     }
 
-    // NOI bars
     for (let i = 0; i < 12; i++) {
       const topY = valY(ms[i].noi)
       const bx = ax + i * gap + (gap - bw) / 2
@@ -389,18 +363,15 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
       doc.rect(bx, barTop, bw, barH, 'F')
     }
 
-    // Renta clásica line
     doc.setDrawColor(200, 60, 40)
     doc.setLineWidth(0.4)
     const rcY = valY(netoRC)
     doc.line(ax, rcY, ax + aw, rcY)
 
-    // X labels
     doc.setFontSize(2.8)
     doc.setTextColor(100, 100, 100)
     for (let i = 0; i < 12; i++) doc.text(SM[i], ax + i * gap + gap / 2, ay + ah + 3, { align: 'center' })
 
-    // Legend
     const lgY = cy + ch - 2
     doc.setFillColor(70, 130, 180)
     doc.rect(cx + 15, lgY, 3, 1.5, 'F')
@@ -452,10 +423,32 @@ export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
   doc.setTextColor(150, 150, 150)
   doc.setFontSize(4)
   doc.text('mrbnb.cl', W - 5, H - 3, { align: 'right' })
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // SAVE
-  // ══════════════════════════════════════════════════════════════════════════
-  const fileName = `Evaluacion_${p.propertyName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`
-  doc.save(fileName)
 }
+
+// ── Client-side: fetch logo via URL, trigger browser download ──────────────
+
+async function loadLogoBase64(): Promise<string | null> {
+  try {
+    const res = await fetch('/images/Logo_MB.png')
+    if (!res.ok) return null
+    const blob = await res.blob()
+    return await new Promise<string>((resolve) => {
+      const reader = new FileReader()
+      reader.onloadend = () => resolve(reader.result as string)
+      reader.readAsDataURL(blob)
+    })
+  } catch {
+    return null
+  }
+}
+
+export async function generateEvaluacionPdf(p: PdfParams): Promise<void> {
+  const { jsPDF } = await import('jspdf')
+  const doc: Doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
+
+  const logoData = await loadLogoBase64()
+  drawPdfContent(doc, p, logoData)
+
+  doc.save(buildFileName(p.propertyName))
+}
+

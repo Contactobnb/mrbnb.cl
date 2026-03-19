@@ -387,3 +387,288 @@ export async function sendWeeklySummary(data: WeeklySummaryData): Promise<void> 
 
   await sendMailgun(NOTIFICATION_EMAIL, FROM_EMAIL, `[CRM] Resumen semanal - ${data.newLeads} nuevos leads, ${data.closedWon} cerrados`, html)
 }
+
+// ── Mailgun with attachment ─────────────────────────────────────────────────
+
+async function sendMailgunWithAttachment(
+  to: string,
+  from: string,
+  subject: string,
+  html: string,
+  attachment: { buffer: Buffer; filename: string }
+) {
+  const apiKey = process.env.MAILGUN_API_KEY
+  const domain = process.env.MAILGUN_DOMAIN || 'mrbnb.cl'
+  if (!apiKey) throw new Error('MAILGUN_API_KEY is not configured')
+
+  const formData = new FormData()
+  formData.append('from', from)
+  formData.append('to', to)
+  formData.append('subject', subject)
+  formData.append('html', html)
+  formData.append(
+    'attachment',
+    new Blob([new Uint8Array(attachment.buffer)], { type: 'application/pdf' }),
+    attachment.filename
+  )
+
+  const res = await fetch(`https://api.mailgun.net/v3/${domain}/messages`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${Buffer.from(`api:${apiKey}`).toString('base64')}`,
+    },
+    body: formData,
+  })
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`Mailgun error ${res.status}: ${text}`)
+  }
+}
+
+// ── Proposal Email (sent to lead with PDF attachment) ───────────────────────
+
+const PROPOSAL_FROM = 'Felipe - Mr.BnB <felipe@mrbnb.cl>'
+
+interface ProposalEmailData {
+  to: string
+  leadName: string
+  direccion: string
+  pctSobreRenta: number
+  pdfBuffer: Buffer
+  pdfFilename: string
+}
+
+function proposalEmailWrapper(body: string): string {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f5; font-family:Arial, Helvetica, sans-serif;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f5f5f5;">
+    <tr>
+      <td align="center" style="padding:24px 16px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color:#ffffff; border-radius:8px; overflow:hidden; max-width:600px; width:100%;">
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#1e3a5f; padding:24px 32px; text-align:center;">
+              <h1 style="margin:0; color:#ffffff; font-size:22px; font-weight:bold;">Mr.BnB</h1>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding:32px;">
+              ${body}
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f9f9f9; padding:16px 32px; text-align:center; border-top:1px solid #e5e5e5;">
+              <p style="margin:0; color:#888888; font-size:12px;">
+                Felipe - Mr.BnB | felipe@mrbnb.cl | mrbnb.cl
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+}
+
+export async function sendProposalEmail(data: ProposalEmailData): Promise<void> {
+  const escenarioA = data.pctSobreRenta > 20
+  const pctDisplay = data.pctSobreRenta.toFixed(1)
+
+  const escenarioHtml = escenarioA
+    ? `<div style="background-color:#e8fde8; border-left:4px solid #16a34a; padding:16px 20px; border-radius:4px; margin:20px 0;">
+        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#16a34a;">Escenario A (Recomendado)</p>
+        <p style="margin:0; font-size:14px; color:#333333;">
+          Tras analizar los datos, <strong>recomendamos implementar el modelo de renta corta</strong>.
+          La proyecci&oacute;n muestra una rentabilidad superior al <strong>${pctDisplay}%</strong> en comparaci&oacute;n con el arriendo tradicional.
+          Los n&uacute;meros indican que la ubicaci&oacute;n y tipolog&iacute;a tienen una alta demanda, lo que nos permitir&aacute; maximizar tu ingreso operativo neto de forma consistente.
+        </p>
+      </div>`
+    : `<div style="background-color:#fde8e8; border-left:4px solid #c53030; padding:16px 20px; border-radius:4px; margin:20px 0;">
+        <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#c53030;">Escenario B (No recomendado)</p>
+        <p style="margin:0; font-size:14px; color:#333333;">
+          Tras revisar la simulaci&oacute;n, <strong>en este momento no recomendamos la transici&oacute;n a renta corta</strong>.
+          El diferencial de ganancia frente a un arriendo tradicional no alcanza nuestro margen m&iacute;nimo de seguridad del 30% necesario para compensar la variabilidad del modelo.
+          En este caso espec&iacute;fico, la estabilidad de una renta cl&aacute;sica es la opci&oacute;n m&aacute;s eficiente por ahora.
+        </p>
+      </div>`
+
+  const body = `
+    <p style="margin:0 0 16px; font-size:15px; color:#333333;">
+      Hola, <strong>${data.leadName}</strong>:
+    </p>
+    <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+      Es un gusto saludarte. Hemos finalizado el an&aacute;lisis t&eacute;cnico y comercial de tu departamento para evaluar su potencial bajo nuestro modelo de gesti&oacute;n. Nuestro objetivo es que tomes una decisi&oacute;n basada en datos reales de mercado, buscando siempre la m&aacute;xima protecci&oacute;n de tu activo y la mayor rentabilidad operativa.
+    </p>
+    <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+      Para este an&aacute;lisis, se realiz&oacute; un estudio de mercado con la plataforma <strong>PriceLabs</strong> que define la tarifa diaria promedio (ADR) y los niveles de ocupaci&oacute;n esperados seg&uacute;n el comportamiento de propiedades similares en tu zona.
+    </p>
+    <div style="background-color:#e8f4fd; padding:16px 20px; border-radius:6px; margin:20px 0;">
+      <p style="margin:0; font-size:14px; color:#1e3a5f; font-weight:600;">
+        📎 Adjunto simulaci&oacute;n de Flujos Mr.BnB
+      </p>
+      <p style="margin:8px 0 0; font-size:13px; color:#333333;">
+        Un desglose detallado mes a mes donde comparamos los ingresos proyectados (NOI) frente a una renta tradicional, descontando todos los gastos operacionales como contribuciones, servicios y comisiones.
+      </p>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #e5e5e5; margin:24px 0;">
+
+    <h2 style="margin:0 0 16px; font-size:18px; color:#1e3a5f;">¿Qui&eacute;nes somos y qu&eacute; hacemos?</h2>
+    <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+      En <strong>Mr. BnB</strong> transformamos departamentos en hoteles boutique en Santiago, encargandonos de absolutamente todo para que t&uacute; no tengas estr&eacute;s operativo.
+    </p>
+
+    <p style="margin:0 0 8px; font-size:14px; color:#1e3a5f; font-weight:600;">Nuestra Experiencia:</p>
+    <ul style="margin:0 0 16px; padding-left:20px; font-size:14px; color:#333333; line-height:1.8;">
+      <li><strong>+64 propiedades</strong> bajo administraci&oacute;n activa.</li>
+      <li>Calificaciones de excelencia: <strong>4.81★ en Airbnb</strong> y <strong>8.9 en Booking</strong> (Estatus Superhost).</li>
+      <li>Logramos, en promedio, un <strong>+30% de rentabilidad</strong> sobre el arriendo tradicional.</li>
+    </ul>
+
+    <p style="margin:0 0 8px; font-size:14px; color:#1e3a5f; font-weight:600;">¿Qu&eacute; incluye nuestro servicio?</p>
+    <ul style="margin:0 0 16px; padding-left:20px; font-size:14px; color:#333333; line-height:1.8;">
+      <li><strong>Gesti&oacute;n Completa:</strong> Nos ocupamos de las reservas, check-in/out, limpieza profesional y mantenimiento constante.</li>
+      <li><strong>Customer Service 24/7:</strong> Atenci&oacute;n inmediata para los hu&eacute;spedes durante toda su estad&iacute;a.</li>
+      <li><strong>Tecnolog&iacute;a de Punta:</strong> Optimizaci&oacute;n din&aacute;mica de precios diaria para capturar la m&aacute;xima demanda.</li>
+      <li><strong>Transparencia Total:</strong> Reportes mensuales detallados de ingresos y gastos.</li>
+      <li><strong>Puesta en Marcha:</strong> Tu departamento queda operativo en menos de <strong>2 semanas</strong>.</li>
+    </ul>
+
+    <div style="background-color:#fffbeb; border:1px solid #fbbf24; padding:16px 20px; border-radius:6px; margin:20px 0;">
+      <p style="margin:0; font-size:14px; color:#92400e;">
+        <strong>Inversi&oacute;n:</strong> Nuestra comisi&oacute;n es de un <strong>17% + IVA sobre los ingresos generados</strong>. Es un modelo de &eacute;xito compartido: <strong>solo cobramos cuando t&uacute; ganas</strong>.
+      </p>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #e5e5e5; margin:24px 0;">
+
+    <h2 style="margin:0 0 16px; font-size:18px; color:#1e3a5f;">Conclusi&oacute;n del An&aacute;lisis</h2>
+
+    ${escenarioHtml}
+
+    <hr style="border:none; border-top:1px solid #e5e5e5; margin:24px 0;">
+
+    <h3 style="margin:0 0 12px; font-size:16px; color:#1e3a5f;">Consideraciones Finales</h3>
+    <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+      Es importante notar que este es un negocio de rendimiento creciente. Estimamos un per&iacute;odo de <strong>3 meses para que el departamento entre en "r&eacute;gimen"</strong>. Durante este tiempo, el algoritmo de las plataformas posiciona la propiedad mientras generamos las primeras rese&ntilde;as, permitiendo que el rendimiento crezca mes a mes.
+    </p>
+    <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+      Quedo a tu entera disposici&oacute;n para agendar una breve llamada y revisar estos n&uacute;meros en detalle.
+    </p>
+    <p style="margin:0; font-size:14px; color:#333333;">
+      Saludos,<br>
+      <strong>Felipe</strong><br>
+      <span style="color:#666666;">Mr.BnB | felipe@mrbnb.cl</span>
+    </p>`
+
+  const html = proposalEmailWrapper(body)
+  const subject = `Propuesta de Gestión y Evaluación de Rentabilidad - ${data.direccion}`
+
+  await sendMailgunWithAttachment(data.to, PROPOSAL_FROM, subject, html, {
+    buffer: data.pdfBuffer,
+    filename: data.pdfFilename,
+  })
+}
+
+// ── Follow-up Emails ────────────────────────────────────────────────────────
+
+interface FollowUpEmailData {
+  to: string
+  leadName: string
+  direccion: string
+  followUpNumber: 1 | 2 | 3
+}
+
+export async function sendFollowUpEmail(data: FollowUpEmailData): Promise<void> {
+  const { to, leadName, direccion, followUpNumber } = data
+  const replySubject = encodeURIComponent(`Re: Propuesta de Gestión - ${direccion}`)
+
+  const ctaButton = `
+    <div style="margin-top:24px; text-align:center;">
+      <a href="mailto:felipe@mrbnb.cl?subject=${replySubject}" style="display:inline-block; background-color:#1e3a5f; color:#ffffff; text-decoration:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:600;">
+        Responder
+      </a>
+    </div>`
+
+  const firma = `
+    <p style="margin:24px 0 0; font-size:14px; color:#333333;">
+      Saludos cordiales,<br>
+      <strong>Felipe</strong><br>
+      <span style="color:#666666;">Mr.BnB | felipe@mrbnb.cl</span>
+    </p>`
+
+  let subject: string
+  let bodyContent: string
+
+  switch (followUpNumber) {
+    case 1:
+      subject = `Seguimiento - Propuesta ${direccion}`
+      bodyContent = `
+        <p style="margin:0 0 16px; font-size:15px; color:#333333;">
+          Hola, <strong>${leadName}</strong>:
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Hace unos d&iacute;as te enviamos el an&aacute;lisis de rentabilidad para tu propiedad en <strong>${direccion}</strong>.
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Quer&iacute;amos saber si tuviste oportunidad de revisar la simulaci&oacute;n y si tienes alguna pregunta sobre los resultados.
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Estaremos encantados de agendar una reuni&oacute;n para revisar el an&aacute;lisis en detalle y resolver cualquier duda que puedas tener.
+        </p>
+        ${ctaButton}
+        ${firma}`
+      break
+
+    case 2:
+      subject = `Recordatorio - Propuesta ${direccion}`
+      bodyContent = `
+        <p style="margin:0 0 16px; font-size:15px; color:#333333;">
+          Hola, <strong>${leadName}</strong>:
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Esperamos que hayas podido revisar el an&aacute;lisis que te enviamos para tu propiedad en <strong>${direccion}</strong>.
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Los n&uacute;meros respaldan la oportunidad: nuestro modelo ha demostrado consistentemente generar retornos superiores al arriendo tradicional, con la tranquilidad de una gesti&oacute;n integral y profesional.
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Si est&aacute;s interesado en avanzar o tienes preguntas sobre el servicio, no dudes en contactarnos. Estamos aqu&iacute; para ayudarte a tomar la mejor decisi&oacute;n para tu inversi&oacute;n.
+        </p>
+        ${ctaButton}
+        ${firma}`
+      break
+
+    case 3:
+      subject = `Último seguimiento - Propuesta ${direccion}`
+      bodyContent = `
+        <p style="margin:0 0 16px; font-size:15px; color:#333333;">
+          Hola, <strong>${leadName}</strong>:
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Este es nuestro &uacute;ltimo seguimiento respecto al an&aacute;lisis de rentabilidad que preparamos para tu propiedad en <strong>${direccion}</strong>.
+        </p>
+        <p style="margin:0 0 16px; font-size:14px; color:#333333; line-height:1.6;">
+          Si est&aacute;s interesado en conocer m&aacute;s sobre nuestros servicios o si tus planes han cambiado y deseas explorar esta oportunidad en el futuro, siempre puedes contactarnos. Estaremos encantados de atenderte.
+        </p>
+        <p style="margin:0 0 16px; font-size:13px; color:#888888; line-height:1.6;">
+          Si prefieres no recibir m&aacute;s seguimientos, simplemente ignora este mensaje.
+        </p>
+        ${ctaButton}
+        ${firma}`
+      break
+  }
+
+  const html = proposalEmailWrapper(bodyContent)
+  await sendMailgun(to, PROPOSAL_FROM, subject, html)
+}
